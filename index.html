@@ -31,7 +31,8 @@
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="http://www.wiremoons.com/">Home</a>
 
-    <a class="sidebar-nav-item" href="http://www.wiremoons.com/posts">Blog</a>
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/posts">Blog Articles</a>
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/categories">Blog Categories</a>
   </nav>
 
   <div class="sidebar-item">
@@ -61,9 +62,7 @@
 
           <p class="lead">Welcome to my website!</p>
 
-          <p>This is my main web site, containing a general blog, and providing a jump point for other wiremoons content on the Internet.</p>
-
-          <p>Please see the links in the section below for other sites I post content too as well.</p>
+          <p>This is my main web site, containing a general blog, and providing a jump point for other wiremoons content on the Internet. Please see the links in the section below for other sites I post content too as well.</p>
 
           <p>In case you were wondering - '<i>wiremoons</i>' is an anagram for Simon Rowe - which is my name.</p>
         </section>
@@ -74,18 +73,9 @@
             <ul id="list">
               
               
-
-<article class="post">
-    <header>
-      <h2><a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'> Go Web Server - Why Two Log Outputs?</a> </h2>
-      <div class="meta">Sat, 1 Nov 2014</div>
-    </header>
-
-    The Go Program Create a very simple Go webserver as follows, by saving the following Go code into a file called server.go: package main import ( &quot;io&quot; &quot;log&quot; &quot;net/http&quot; ) // Function Home - that handles a web server request for a page func Home(w http.ResponseWriter, req *http.Request) { // write some text to the calling web browser io.WriteString(w, &quot;Hello World!&quot;) // output to the console that we did something log.Println(&quot;served a web page&quot;) } // Function: MAIN func main() { // start up output - to let us know the web server is starting log.Println(&quot;Starting server...&quot;) // handler registered for requests to the root of our web server - send them to the function 'Home' http.HandleFunc(&quot;/&quot;, Home) // start a web server on localhost port 8000 grabbing any errors that occur err := http.ListenAndServe(&quot;:8000&quot;,nil) // check for any errors from the above web server start-up if err != nil { log.Fatal(&quot;ListenAndServer: &quot;, err) } } Assuming you already have Go installed on your computer and configured correctly, the above can be run with: go run server.go The Strange Output?
-    <footer>
-        <a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'><nobr>Read more →</nobr></a>
-    </footer>
-</article>
+<li>
+  <span><h4>Sat,  1 Nov 2014 - <a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'> Go Web Server - Why Two Log Outputs?</a> </h4></span>
+</li>
 
               
             </ul>
@@ -95,7 +85,7 @@
           <section>
             <h2>About the Site</h2>
 
-           <p>My web site is hosted on GitHub as a redirect to <a href="https://wiremoons.github.io/">wiremoons.github.io</a>. The site content is managed using <a href="http://hugo.spf13.com/">Hugo</a>, with version control through Git.</p>
+           <p>My web site is hosted on GitHub as a redirect to <a href="https://wiremoons.github.io/">wiremoons.github.io</a>. The site content is managed using <a href="http://hugo.spf13.com/">Hugo</a>, with version control through <a href="http://git-scm.com/">Git</a>.</p>
           </section>
 
       
@@ -106,7 +96,7 @@
         <tr><td><a href="https://www.flickr.com/photos/wiremoons/">Flickr</a></td><td>Main site for photographs</td></tr>
         <tr><td><a href="http://wiremoons.tumblr.com/">Tumblr</a></td><td>Other blog and more casual photos</td></tr>
         <tr><td><a href="https://github.com/wiremoons">Git Hub</a></td><td>My projects and development code on GitHub</td></tr>
-        <tr><td><a href="https://twitter.com/wiremoons">Twitter</a></td><td>My Twitter page</td></tr>
+        <tr><td><a href="https://twitter.com/wiremoons">Twitter</a></td><td>My Twitter page @wiremoons</td></tr>
         </table>
 
         </section>
