@@ -7,14 +7,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <base href="http://localhost:1313">
+    <base href="http://www.wiremoons.com">
     <title> Go </title>
-    <link rel="canonical" href="http://localhost:1313/categories/go/">
+    <link rel="canonical" href="http://www.wiremoons.com/categories/go/">
     
 
-<link rel="stylesheet" href="http://localhost:1313/css/poole.css">
-<link rel="stylesheet" href="http://localhost:1313/css/syntax.css">
-<link rel="stylesheet" href="http://localhost:1313/css/lanyon.css">
+<link rel="stylesheet" href="http://www.wiremoons.com/css/poole.css">
+<link rel="stylesheet" href="http://www.wiremoons.com/css/syntax.css">
+<link rel="stylesheet" href="http://www.wiremoons.com/css/lanyon.css">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
 
 </head>
@@ -30,10 +30,10 @@
 <div class="sidebar" id="sidebar">
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="http://localhost:1313/">Home</a>
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/">Home</a>
 
-    <a class="sidebar-nav-item" href="http://localhost:1313/posts">Blog Articles</a>
-    <a class="sidebar-nav-item" href="http://localhost:1313/categories">Blog Categories</a>
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/posts">Blog Articles</a>
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/categories">Blog Categories</a>
   </nav>
 
   <div class="sidebar-item">
@@ -51,7 +51,7 @@
     <div class="masthead">
       <div class="container">
         <h3 class="masthead-title">
-          <a href="http://localhost:1313/posts" title="Blog">Blog Posts</a>
+          <a href="http://www.wiremoons.com/posts" title="Blog">Blog Posts</a>
         </h3>
       </div>
     </div>
@@ -61,20 +61,20 @@
       <h1 class="post-title">Recent Posts</h1>
         <section id="main">
           <div>
-            <h5><a href="http://localhost:1313/categories">Full Category Index</a></h5>
+            <h5><a href="http://www.wiremoons.com/categories">Full Category Index</a></h5>
             <h2>Posts in &ldquo;Go&rdquo;</h2>
             
             
 
 <article class="post">
     <header>
-      <h2><a href='http://localhost:1313/posts/2014-10-01-goLang-why-two-log-outputs/'> Go Web Server - Why Two Log Outputs?</a> </h2>
+      <h2><a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'> Go Web Server - Why Two Log Outputs?</a> </h2>
       <div class="meta">Sat, 1 Nov 2014</div>
     </header>
 
     The Go Program Create a very simple Go web server as follows, by saving the following Go code into a file called server.go: package main import ( &quot;io&quot; &quot;log&quot; &quot;net/http&quot; ) // Function Home - that handles a web server request for a page func Home(w http.ResponseWriter, req *http.Request) { // write some text to the calling web browser io.WriteString(w, &quot;Hello World!&quot;) // output to the console that we did something log.Println(&quot;served a web page&quot;) } // Function: MAIN func main() { // start up output - to let us know the web server is starting log.Println(&quot;Starting server...&quot;) // handler registered for requests to the root of our web server - send them to the function 'Home' http.HandleFunc(&quot;/&quot;, Home) // start a web server on localhost port 8000 grabbing any errors that occur err := http.ListenAndServe(&quot;:8000&quot;,nil) // check for any errors from the above web server start-up if err != nil { log.Fatal(&quot;ListenAndServer: &quot;, err) } } Assuming you already have Go installed on your computer and configured correctly, the above can be run with: go run server.go The Strange Output?
     <footer>
-        <a href='http://localhost:1313/posts/2014-10-01-goLang-why-two-log-outputs/'><nobr>Read more →</nobr></a>
+        <a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'><nobr>Read more →</nobr></a>
     </footer>
 </article>
 
@@ -94,7 +94,7 @@
 <footer>
   <div>
     <p class="right credit">
-     &copy; wiremoons.com  2014. Return to <a href="http://localhost:1313/">Home Page</a>
+     &copy; wiremoons.com  2014. Return to <a href="http://www.wiremoons.com/">Home Page</a>
     </p>
   </div>
 </footer>
