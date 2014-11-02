@@ -1,0 +1,11 @@
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+builddrafts = false
+baseurl = "http://www.wiremoons.com/"
+title = "wiremoons web site"
+canonifyurls = true
+
+[indexes]
+   category = "categories"
+   tag = "tags"

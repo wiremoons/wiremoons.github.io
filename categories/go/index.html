@@ -1,0 +1,120 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="http://www.wiremoons.com">
+    <title> Go </title>
+    <link rel="canonical" href="http://www.wiremoons.com/categories/go/">
+    
+
+<link rel="stylesheet" href="http://www.wiremoons.com/css/poole.css">
+<link rel="stylesheet" href="http://www.wiremoons.com/css/syntax.css">
+<link rel="stylesheet" href="http://www.wiremoons.com/css/lanyon.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+</head>
+
+
+<body class="theme-base-08">
+  
+
+
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/">Home</a>
+
+    <a class="sidebar-nav-item" href="http://www.wiremoons.com/posts">Blog</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014 wiremoons.com.<br>
+      Powered by <a href="http://hugo.spf13.com">Hugo</a>.<br>
+      Design adapted from <a href="http://lanyon.getpoole.com">Lanyon</a>.
+    </p>
+  </div>
+</div>
+
+
+  
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="http://www.wiremoons.com/posts" title="Blog">Blog Posts</a>
+        </h3>
+      </div>
+    </div>
+
+  
+    <div class="container content">
+      <h1 class="post-title">Recent Posts</h1>
+        <section id="main">
+          <div>
+            <h5><a href="http://www.wiremoons.com/categories">Full Category Index</a></h5>
+            <h2>Posts in &ldquo;Go&rdquo;</h2>
+            
+            
+
+<article class="post">
+    <header>
+      <h2><a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'> Go Web Server - Why Two Log Outputs?</a> </h2>
+      <div class="meta">Sat, 1 Nov 2014</div>
+    </header>
+
+    The Go Program Create a very simple Go webserver as follows, by saving the following Go code into a file called server.go: package main import ( &quot;io&quot; &quot;log&quot; &quot;net/http&quot; ) // Function Home - that handles a web server request for a page func Home(w http.ResponseWriter, req *http.Request) { // write some text to the calling web browser io.WriteString(w, &quot;Hello World!&quot;) // output to the console that we did something log.Println(&quot;served a web page&quot;) } // Function: MAIN func main() { // start up output - to let us know the web server is starting log.Println(&quot;Starting server...&quot;) // handler registered for requests to the root of our web server - send them to the function 'Home' http.HandleFunc(&quot;/&quot;, Home) // start a web server on localhost port 8000 grabbing any errors that occur err := http.ListenAndServe(&quot;:8000&quot;,nil) // check for any errors from the above web server start-up if err != nil { log.Fatal(&quot;ListenAndServer: &quot;, err) } } Assuming you already have Go installed on your computer and configured correctly, the above can be run with: go run server.go The Strange Output?
+    <footer>
+        <a href='http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/'><nobr>Read more →</nobr></a>
+    </footer>
+</article>
+
+            
+          </div>
+        </section>
+
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  
+  
+
+<div class="container content">
+<footer>
+  <div>
+    <p class="right credit">
+     &copy; wiremoons.com  2014. Return to <a href="http://www.wiremoons.com/">Home Page</a>
+    </p>
+  </div>
+</footer>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36732392-2', 'sglyon.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
