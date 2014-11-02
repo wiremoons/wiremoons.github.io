@@ -75,10 +75,10 @@ func main() {
 
 &lt;p&gt;Reasons I thought of:&lt;/p&gt;
 
-&lt;p&gt;1) A bug in Go?  I doubt it very much - the log.Println is used by lots of people&amp;rsquo;s programs, so I hardly think I am the first person to notice something as simple as this - so probably not a bug!
-2) Maybe it is outputting a log entry for both stdout and stderr?  Possible - but unlikely for a default setting.
-3) I have done something dumb (again!) and the output is getting called twice due to some programming logic error - quite possible - but checking the code logic, nothing stands out!
-4) So - must be some other issue causing it I guess - time to find out more&amp;hellip;&lt;/p&gt;
+&lt;p&gt;1.) A bug in Go?  I doubt it very much - the log.Println is used by lots of people&amp;rsquo;s programs, so I hardly think I am the first person to notice something as simple as this - so probably not a bug!
+2.) Maybe it is outputting a log entry for both stdout and stderr?  Possible - but unlikely for a default setting.
+3.) I have done something dumb (again!) and the output is getting called twice due to some programming logic error - quite possible - but checking the code logic, nothing stands out!
+4.) So - must be some other issue causing it I guess - time to find out more&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;We need to isolate why we are getting two log outputs for one page visit. So some way to see if the two log outputs are for the same reason (ie duplicates) - or in fact they are generated correctly for two different reasons. But how?&lt;/p&gt;
 

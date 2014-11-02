@@ -120,10 +120,10 @@ func main() {
 
 <p>Reasons I thought of:</p>
 
-<p>1) A bug in Go?  I doubt it very much - the log.Println is used by lots of people&rsquo;s programs, so I hardly think I am the first person to notice something as simple as this - so probably not a bug!
-2) Maybe it is outputting a log entry for both stdout and stderr?  Possible - but unlikely for a default setting.
-3) I have done something dumb (again!) and the output is getting called twice due to some programming logic error - quite possible - but checking the code logic, nothing stands out!
-4) So - must be some other issue causing it I guess - time to find out more&hellip;</p>
+<p>1.) A bug in Go?  I doubt it very much - the log.Println is used by lots of people&rsquo;s programs, so I hardly think I am the first person to notice something as simple as this - so probably not a bug!
+2.) Maybe it is outputting a log entry for both stdout and stderr?  Possible - but unlikely for a default setting.
+3.) I have done something dumb (again!) and the output is getting called twice due to some programming logic error - quite possible - but checking the code logic, nothing stands out!
+4.) So - must be some other issue causing it I guess - time to find out more&hellip;</p>
 
 <p>We need to isolate why we are getting two log outputs for one page visit. So some way to see if the two log outputs are for the same reason (ie duplicates) - or in fact they are generated correctly for two different reasons. But how?</p>
 
@@ -288,11 +288,11 @@ func main() {
   <ul class="catlist">
     <li><em>Categories: </em></li>
     
-      <li><a href="http://www.wiremoons.com/categories/Development">Development</a> </li>
+      <li><a href="http://www.wiremoons.com/categories/development">development</a> </li>
     
-      <li><a href="http://www.wiremoons.com/categories/Golang">Golang</a> </li>
+      <li><a href="http://www.wiremoons.com/categories/golang">golang</a> </li>
     
-      <li><a href="http://www.wiremoons.com/categories/Go">Go</a> </li>
+      <li><a href="http://www.wiremoons.com/categories/go">go</a> </li>
     
   </ul>
 </div>
@@ -319,11 +319,10 @@ func main() {
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-36732392-2', 'sglyon.com');
+  ga('create', 'UA-31223730-2', 'auto');
   ga('send', 'pageview');
 
 </script>
-
 
 </body>
 </html>
