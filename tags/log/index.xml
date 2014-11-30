@@ -180,7 +180,7 @@ func main() {
 
 &lt;p&gt;Well&amp;mdash;now we have this logging facility, we might as well keep it, and add an option to our code to turn it on and off. We need to add another package to provide this functionality called &lt;code&gt;io/ioutil&lt;/code&gt; and add another line to manage the output to our main function: &lt;code&gt;log.SetOutput(ioutil.Discard)&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;This discards (ie throws away) the log output if we wish. To re-enable it&amp;mdash;change this line to: &lt;code&gt;log.SetOutput(ioutil.Stderr)&lt;/code&gt; &amp;mdash;or just comment the line out to go back to the default behaviour. If you do comment it out though&amp;mdash;you will also need to comment out the &lt;code&gt;io/ioutil&lt;/code&gt; package as well&amp;mdash;as you wont be using it any more in the program, and the Go compiler will spot this and complain to you!&lt;/p&gt;
+&lt;p&gt;This discards (ie throws away) the log output if we wish. To re-enable it&amp;mdash;change this line to: &lt;code&gt;log.SetOutput(io.Stderr)&lt;/code&gt; &amp;mdash;or just comment the line out to go back to the default behaviour. If you do comment it out though&amp;mdash;you will also need to comment out the &lt;code&gt;io/ioutil&lt;/code&gt; package as well&amp;mdash;as you wont be using it any more in the program, and the Go compiler will spot this and complain to you!&lt;/p&gt;
 
 &lt;p&gt;The final code looks like this:&lt;/p&gt;
 
@@ -201,7 +201,7 @@ func Home(w http.ResponseWriter, req *http.Request) {
 
 // Function: MAIN
 func main() {
-	// control log output: discard == throw away  or  os.Stderr == output to stderr (console)
+	// control log output: &#39;ioutil.discard&#39; == throw away  or  &#39;os.Stderr&#39; == output to Stderr (console)
 	log.SetOutput(ioutil.Discard)
 	// start up output
 	log.Println(&amp;quot;Starting server...&amp;quot;)

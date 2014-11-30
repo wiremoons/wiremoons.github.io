@@ -225,7 +225,7 @@ func main() {
 
 <p>Well&mdash;now we have this logging facility, we might as well keep it, and add an option to our code to turn it on and off. We need to add another package to provide this functionality called <code>io/ioutil</code> and add another line to manage the output to our main function: <code>log.SetOutput(ioutil.Discard)</code></p>
 
-<p>This discards (ie throws away) the log output if we wish. To re-enable it&mdash;change this line to: <code>log.SetOutput(ioutil.Stderr)</code> &mdash;or just comment the line out to go back to the default behaviour. If you do comment it out though&mdash;you will also need to comment out the <code>io/ioutil</code> package as well&mdash;as you wont be using it any more in the program, and the Go compiler will spot this and complain to you!</p>
+<p>This discards (ie throws away) the log output if we wish. To re-enable it&mdash;change this line to: <code>log.SetOutput(io.Stderr)</code> &mdash;or just comment the line out to go back to the default behaviour. If you do comment it out though&mdash;you will also need to comment out the <code>io/ioutil</code> package as well&mdash;as you wont be using it any more in the program, and the Go compiler will spot this and complain to you!</p>
 
 <p>The final code looks like this:</p>
 
@@ -246,7 +246,7 @@ func Home(w http.ResponseWriter, req *http.Request) {
 
 // Function: MAIN
 func main() {
-	// control log output: discard == throw away  or  os.Stderr == output to stderr (console)
+	// control log output: 'ioutil.discard' == throw away  or  'os.Stderr' == output to Stderr (console)
 	log.SetOutput(ioutil.Discard)
 	// start up output
 	log.Println(&quot;Starting server...&quot;)
@@ -286,6 +286,10 @@ func main() {
 <div class="container">
   <hr />
   <hr />
+  
+    <span class="left">
+    &nbsp; <em>&laquo; Previous:</em> <a class="next" href="http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/">Serving Up Static Content from Golang Apps</a>
+    </span>
   
 
   
