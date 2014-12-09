@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Security on wiremoons web site </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.wiremoons.com/categories/security/index.xml/</link>
+    
+    
+    
+    <updated>Tue, 09 Dec 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Three Letter Passwords</title>
+      <link>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</link>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</guid>
+      <description>
+
+&lt;h2 id=&#34;toc_0&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;I recently created a simple application named uniquely as &lt;code&gt;passgen&lt;/code&gt;
+which was written to generate a random password created from a pool of
+English three letter words. This gave me a small Golang project to
+work on, and also to create a handy tool to generate strong passwords.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_2&#34;&gt;About&lt;/h3&gt;
+
+&lt;p&gt;This application generates password suggestions based on a pool of
+several hundred three letter English words. The words are selected
+from the pool randomly, and then displayed to the screen so you can
+choose one for use as a very secure password.&lt;/p&gt;
+
+&lt;p&gt;It is important that you combine the three letter words together to
+form a single string of characters (without the spaces)&amp;mdash;to
+obtain a password with a minimum length on 9 characters. Longer
+combinations are stronger, but unfortunately not all sites or computer
+systems accept really long passwords still.&lt;/p&gt;
+
+&lt;p&gt;You can of course add digits/numbers to your password also, and
+punctuation characters too if you wish&amp;mdash;but it would be wiser to
+keep the password simple, and easy to remember, but change it more
+frequently instead, using a fresh newly generated one every few weeks.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
+
+&lt;p&gt;While the passwords generated look far too simple and easy to be
+secure, they are in fact very secure, and difficult to crack. Just
+because they look simple to a human&amp;mdash;it doesn&amp;rsquo;t mean they are
+simple to work out using a computer. They are in fact quite hard to
+work out for a computer, as they are random, not a single dictionary
+word, or a single common name (with perhaps number substitutions and
+other common &amp;lsquo;complex&amp;rsquo; combinations)&amp;mdash;or some combination of
+these approaches.  It is a common misconception that a password has to
+be &amp;lsquo;complex&amp;rsquo; to be any good.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately we have been led to believe that the more complex a
+password is&amp;mdash;the better and more secure it will be&amp;mdash;which is
+in fact wrong.&lt;/p&gt;
+
+&lt;p&gt;In fact a longer password, but one that can that can be more easily
+remembered, and therefore consequentially be changed more frequently,
+actually offers a far greater degree of security.&lt;/p&gt;
+
+&lt;p&gt;For more information or more detailed explanations of this approach,
+please see the web pages included below under &amp;lsquo;References&amp;rsquo;. There are
+plenty of other expert sources on the Internet also, that will explain
+the security benefits of using a randomly generated three word (or
+more) combination password. Just remember&amp;mdash;your password must be
+at least nine characters in total&amp;mdash;or longer if possible. You can
+of course always add additional punctuation, and/or numbers, should
+you wish!&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_4&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
+
+&lt;p&gt;There are over 500 three letter words in the pool that can be chosen
+from, and assuming you use at least three of these words combined,
+that provide 500^3 (500 to power of 3) possible combinations&amp;mdash;of
+which one is your password.&lt;/p&gt;
+
+&lt;p&gt;So - 500 x 500 x 500 = 125,000,000 (one hundred and twenty five
+million) possibilities.&lt;/p&gt;
+
+&lt;p&gt;Maybe that doesn&amp;rsquo;t sound like a lot - but if you could check 20 of
+them every second, 24 hours a day, you would need roughly 60 days to
+get through them all!&lt;/p&gt;
+
+&lt;p&gt;If you use the mixed case option (upper and lower case)&amp;mdash;then
+that number increases further of course&amp;mdash;and you can still add
+numbers, and/or punctuation characters if you wish too.&lt;/p&gt;
+
+&lt;p&gt;Or just increase you password length to 12 characters, so use four of
+the three letter words combined, and you end up with 62,500,000,000 (sixty two
+billion five hundred million) possibilities&amp;mdash;and that just lower case
+letters only.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_5&#34;&gt;So Where Is It Then?&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen source code&lt;/a&gt; is available from my GitHub page, and I have made
+pre-compiled binaries for Windows, Mac, and Linux available from a
+&lt;a href=&#34;https://github.com/wiremoons/passgen/releases&#34;&gt;Release Page&lt;/a&gt;. The application is not feature complete yet&amp;mdash;but it
+does work well, and will improve as I get time to work on it further.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_6&#34;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;Thomas Baekdal - The Usability of Passwords - FAQ
+ - &lt;a href=&#34;http://www.baekdal.com/insights/the-usability-of-passwords-faq&#34;&gt;http://www.baekdal.com/insights/the-usability-of-passwords-faq&lt;/a&gt;
+Steve Gibson - GRC &amp;lsquo;How Big is Your Haystack?&amp;rsquo;
+ - &lt;a href=&#34;https://www.grc.com/haystack.htm&#34;&gt;https://www.grc.com/haystack.htm&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_7&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;The program is licensed under the &amp;ldquo;New BSD License&amp;rdquo; or &amp;ldquo;BSD 3-Clause
+License&amp;rdquo;. A copy of the license is available
+&lt;a href=&#34;https://github.com/wiremoons/csv2sql/blob/master/License&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_8&#34;&gt;OTHER INFORMATION&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Latest version is kept on GitHub here: &lt;a href=&#34;https://github.com/wiremoons&#34;&gt;Wiremoons GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The program is written in Go - more information here: &lt;a href=&#34;http://www.golang.org/&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The program was written by Simon Rowe, licensed under &lt;a href=&#34;http://opensource.org/licenses/BSD-3-Clause&#34;&gt;New BSD License&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
