@@ -26,7 +26,7 @@ which was written to generate a random password created from a pool of
 English three letter words. This gave me a small Golang project to
 work on, and also to create a handy tool to generate strong passwords.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_2&#34;&gt;About&lt;/h3&gt;
+&lt;h3 id=&#34;toc_2&#34;&gt;How Does it Work?&lt;/h3&gt;
 
 &lt;p&gt;This application generates password suggestions based on a pool of
 several hundred three letter English words. The words are selected
@@ -43,6 +43,23 @@ systems accept really long passwords still.&lt;/p&gt;
 punctuation characters too if you wish&amp;mdash;but it would be wiser to
 keep the password simple, and easy to remember, but change it more
 frequently instead, using a fresh newly generated one every few weeks.&lt;/p&gt;
+
+&lt;p&gt;An example of the output from the program is below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            THREE WORD - PASSWORD GENERATOR
+            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+• Number of three letter words available in the pool is: 573
+• Number of three letter words to include in the suggested password is: 3
+  • Password character length will therefore be: 9
+• Mixed case passwords to be provided: false
+• Offering 3 suggested passwords for your consideration:
+
+   din wry ran
+    ova ram lit
+     ski yea koa
+
+All is well
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;toc_3&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
 
@@ -105,23 +122,17 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 
 &lt;h3 id=&#34;toc_6&#34;&gt;References&lt;/h3&gt;
 
-&lt;p&gt;Thomas Baekdal - The Usability of Passwords - FAQ
- - &lt;a href=&#34;http://www.baekdal.com/insights/the-usability-of-passwords-faq&#34;&gt;http://www.baekdal.com/insights/the-usability-of-passwords-faq&lt;/a&gt;
-Steve Gibson - GRC &amp;lsquo;How Big is Your Haystack?&amp;rsquo;
- - &lt;a href=&#34;https://www.grc.com/haystack.htm&#34;&gt;https://www.grc.com/haystack.htm&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_7&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;The program is licensed under the &amp;ldquo;New BSD License&amp;rdquo; or &amp;ldquo;BSD 3-Clause
-License&amp;rdquo;. A copy of the license is available
-&lt;a href=&#34;https://github.com/wiremoons/csv2sql/blob/master/License&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_8&#34;&gt;OTHER INFORMATION&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Thomas Baekdal - The Usability of Passwords - FAQ
 
 &lt;ul&gt;
-&lt;li&gt;Latest version is kept on GitHub here: &lt;a href=&#34;https://github.com/wiremoons&#34;&gt;Wiremoons GitHub Pages&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;The program is written in Go - more information here: &lt;a href=&#34;http://www.golang.org/&#34;&gt;Go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;The program was written by Simon Rowe, licensed under &lt;a href=&#34;http://opensource.org/licenses/BSD-3-Clause&#34;&gt;New BSD License&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.baekdal.com/insights/the-usability-of-passwords-faq&#34;&gt;http://www.baekdal.com/insights/the-usability-of-passwords-faq&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Steve Gibson - GRC &amp;lsquo;How Big is Your Haystack?&amp;rsquo;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.grc.com/haystack.htm&#34;&gt;https://www.grc.com/haystack.htm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

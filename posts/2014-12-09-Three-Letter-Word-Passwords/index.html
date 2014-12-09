@@ -71,7 +71,7 @@ which was written to generate a random password created from a pool of
 English three letter words. This gave me a small Golang project to
 work on, and also to create a handy tool to generate strong passwords.</p>
 
-<h3 id="toc_2">About</h3>
+<h3 id="toc_2">How Does it Work?</h3>
 
 <p>This application generates password suggestions based on a pool of
 several hundred three letter English words. The words are selected
@@ -88,6 +88,23 @@ systems accept really long passwords still.</p>
 punctuation characters too if you wish&mdash;but it would be wiser to
 keep the password simple, and easy to remember, but change it more
 frequently instead, using a fresh newly generated one every few weeks.</p>
+
+<p>An example of the output from the program is below:</p>
+
+<pre><code>            THREE WORD - PASSWORD GENERATOR
+            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+• Number of three letter words available in the pool is: 573
+• Number of three letter words to include in the suggested password is: 3
+  • Password character length will therefore be: 9
+• Mixed case passwords to be provided: false
+• Offering 3 suggested passwords for your consideration:
+
+   din wry ran
+    ova ram lit
+     ski yea koa
+
+All is well
+</code></pre>
 
 <h3 id="toc_3">Are These Passwords Secure?</h3>
 
@@ -150,23 +167,17 @@ does work well, and will improve as I get time to work on it further.</p>
 
 <h3 id="toc_6">References</h3>
 
-<p>Thomas Baekdal - The Usability of Passwords - FAQ
- - <a href="http://www.baekdal.com/insights/the-usability-of-passwords-faq">http://www.baekdal.com/insights/the-usability-of-passwords-faq</a>
-Steve Gibson - GRC &lsquo;How Big is Your Haystack?&rsquo;
- - <a href="https://www.grc.com/haystack.htm">https://www.grc.com/haystack.htm</a></p>
-
-<h2 id="toc_7">License</h2>
-
-<p>The program is licensed under the &ldquo;New BSD License&rdquo; or &ldquo;BSD 3-Clause
-License&rdquo;. A copy of the license is available
-<a href="https://github.com/wiremoons/csv2sql/blob/master/License">here</a>.</p>
-
-<h2 id="toc_8">OTHER INFORMATION</h2>
+<ul>
+<li>Thomas Baekdal - The Usability of Passwords - FAQ
 
 <ul>
-<li>Latest version is kept on GitHub here: <a href="https://github.com/wiremoons">Wiremoons GitHub Pages</a></li>
-<li>The program is written in Go - more information here: <a href="http://www.golang.org/">Go</a></li>
-<li>The program was written by Simon Rowe, licensed under <a href="http://opensource.org/licenses/BSD-3-Clause">New BSD License</a></li>
+<li><a href="http://www.baekdal.com/insights/the-usability-of-passwords-faq">http://www.baekdal.com/insights/the-usability-of-passwords-faq</a></li>
+</ul></li>
+<li>Steve Gibson - GRC &lsquo;How Big is Your Haystack?&rsquo;
+
+<ul>
+<li><a href="https://www.grc.com/haystack.htm">https://www.grc.com/haystack.htm</a></li>
+</ul></li>
 </ul>
 
         </section>
