@@ -95,7 +95,7 @@ English words. Maybe they will help create a more secure password for you to use
 &lt;p&gt;They were written for fun, and for my own personal use, and they are both Open-source and free!&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://mashable.com/2015/01/20/worst-passwords-of-2014/&#34;&gt;sugpass - &amp;lsquo;Suggest Password - program written in c&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/sugpass&#34;&gt;sugpass - &amp;lsquo;Suggest Password - program written in c&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen - &amp;lsquo;Password Generate - program written in Go&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
