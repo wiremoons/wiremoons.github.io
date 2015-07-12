@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Golang on wiremoons web site </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://www.wiremoons.com/categories/golang/index.xml/</link>
-    
-    
-    
-    <updated>Tue, 09 Dec 2014 00:00:00 UTC</updated>
+    <title>Golang on wiremoons web site</title>
+    <link>http://www.wiremoons.com/categories/golang/</link>
+    <description>Recent content in Golang on wiremoons web site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 09 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.wiremoons.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Three Letter Passwords</title>
       <link>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</link>
-      <pubDate>Tue, 09 Dec 2014 00:00:00 UTC</pubDate>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
+&lt;h2 id=&#34;three-word-password-generator:e1bd042fb1882341a9fbc897352838db&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Summary&lt;/h2&gt;
+&lt;h2 id=&#34;summary:e1bd042fb1882341a9fbc897352838db&#34;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;I recently created a simple application named uniquely as &lt;code&gt;passgen&lt;/code&gt;
 which was written to generate a random password created from a pool of
 English three letter words. This gave me a small Golang project to
 work on, and also to create a handy tool to generate strong passwords.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_2&#34;&gt;How Does it Work?&lt;/h3&gt;
+&lt;h3 id=&#34;how-does-it-work:e1bd042fb1882341a9fbc897352838db&#34;&gt;How Does it Work?&lt;/h3&gt;
 
 &lt;p&gt;This application generates password suggestions based on a pool of
 several hundred three letter English words. The words are selected
@@ -61,7 +60,7 @@ frequently instead, using a fresh newly generated one every few weeks.&lt;/p&gt;
 All is well
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;toc_3&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
+&lt;h3 id=&#34;are-these-passwords-secure:e1bd042fb1882341a9fbc897352838db&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
 
 &lt;p&gt;While the passwords generated look far too simple and easy to be
 secure, they are in fact very secure, and difficult to crack. Just
@@ -90,7 +89,7 @@ at least nine characters in total&amp;mdash;or longer if possible. You can
 of course always add additional punctuation, and/or numbers, should
 you wish!&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_4&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
+&lt;h3 id=&#34;so-how-many-possible-passwords-are-there:e1bd042fb1882341a9fbc897352838db&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
 
 &lt;p&gt;There are over 500 three letter words in the pool that can be chosen
 from, and assuming you use at least three of these words combined,
@@ -113,14 +112,14 @@ the three letter words combined, and you end up with 62,500,000,000 (sixty two
 billion five hundred million) possibilities&amp;mdash;and that just lower case
 letters only.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_5&#34;&gt;So Where Is It Then?&lt;/h3&gt;
+&lt;h3 id=&#34;so-where-is-it-then:e1bd042fb1882341a9fbc897352838db&#34;&gt;So Where Is It Then?&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen source code&lt;/a&gt; is available from my GitHub page, and I have made
 pre-compiled binaries for Windows, Mac, and Linux available from a
 &lt;a href=&#34;https://github.com/wiremoons/passgen/releases&#34;&gt;Release Page&lt;/a&gt;. The application is not feature complete yet&amp;mdash;but it
 does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_6&#34;&gt;References&lt;/h3&gt;
+&lt;h3 id=&#34;references:e1bd042fb1882341a9fbc897352838db&#34;&gt;References&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Thomas Baekdal - The Usability of Passwords - FAQ
@@ -140,12 +139,12 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
     <item>
       <title>Serving Up Static Content from Golang Apps</title>
       <link>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</link>
-      <pubDate>Sun, 30 Nov 2014 00:00:00 UTC</pubDate>
+      <pubDate>Sun, 30 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;The Background&lt;/h2&gt;
+&lt;h2 id=&#34;the-background:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Background&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://golang.org/&#34; title=&#34;&#39;The Go Programming Language&#39; - @google&#34;&gt;Go&lt;/a&gt; is a great programming language, and three of the features I like the most are:&lt;/p&gt;
 
@@ -182,7 +181,7 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 
 &lt;p&gt;So, this article is going to just focus on managing the GUI interface content in the application, and specifically how it can be included in the application binary?&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;The Problem to be Solved&lt;/h2&gt;
+&lt;h2 id=&#34;the-problem-to-be-solved:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Problem to be Solved&lt;/h2&gt;
 
 &lt;p&gt;So surely you just write you application, throw in a &lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34; title=&#34;Golang.org wiki article: &#39;Writing Web Applications&#39;- @google&#34;&gt;simple Go web server&lt;/a&gt;, give it some HTML pages, chuck in some Bootstrap CSS and job done?&lt;/p&gt;
 
@@ -208,11 +207,11 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 &lt;li&gt;Also courtesy of an &lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34; title=&#34;&#39;esc: Embedding Static Assets in Go&#39; - blog by @mjibson&#34;&gt;blog article&lt;/a&gt; on this same subject, there is @mjibson&amp;rsquo;s own &lt;a href=&#34;https://github.com/mjibson/esc&#34; title=&#34;&#39;esc - *A simple file embedder for Go*&#39; - @mjibson&#34;&gt;ecs&lt;/a&gt;, and another I didnt find &lt;a href=&#34;https://github.com/rakyll/statik&#34; title=&#34;&#39;statik - *Embed static files into a Go executable*&#39;&#39; - @rakyll&#34;&gt;statik&lt;/a&gt;. Thanks to the weekly &lt;a href=&#34;http://golangweekly.com/&#34; title=&#34;&#39;A great weekly &#39;Go Newsletter&#39; sent to your inbox&amp;amp;mdash;once your subscribe of course!&#39;&#39; - @mattrco and @kelseyhightower&#34;&gt;Go Newsletter&lt;/a&gt; &lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34; title=&#34;Go Newsletter Issue #37&#34;&gt;Issue #37&lt;/a&gt; for helping me find this resource!&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;So there are plenty of solutions out there to this issue, and I am sure that I can use one of the approaches listed above to incorporate a working model and solution into my own application. Time for more reading, coding experiments, and hopefully a working application soon!&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Questions for the Future&lt;/h2&gt;
+&lt;h2 id=&#34;questions-for-the-future:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Questions for the Future&lt;/h2&gt;
 
 &lt;p&gt;Not researched this question yet&amp;mdash;but if web applications that are run from users local machines are going to increase over time (I run a few myself already)&amp;mdash;how are we going to manage the proliferation of port usage for all the local web servers running each application? Each web server, for each web application will need its own local port.&lt;/p&gt;
 
@@ -224,7 +223,7 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 
 &lt;p&gt;Otherwise&amp;mdash;time to research local machine port scanning code to find a solution!&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;Further Information&lt;/h2&gt;
+&lt;h2 id=&#34;further-information:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Further Information&lt;/h2&gt;
 
 &lt;p&gt;Further resources and information used in-conjunction with the above article (and linked to in-line) can be found here:&lt;/p&gt;
 
@@ -258,12 +257,12 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
     <item>
       <title>Go Web Server - Why Two Log Outputs?</title>
       <link>http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/</link>
-      <pubDate>Sat, 01 Nov 2014 00:00:00 UTC</pubDate>
+      <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs/</guid>
       <description>
 
-&lt;h1 id=&#34;toc_0&#34;&gt;The Go Program&lt;/h1&gt;
+&lt;h1 id=&#34;the-go-program:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;The Go Program&lt;/h1&gt;
 
 &lt;p&gt;Create a very simple Go web server as follows, by saving the following Go code into a file called server.go:&lt;/p&gt;
 
@@ -303,7 +302,7 @@ func main() {
 &lt;pre&gt;&lt;code&gt;go run server.go
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;The Strange Output?&lt;/h2&gt;
+&lt;h2 id=&#34;the-strange-output:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;The Strange Output?&lt;/h2&gt;
 
 &lt;p&gt;So what&amp;rsquo;s the point?&lt;/p&gt;
 
@@ -319,7 +318,7 @@ func main() {
 
 &lt;p&gt;The outputs are being provided by the code that runs each time the handler function called &amp;lsquo;&lt;code&gt;Home&lt;/code&gt;&amp;rsquo; to serve a web page is run, the output is generated by the &lt;code&gt;log.Println(&amp;quot;served a web page&amp;quot;)&lt;/code&gt; instruction. But why is it output twice?&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;The Investigation&lt;/h2&gt;
+&lt;h2 id=&#34;the-investigation:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;The Investigation&lt;/h2&gt;
 
 &lt;p&gt;So a quick search on Google to find out! Nothing obvious to explain it. Time to figure it out&amp;hellip;&lt;/p&gt;
 
@@ -354,7 +353,7 @@ func main() {
 
 &lt;p&gt;So if we are genuinely getting two requests (hence to log output)&amp;mdash;we should be able to see them by checking the requests themselves!&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;The Re-Code to Find the Problem&lt;/h2&gt;
+&lt;h2 id=&#34;the-re-code-to-find-the-problem:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;The Re-Code to Find the Problem&lt;/h2&gt;
 
 &lt;p&gt;Quick change to the code&amp;mdash;so the log output also provides the &lt;code&gt;http.Request&lt;/code&gt; we get from the browser&amp;mdash;so we can examine them:&lt;/p&gt;
 
@@ -422,7 +421,7 @@ func main() {
 
 &lt;p&gt;The tin foil hat can go back into the cupboard&amp;mdash;this is normal.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;What Next?&lt;/h2&gt;
+&lt;h2 id=&#34;what-next:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;What Next?&lt;/h2&gt;
 
 &lt;p&gt;Well&amp;mdash;now we have this logging facility, we might as well keep it, and add an option to our code to turn it on and off. We need to add another package to provide this functionality called &lt;code&gt;io/ioutil&lt;/code&gt; and add another line to manage the output to our main function: &lt;code&gt;log.SetOutput(ioutil.Discard)&lt;/code&gt;&lt;/p&gt;
 
@@ -462,7 +461,7 @@ func main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;toc_5&#34;&gt;Further Information&lt;/h2&gt;
+&lt;h2 id=&#34;further-information:c67d29c4be97ad6384ab325c15c642b4&#34;&gt;Further Information&lt;/h2&gt;
 
 &lt;p&gt;As an exercise&amp;mdash;the flags package could be used to control the log output (ie turn logging output on or off) when the web server is started up.&lt;/p&gt;
 

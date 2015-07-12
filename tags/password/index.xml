@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Password on wiremoons web site </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://www.wiremoons.com/tags/password/index.xml/</link>
-    
-    
-    
-    <updated>Thu, 22 Jan 2015 00:00:00 UTC</updated>
+    <title>Password on wiremoons web site</title>
+    <link>http://www.wiremoons.com/tags/password/</link>
+    <description>Recent content in Password on wiremoons web site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 22 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.wiremoons.com/tags/password/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Easy Passwords Everywhere</title>
       <link>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</link>
-      <pubDate>Thu, 22 Jan 2015 00:00:00 UTC</pubDate>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
+&lt;h2 id=&#34;easy-passwords-everywhere:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Summary&lt;/h2&gt;
+&lt;h2 id=&#34;summary:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;The internet news of two days ago (20 Jan 2014) was all about the
 terrible passwords being used in 2014 for protecting access to online
@@ -48,7 +47,7 @@ companies. While the leaking of a persons password is unfortunate, it
 does give an insight into the continued poor password choices being
 made by individuals to protect their online assets.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;A Solution?&lt;/h2&gt;
+&lt;h2 id=&#34;a-solution:90ef6e557143e2c7d9d92e859217cece&#34;&gt;A Solution?&lt;/h2&gt;
 
 &lt;p&gt;What is common to all the passwords shown in the list, is that they
 are all easy to remember! This is probably why they were chosen in the
@@ -99,7 +98,7 @@ English words. Maybe they will help create a more secure password for you to use
 &lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen - &amp;lsquo;Password Generate - program written in Go&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Referenced Sites&lt;/h2&gt;
+&lt;h2 id=&#34;referenced-sites:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Referenced Sites&lt;/h2&gt;
 
 &lt;p&gt;A few of the sites with 2014 common password lists and news articles:&lt;/p&gt;
 
@@ -114,21 +113,21 @@ English words. Maybe they will help create a more secure password for you to use
     <item>
       <title>Three Letter Passwords</title>
       <link>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</link>
-      <pubDate>Tue, 09 Dec 2014 00:00:00 UTC</pubDate>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
+&lt;h2 id=&#34;three-word-password-generator:e1bd042fb1882341a9fbc897352838db&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Summary&lt;/h2&gt;
+&lt;h2 id=&#34;summary:e1bd042fb1882341a9fbc897352838db&#34;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;I recently created a simple application named uniquely as &lt;code&gt;passgen&lt;/code&gt;
 which was written to generate a random password created from a pool of
 English three letter words. This gave me a small Golang project to
 work on, and also to create a handy tool to generate strong passwords.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_2&#34;&gt;How Does it Work?&lt;/h3&gt;
+&lt;h3 id=&#34;how-does-it-work:e1bd042fb1882341a9fbc897352838db&#34;&gt;How Does it Work?&lt;/h3&gt;
 
 &lt;p&gt;This application generates password suggestions based on a pool of
 several hundred three letter English words. The words are selected
@@ -163,7 +162,7 @@ frequently instead, using a fresh newly generated one every few weeks.&lt;/p&gt;
 All is well
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;toc_3&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
+&lt;h3 id=&#34;are-these-passwords-secure:e1bd042fb1882341a9fbc897352838db&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
 
 &lt;p&gt;While the passwords generated look far too simple and easy to be
 secure, they are in fact very secure, and difficult to crack. Just
@@ -192,7 +191,7 @@ at least nine characters in total&amp;mdash;or longer if possible. You can
 of course always add additional punctuation, and/or numbers, should
 you wish!&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_4&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
+&lt;h3 id=&#34;so-how-many-possible-passwords-are-there:e1bd042fb1882341a9fbc897352838db&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
 
 &lt;p&gt;There are over 500 three letter words in the pool that can be chosen
 from, and assuming you use at least three of these words combined,
@@ -215,14 +214,14 @@ the three letter words combined, and you end up with 62,500,000,000 (sixty two
 billion five hundred million) possibilities&amp;mdash;and that just lower case
 letters only.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_5&#34;&gt;So Where Is It Then?&lt;/h3&gt;
+&lt;h3 id=&#34;so-where-is-it-then:e1bd042fb1882341a9fbc897352838db&#34;&gt;So Where Is It Then?&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen source code&lt;/a&gt; is available from my GitHub page, and I have made
 pre-compiled binaries for Windows, Mac, and Linux available from a
 &lt;a href=&#34;https://github.com/wiremoons/passgen/releases&#34;&gt;Release Page&lt;/a&gt;. The application is not feature complete yet&amp;mdash;but it
 does work well, and will improve as I get time to work on it further.&lt;/p&gt;
 
-&lt;h3 id=&#34;toc_6&#34;&gt;References&lt;/h3&gt;
+&lt;h3 id=&#34;references:e1bd042fb1882341a9fbc897352838db&#34;&gt;References&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Thomas Baekdal - The Usability of Passwords - FAQ

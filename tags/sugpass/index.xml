@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Sugpass on wiremoons web site </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://www.wiremoons.com/tags/sugpass/index.xml/</link>
-    
-    
-    
-    <updated>Thu, 22 Jan 2015 00:00:00 UTC</updated>
+    <title>Sugpass on wiremoons web site</title>
+    <link>http://www.wiremoons.com/tags/sugpass/</link>
+    <description>Recent content in Sugpass on wiremoons web site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 22 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.wiremoons.com/tags/sugpass/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Easy Passwords Everywhere</title>
       <link>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</link>
-      <pubDate>Thu, 22 Jan 2015 00:00:00 UTC</pubDate>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
+&lt;h2 id=&#34;easy-passwords-everywhere:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Summary&lt;/h2&gt;
+&lt;h2 id=&#34;summary:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;The internet news of two days ago (20 Jan 2014) was all about the
 terrible passwords being used in 2014 for protecting access to online
@@ -48,7 +47,7 @@ companies. While the leaking of a persons password is unfortunate, it
 does give an insight into the continued poor password choices being
 made by individuals to protect their online assets.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;A Solution?&lt;/h2&gt;
+&lt;h2 id=&#34;a-solution:90ef6e557143e2c7d9d92e859217cece&#34;&gt;A Solution?&lt;/h2&gt;
 
 &lt;p&gt;What is common to all the passwords shown in the list, is that they
 are all easy to remember! This is probably why they were chosen in the
@@ -99,7 +98,7 @@ English words. Maybe they will help create a more secure password for you to use
 &lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen - &amp;lsquo;Password Generate - program written in Go&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Referenced Sites&lt;/h2&gt;
+&lt;h2 id=&#34;referenced-sites:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Referenced Sites&lt;/h2&gt;
 
 &lt;p&gt;A few of the sites with 2014 common password lists and news articles:&lt;/p&gt;
 

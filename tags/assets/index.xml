@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Assets on wiremoons web site </title>
-      <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://www.wiremoons.com/tags/assets/index.xml/</link>
-    
-    
-    
-    <updated>Sun, 30 Nov 2014 00:00:00 UTC</updated>
+    <title>Assets on wiremoons web site</title>
+    <link>http://www.wiremoons.com/tags/assets/</link>
+    <description>Recent content in Assets on wiremoons web site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 30 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.wiremoons.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Serving Up Static Content from Golang Apps</title>
       <link>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</link>
-      <pubDate>Sun, 30 Nov 2014 00:00:00 UTC</pubDate>
+      <pubDate>Sun, 30 Nov 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;The Background&lt;/h2&gt;
+&lt;h2 id=&#34;the-background:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Background&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://golang.org/&#34; title=&#34;&#39;The Go Programming Language&#39; - @google&#34;&gt;Go&lt;/a&gt; is a great programming language, and three of the features I like the most are:&lt;/p&gt;
 
@@ -54,7 +53,7 @@
 
 &lt;p&gt;So, this article is going to just focus on managing the GUI interface content in the application, and specifically how it can be included in the application binary?&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;The Problem to be Solved&lt;/h2&gt;
+&lt;h2 id=&#34;the-problem-to-be-solved:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Problem to be Solved&lt;/h2&gt;
 
 &lt;p&gt;So surely you just write you application, throw in a &lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34; title=&#34;Golang.org wiki article: &#39;Writing Web Applications&#39;- @google&#34;&gt;simple Go web server&lt;/a&gt;, give it some HTML pages, chuck in some Bootstrap CSS and job done?&lt;/p&gt;
 
@@ -80,11 +79,11 @@
 &lt;li&gt;Also courtesy of an &lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34; title=&#34;&#39;esc: Embedding Static Assets in Go&#39; - blog by @mjibson&#34;&gt;blog article&lt;/a&gt; on this same subject, there is @mjibson&amp;rsquo;s own &lt;a href=&#34;https://github.com/mjibson/esc&#34; title=&#34;&#39;esc - *A simple file embedder for Go*&#39; - @mjibson&#34;&gt;ecs&lt;/a&gt;, and another I didnt find &lt;a href=&#34;https://github.com/rakyll/statik&#34; title=&#34;&#39;statik - *Embed static files into a Go executable*&#39;&#39; - @rakyll&#34;&gt;statik&lt;/a&gt;. Thanks to the weekly &lt;a href=&#34;http://golangweekly.com/&#34; title=&#34;&#39;A great weekly &#39;Go Newsletter&#39; sent to your inbox&amp;amp;mdash;once your subscribe of course!&#39;&#39; - @mattrco and @kelseyhightower&#34;&gt;Go Newsletter&lt;/a&gt; &lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34; title=&#34;Go Newsletter Issue #37&#34;&gt;Issue #37&lt;/a&gt; for helping me find this resource!&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;So there are plenty of solutions out there to this issue, and I am sure that I can use one of the approaches listed above to incorporate a working model and solution into my own application. Time for more reading, coding experiments, and hopefully a working application soon!&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_3&#34;&gt;Questions for the Future&lt;/h2&gt;
+&lt;h2 id=&#34;questions-for-the-future:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Questions for the Future&lt;/h2&gt;
 
 &lt;p&gt;Not researched this question yet&amp;mdash;but if web applications that are run from users local machines are going to increase over time (I run a few myself already)&amp;mdash;how are we going to manage the proliferation of port usage for all the local web servers running each application? Each web server, for each web application will need its own local port.&lt;/p&gt;
 
@@ -96,7 +95,7 @@
 
 &lt;p&gt;Otherwise&amp;mdash;time to research local machine port scanning code to find a solution!&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_4&#34;&gt;Further Information&lt;/h2&gt;
+&lt;h2 id=&#34;further-information:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Further Information&lt;/h2&gt;
 
 &lt;p&gt;Further resources and information used in-conjunction with the above article (and linked to in-line) can be found here:&lt;/p&gt;
 
