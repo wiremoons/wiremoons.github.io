@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on wiremoons web site</title>
+    <link>http://www.wiremoons.com/tags/development/</link>
+    <description>Recent content in Development on wiremoons web site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Jul 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.wiremoons.com/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>New Text Editors for All</title>
+      <link>http://www.wiremoons.com/posts/2015-07-12-New-Text-Editors-for-All/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.wiremoons.com/posts/2015-07-12-New-Text-Editors-for-All/</guid>
+      <description>
+
+&lt;h2 id=&#34;new-text-editors-for-all:de4c82a677007896fd2611d9f3188f9a&#34;&gt;New Text Editors for All&lt;/h2&gt;
+
+&lt;h2 id=&#34;summary:de4c82a677007896fd2611d9f3188f9a&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;The most popular text editors have been &lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt; (or
+Vi) and &lt;a href=&#34;https://www.gnu.org/software/emacs/&#34;&gt;Emacs&lt;/a&gt; for many
+years. Many an Internet flame-war has taken place over the virtues,
+differences, and capabilities of each editor, over the other. New
+&amp;lsquo;&lt;em&gt;easier&lt;/em&gt;&amp;rsquo; text editors have appeared too, and some have stayed
+around - such as &lt;a href=&#34;http://www.nano-editor.org/&#34;&gt;Nano&lt;/a&gt; that ships
+with just about all Linux distros.&lt;/p&gt;
+
+&lt;p&gt;Now there is a new set of text editors, all looking similar, all offering
+something new, all cross platform, and so on&amp;mdash;and the reason?&lt;/p&gt;
+
+&lt;h2 id=&#34;so-what-is-it-about-text-editors:de4c82a677007896fd2611d9f3188f9a&#34;&gt;So What Is It About Text Editors?&lt;/h2&gt;
+
+&lt;p&gt;While I believe there will always be a need to have a good text editor that you
+are comfortable with, that is minimal, but powerfull too&amp;mdash;for those times
+you need to use the command line. There is also an equal place for editors that
+run in Graphical User Environments (GUI) too. At the end of the day, a computer
+is a tool to do something with (be that for pleasure or work) and ensuring it
+therefore provides software &amp;lsquo;&lt;em&gt;fit for purpose&lt;/em&gt;&amp;rsquo; is very important.&lt;/p&gt;
+
+&lt;p&gt;I have tried a lot of text editors over the years and have settle on
+Emacs (yes - I like some features in Vim too!). I have also been a paid up
+user of &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; since 2012. I
+use Sublime Text in Windows on a daily basis (work and home), but also
+use it on Linux, and in the past on Macs.&lt;/p&gt;
+
+&lt;p&gt;Emacs on the Mac and Linux is great&amp;mdash;but never quite felt right on
+Windows for some reason&amp;hellip; The fact I only use the terminal version
+(ie &lt;code&gt;emacs -nw&lt;/code&gt;) probably has something to do with this though.&lt;/p&gt;
+
+&lt;p&gt;There has been the &amp;lsquo;&lt;em&gt;great wait&lt;/em&gt;&amp;rsquo; for Sublime Text 3, and this continues at the
+time of writing. Visit the Sublime Text web site user forums if you
+wish&amp;mdash;and read the continuing gripes and complaints, even threats, all from
+disgruntled and frustrated users. For commercial software, it is very odd that a
+developer (who has basically taken a large lump of the market share) lets
+their nice product fade away! People are impatient, especially those involved in
+technology (generally), and they will soon move to alternatives if progress or
+perceived progress stalls.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://www.lynda.com/&#34;&gt;Lynda.com&lt;/a&gt; for keeping up to date with
+technology, photography courses, and anything else that takes my
+fancy. Looking at the courses they have for text editors, is an
+interesting side line barometer for what is popular maybe?&lt;/p&gt;
+
+&lt;p&gt;After all Lynda&amp;rsquo;s courses are only created to make money at the end of
+the day, like all businesses. So it is a sensible decision they make
+to ensure they have courses for popular software and interests. They
+have a healthy open source software stance (ie showing 203 courses for
+&amp;lsquo;&lt;em&gt;opensource&lt;/em&gt;&amp;rsquo;), and it is refreshing to see a &amp;lsquo;&lt;em&gt;main stream&lt;/em&gt;&amp;lsquo;
+Computer Based Training (CBT) provider covering all types of
+software&amp;mdash;with courses such as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Wireshark-tutorials/Troubleshooting-Your-Network-Wireshark/366447-2.html&#34;&gt;Troubleshooting Your Network with Wireshark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/course-tutorials/GIMP-Essential-Training/112673-2.html&#34;&gt;GIMP Essential Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Git-tutorials/Git-Essential-Training/100222-2.html&#34;&gt;Git Essential Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Fedora-tutorials/Up-Running-Fedora-Linux/159632-2.html&#34;&gt;Up and Running with Fedora Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Ubuntu-tutorials/Up-Running-Ubuntu-Desktop-Linux/159637-2.html&#34;&gt;Up and Running with Ubuntu Desktop Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/CentOS-tutorials/Up-Running-CentOS-Linux/159633-2.html&#34;&gt;Up and Running with CentOS Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are many more too! Shame there is nothing for Golang
+(yet?)&amp;mdash;but plenty for many of the other programming languages
+though! Looking forward to the &lt;a href=&#34;https://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; course though&amp;hellip; LOL&lt;/p&gt;
+
+&lt;p&gt;So, of the popular editors we mentioned above, which have training courses available?&lt;/p&gt;
+
+&lt;p&gt;I found the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/nano-tutorials/Up-Running-nano/189067-2.html&#34;&gt;nano - &amp;lsquo;Up and Running with nano&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/vi-tutorials/Up-Running-vi/170336-2.html&#34;&gt;Vi - &amp;lsquo;Up and Running with vi&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Sublime-Text-tutorials/Up-Running-Sublime-Text-2/114325-2.html&#34;&gt;Sublime - &amp;lsquo;Up and Running with Sublime Text 2&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are no equivalent dedicated courses for Emacs though :(&lt;/p&gt;
+
+&lt;p&gt;So the above is a bit of a tangent, and what really was interesting me
+was the new text editors appearing, which so far I have
+noticed includes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Atom - from GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nuclide.io/&#34;&gt;Nuclide - from Facebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://brackets.io/&#34;&gt;Brackets - from Adobe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;Visual Studio Code (VSCode) - from Microsoft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Of all the above&amp;mdash;what is striking to me is the similarities!&lt;/p&gt;
+
+&lt;p&gt;If you saw a group of screen shots, you might be hard pressed to notice the
+differences. It is refreshing to have so much &amp;lsquo;free&amp;rsquo; choice though, and
+available for any mainstream operating system too!!&lt;/p&gt;
+
+&lt;p&gt;They all look similar, but they all pitch their purpose or use slight
+differently too. From developers editor, Integrated Development Environment
+(IDE), embracing open source editors, web developers editor, and so on.&lt;/p&gt;
+
+&lt;p&gt;I am not compaining&amp;mdash;it is great to have such choice, and from what I have
+seen&amp;mdash;great functional software too!  With this kind of eco system and
+&amp;lsquo;&lt;em&gt;frendly&lt;/em&gt;&amp;rsquo; open source competition, it will be nice to see what innervations we
+end up with, and what the new &amp;lsquo;&lt;em&gt;baseline&lt;/em&gt;&amp;rsquo; GUI text editor will needs to have,
+to be acceptable going forward. The healthy mix of community and large corporate
+companies being involved is great too!&lt;/p&gt;
+
+&lt;p&gt;Also, I dont think they are a threat to existing command line editors, but
+hopefully will be another driving force for them. As the new editor baseline is set, so
+other existing programs will also adapt, as users want what they are
+used too!&lt;/p&gt;
+
+&lt;h3 id=&#34;so-what-i-am-i-using:de4c82a677007896fd2611d9f3188f9a&#34;&gt;So What I Am I Using?&lt;/h3&gt;
+
+&lt;p&gt;So far, of the above I have tried VSCode and Atom.&lt;/p&gt;
+
+&lt;p&gt;I liked VSCode, but only switched to Atom due to the current license confusion,
+that I guess won&amp;rsquo;t be sorted out until it comes out of beta. Also I was sure if
+it includes any spyware&amp;mdash;similar to that you get of you are a beta tester
+for Windows 10&amp;hellip; See &lt;a href=&#34;http://www.gnu.org/proprietary/proprietary-surveillance.en.html&#34;&gt;GNU Proprietary
+Surveillance&lt;/a&gt;
+page for a bit more information on this area.&lt;/p&gt;
+
+&lt;p&gt;I have now moved to Atom, and I like it too. I havent used Sublime
+Text in a while now, and doubt I will go back&amp;mdash;there is no
+reason too, that I can think of. I have yet to install Atom on Linux and use
+it (another job for the todo list!), but my son is happily using Atom
+on his Apple Macs now, and has also switched from Sublime Text.&lt;/p&gt;
+
+&lt;p&gt;There are lots of reviews of Atom all over the internet, a couple I
+have enjoyed and found useful are included below. The Atom version 1.0
+release video is quite funny and worth watching too!&lt;/p&gt;
+
+&lt;p&gt;Another text editor I have been keeping an eye on, that looks similar
+to all the others, but in fact is written in Go (Golang) instead of
+using &lt;a href=&#34;http://www.nodejs.org/&#34;&gt;Node.js&lt;/a&gt; based technologies&amp;mdash;which
+I believe all the above editor do in one way or another.&lt;/p&gt;
+
+&lt;p&gt;This editor is called &lt;a href=&#34;http://limetext.org/&#34;&gt;Lime Text&lt;/a&gt;. It&amp;rsquo;s stated goal is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;We want to bring you an Open Source text editor with great
+capabilities, as a successor to Sublime Text.&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash; &lt;cite&gt;Lime Text Blog Article: &amp;lsquo;We now have a Website!&amp;rsquo; — 27 Nov 2013&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A full list of Lime Text&amp;rsquo;s opensource &lt;a href=&#34;https://github.com/limetext/lime/wiki/Goals&#34;&gt;projects
+goals&lt;/a&gt; are also available.&lt;/p&gt;
+
+&lt;p&gt;So there we are&amp;mdash;interesting times for the good old text editor!&lt;/p&gt;
+
+&lt;h3 id=&#34;other-resources:de4c82a677007896fd2611d9f3188f9a&#34;&gt;Other Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/Y7aEiVwBAdk&#34;&gt;Atom Release 1.0 Video (on Youtube)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://marcio.io/2015/07/supercharging-atom-editor-for-go-development/&#34;&gt;&amp;lsquo;Supercharging the Atom Editor for Go Development&amp;rsquo; - by Marcio Castilho&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.daniel-klose.com/technology/atom-editor-for-sublime-text-users/&#34;&gt;&amp;lsquo;Atom Editor for Sublime Text Users&amp;rsquo; - by Daniel Klose&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
