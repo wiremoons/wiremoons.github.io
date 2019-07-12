@@ -1,113 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C Language on wiremoons web site</title>
-    <link>http://www.wiremoons.com/categories/c-language/</link>
-    <description>Recent content in C Language on wiremoons web site</description>
+    <title>C Language on wiremoons Github web site</title>
+    <link>http://wiremoons.github.io/categories/c-language/</link>
+    <description>Recent content in C Language on wiremoons Github web site</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 22 Jan 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://www.wiremoons.com/categories/c-language/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://wiremoons.github.io/categories/c-language/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Easy Passwords Everywhere</title>
-      <link>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</link>
+      <link>http://wiremoons.github.io/posts/2015-01-22-easy-passwords-everywhere/</link>
       <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wiremoons.com/posts/2015-01-22-Easy-Passwords-Everywhere/</guid>
-      <description>
-
-&lt;h2 id=&#34;easy-passwords-everywhere:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
-
-&lt;h2 id=&#34;summary:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;The internet news of two days ago (20 Jan 2014) was all about the
-terrible passwords being used in 2014 for protecting access to online
-services. The news originated from a press release posted the password
-management company SplashData.&lt;/p&gt;
-
-&lt;p&gt;The most commonly used top 10 poor passwords were:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;123456&lt;/li&gt;
-&lt;li&gt;password&lt;/li&gt;
-&lt;li&gt;12345&lt;/li&gt;
-&lt;li&gt;12345678&lt;/li&gt;
-&lt;li&gt;qwerty&lt;/li&gt;
-&lt;li&gt;123456789&lt;/li&gt;
-&lt;li&gt;1234&lt;/li&gt;
-&lt;li&gt;baseball&lt;/li&gt;
-&lt;li&gt;dragon&lt;/li&gt;
-&lt;li&gt;football&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;These passwords were obtained by looking at the reams of leaked
-password lists (over 3 million passwords) that are available on the
-internet, published following security breaches at various
-companies. While the leaking of a persons password is unfortunate, it
-does give an insight into the continued poor password choices being
-made by individuals to protect their online assets.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-solution:90ef6e557143e2c7d9d92e859217cece&#34;&gt;A Solution?&lt;/h2&gt;
-
-&lt;p&gt;What is common to all the passwords shown in the list, is that they
-are all easy to remember! This is probably why they were chosen in the
-first place. People don&amp;rsquo;t want to have complex passwords that they
-can&amp;rsquo;t easily remember, and have to look up constantly. It is a case of
-convenience over risk.&lt;/p&gt;
-
-&lt;p&gt;Also as pointed out in an earlier post I made
-&lt;a href=&#34;http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords&#34;&gt;2014-12-09-Three-Letter-Word-Passwords&lt;/a&gt;,
-the requirements to make a password &amp;lsquo;complex&amp;rsquo; are misunderstood.&lt;/p&gt;
-
-&lt;p&gt;A password should only be complex for a computer to break — but not
-necessarily for a human to remember. These are two different
-requirements often merged into one concept.&lt;/p&gt;
-
-&lt;p&gt;This means not making it easy by using normal dictionary words(ie
-password; qwerty; baseball; dragon; football) — as a computer can
-check these extremely fast, making them pretty much useless. Also,
-using the simple substitutions for letters such as &amp;lsquo;p@55word&amp;rsquo; instead
-should be avoided, as once again these are so well known, they can
-easily be checked by a computer also, using the large dictionary word
-list, and just tweaking it with these substitutions too!&lt;/p&gt;
-
-&lt;p&gt;So we need an easy to remember password without using a single dictionary
-word?&lt;/p&gt;
-
-&lt;p&gt;Well humans aren&amp;rsquo;t too good at remembering long numbers either, so how
-about a selection of small words?&lt;/p&gt;
-
-&lt;p&gt;These small words together make up a nonsense word for a computer, and
-therefore it has to check all combination to work the actual password
-being used. However, passwords made up of small easy to remember words
-are not too hard for us recall, and we are able to pick out the
-individual words (&lt;a href=&#34;http://bigthink.com/endless-innovation/humans-are-the-worlds-best-pattern-recognition-machines-but-for-how-long&#34;&gt;human pattern recognition is actual very very
-good!&lt;/a&gt;)
-— thus offering a much better password, and one that makes it easier
-to remember as well.&lt;/p&gt;
-
-&lt;p&gt;You can have a look at two programs I have written —  both available from my GitHub account.
-One is written in c, and the other using Go. They both carry out the same
-task in offering a randomly generated password using a dictionary of over 1,000 three letter
-English words. Maybe they will help create a more secure password for you to use&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;They were written for fun, and for my own personal use, and they are both Open-source and free!&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/sugpass&#34;&gt;sugpass - &amp;lsquo;Suggest Password - program written in c&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen - &amp;lsquo;Password Generate - program written in Go&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;referenced-sites:90ef6e557143e2c7d9d92e859217cece&#34;&gt;Referenced Sites&lt;/h2&gt;
-
-&lt;p&gt;A few of the sites with 2014 common password lists and news articles:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://splashdata.com/press/worstpasswords2013.htm&#34;&gt;splashdata - &amp;lsquo;&amp;ldquo;Password&amp;rdquo; unseated by &amp;ldquo;123456&amp;rdquo; on SplashData&amp;rsquo;s annual &amp;ldquo;Worst Passwords&amp;rdquo; list&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://time.com/3672431/worst-passwords/&#34;&gt;Time - &amp;lsquo;These are the 25 worst passwords of 2014&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mashable.com/2015/01/20/worst-passwords-of-2014/&#34;&gt;Mashable Uk - &amp;lsquo;Worst passwords of 2014 are just as terrible as you&amp;rsquo;d think&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://wiremoons.github.io/posts/2015-01-22-easy-passwords-everywhere/</guid>
+      <description>Easy Passwords Everywhere Summary The internet news of two days ago (20 Jan 2014) was all about the terrible passwords being used in 2014 for protecting access to online services. The news originated from a press release posted the password management company SplashData.
+The most commonly used top 10 poor passwords were:
+ 123456 password 12345 12345678 qwerty 123456789 1234 baseball dragon football  These passwords were obtained by looking at the reams of leaked password lists (over 3 million passwords) that are available on the internet, published following security breaches at various companies.</description>
     </item>
     
   </channel>

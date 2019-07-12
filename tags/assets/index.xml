@@ -1,129 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Assets on wiremoons web site</title>
-    <link>http://www.wiremoons.com/tags/assets/</link>
-    <description>Recent content in Assets on wiremoons web site</description>
+    <title>Assets on wiremoons Github web site</title>
+    <link>http://wiremoons.github.io/tags/assets/</link>
+    <description>Recent content in Assets on wiremoons Github web site</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 30 Nov 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://www.wiremoons.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://wiremoons.github.io/tags/assets/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Serving Up Static Content from Golang Apps</title>
-      <link>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</link>
+      <link>http://wiremoons.github.io/posts/2014-11-30-serving-up-static-content-from-golang-apps/</link>
       <pubDate>Sun, 30 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wiremoons.com/posts/2014-11-30-Serving-Up-Static-Content-from-Golang-Apps/</guid>
-      <description>
-
-&lt;h2 id=&#34;the-background:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Background&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://golang.org/&#34; title=&#34;&#39;The Go Programming Language&#39; - @google&#34;&gt;Go&lt;/a&gt; is a great programming language, and three of the features I like the most are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;its easy cross platform program creation&lt;/strong&gt; - write a program on a Linux 64bit system&amp;mdash;cross compile easily, and deploy the executable straight onto a Windows 32bit computer (if you so desire of course!);&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;its modern awareness of the web&lt;/strong&gt; - and therefore inclusion of commonly required application functionality built-in to the language libraries;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;its static compilation&lt;/strong&gt; - related to the first one, but key in that it is only the executable that needs to be deployed&amp;mdash;no library dependency, DLL hell, or installation packaging needed.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;What I dont like to much at the moment&amp;mdash;or probably more correctly&amp;mdash;I am coming to terms with, is the different approach is the lack of a standard graphical user interface (GUI) libraries. There is lots of work going on to port the usual suspects (&lt;a href=&#34;http://mattn.github.io/go-gtk/&#34; title=&#34;&#39;Go GTK&#39; - @mattn&#34;&gt;GTK&lt;/a&gt;, &lt;a href=&#34;https://github.com/visualfc/goqt&#34; title=&#34;&#39;GoQT&#39; - @visualfc&#34;&gt;QT&lt;/a&gt;, &lt;a href=&#34;https://github.com/AndrewBC/cursed&#34; title=&#34;&#39;Cursed&#39; - @AndrewBC&#34;&gt;ncurses&lt;/a&gt;, &lt;a href=&#34;https://github.com/go-qml/qml&#34; title=&#34;&#39;go-qml&#39; - @go-qml&#34;&gt;QML&lt;/a&gt;), and there are some good native Go libraries about too (&lt;a href=&#34;https://github.com/nsf/termbox-go&#34; title=&#34;&#39;termbox-go&#39; - @nsf&#34;&gt;termbox-go&lt;/a&gt;) and of course the ability to use a web interface.&lt;/p&gt;
-
-&lt;p&gt;So while I am personally quite happy with the command line interface (CLI), and most quick applications I write are just that, if you ever want to make your computer program accessible to the majority of computer users, a familiar GUI is required.&lt;/p&gt;
-
-&lt;p&gt;So, I thought I would have a go at creating an application that is managed and controlled by the user through a web browser. My inspiration for this is the fantastic open source application called &lt;a href=&#34;http://syncthing.net/&#34; title=&#34;&#39;Syncthing - *Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized*&#39;&#34;&gt;Syncthing&lt;/a&gt;. When you start this application (you can optional disable this behaviour of course!) it will open the users web browser, and provide a very modern (using &lt;a href=&#34;http://getbootstrap.com/&#34; title=&#34;&#39;Bootstrap open-sourced framework&#39; - @mdo and @fat&#34;&gt;Bootstrap&lt;/a&gt; and other code) interface, that is intuitive, informative, instructional, and independent.&lt;/p&gt;
-
-&lt;p&gt;What do I mean by this?  Well:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;intuitive&lt;/strong&gt;: when you see the interface you immediately get an idea of what it is for, and how you might interact with it&amp;mdash;it&amp;rsquo;s in the web browser which you use frequently and are familiar with (hopefully!);&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;informative&lt;/strong&gt;: the interface contains useful functional information that serves a purpose, and therefore inspires confidence that in will do what it is designed for;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;instructional&lt;/strong&gt;: the interface contains enough hints, labels, indicators, and meta help to ensure you are confident to interact with it&amp;mdash;without fear it destroy you computer;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;independent&lt;/strong&gt;: the interface is self contained on one web page; doesn&amp;rsquo;t sprawl onto other areas, doesn&amp;rsquo;t needs other &amp;lsquo;stuff&amp;rsquo; to make it work (expect the modern browser), and feels contained and manageable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So that covers off the user needs, well a lot of the key &lt;em&gt;getting going&lt;/em&gt; ones anyway!&lt;/p&gt;
-
-&lt;p&gt;So how hard is it to make something as cool as &lt;a href=&#34;https://github.com/syncthing/syncthing&#34; title=&#34;&#39;Syncthing&#39; - @calmh&#34;&gt;Syncthing&lt;/a&gt;&amp;rsquo;s awesome offering?&lt;/p&gt;
-
-&lt;p&gt;How does it work in the background?  How do I get a functional &lt;em&gt;under the hood&lt;/em&gt; application to sync my files&amp;mdash;and a cool user interface? Where does it store all the code, the web pages, the web-server, the Bootstrap, JavaScript, never-mind the actual programs original file-syncing purpose?&lt;/p&gt;
-
-&lt;p&gt;Well that&amp;rsquo;s the journey I have begun, trying to figure out what I need to do to replicate this, or something close to it&amp;mdash;and add a nice web browser based GUI to one of my programs, that is currently a CLI application only.&lt;/p&gt;
-
-&lt;p&gt;Just to make it easy on myself the application I want to put a front end on is quite simple, but does use a database to store its information. This is currently in &lt;a href=&#34;http://www.sqlite.org/&#34; title=&#34;SQlite - *SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.*&#34;&gt;SQLite&lt;/a&gt;&amp;mdash;so maybe I will write another post in the future about my quest on using non Go and native Go databases in my applications&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;So, this article is going to just focus on managing the GUI interface content in the application, and specifically how it can be included in the application binary?&lt;/p&gt;
-
-&lt;h2 id=&#34;the-problem-to-be-solved:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;The Problem to be Solved&lt;/h2&gt;
-
-&lt;p&gt;So surely you just write you application, throw in a &lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34; title=&#34;Golang.org wiki article: &#39;Writing Web Applications&#39;- @google&#34;&gt;simple Go web server&lt;/a&gt;, give it some HTML pages, chuck in some Bootstrap CSS and job done?&lt;/p&gt;
-
-&lt;p&gt;Well that&amp;rsquo;s what I first thought too, being an optimist when it comes to starting a new hobby programming endeavour! Just quickly wrap those add-ons around my code&amp;mdash;job done&amp;mdash;while the kettle is boiling ready for my next coffee break. I expect any professional programmer reading this is banging his head against the desk while cackling to themselves now!&lt;/p&gt;
-
-&lt;p&gt;So back to the five minute job. I thought I would start with a simple web server, and the Bootstrap integration, how hard can that be. I found on Google a great article by Greg Reinbach on building &lt;a href=&#34;http://www.reinbach.com/&#34; title=&#34;Greg Reinbach blog article &#39;Golang Web Apps&#39;&#34;&gt;Golang Web Apps&lt;/a&gt; which fitted the bill perfectly. After being completely side tracked (see my previous article: &lt;a href=&#34;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&#34; title=&#34;&#39;Why Two Log Outputs?&#39; - @wiremoons&#34;&gt;&amp;lsquo;Why Two Log Outputs?&amp;rsquo;&lt;/a&gt;) I finally got a web server running. After also reading another helpful article  by @zeebo called &lt;a href=&#34;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&#34; title=&#34;&#39;Quick and Clean in Go&#39; - blog article by @zeebo&#34;&gt;&amp;lsquo;Quick and Clean in Go&amp;rsquo;&lt;/a&gt;, I believed I was there!&lt;/p&gt;
-
-&lt;p&gt;I managed to create some static pages, and got a brief understanding of &lt;a href=&#34;http://golang.org/pkg/html/template&#34; title=&#34;&#39;HTML Templates Package&#39; - @google&#34;&gt;html templates&lt;/a&gt;, chucked in the download Bootstrap CSS, tested it locally, and so was &lt;em&gt;good to go&lt;/em&gt;&amp;mdash;or not&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;My application maybe used in an environment where it will not be able to access the internet&amp;mdash;so it needs to be self sufficient. It also will run across different platforms (Linux, Mac and Windows), so the application should be a self contained binary to make upgrades easy, and therefore with as few external dependencies as possible (ie no database files; web pages; CSS style sheet; graphics; etc).&lt;/p&gt;
-
-&lt;p&gt;No worries I thought, along with the the go application code I wrote&amp;mdash;all my other dependencies files are laid out in directories alongside the Go code file (templates, static files, css, etc)&amp;mdash;just as all the internet articles I read suggest (or more importantly I had assumed was implied)&amp;mdash;so surely all that stuff I massaged together into a nice logical file structure gets included once my application is built right! After all Go builds self contained static binaries with all the required libraries and dependencies taken care of!&lt;/p&gt;
-
-&lt;p&gt;Wrong. Build the application and it runs fine locally. Excitably deploy it to another computer (or virtual machine), and you end up with panics, errors and screens of information telling you that you are obviously stupid and incompetent when it comes to programming, as the content cant be found any more!&lt;/p&gt;
-
-&lt;p&gt;Back to &amp;lsquo;the Google&amp;rsquo; for some more advice and answers to question that are only provided in the context that you ask them in&amp;mdash;so this time I asked with a wider context, less assumptions, and more perceived wisdom, the research restarted.&lt;/p&gt;
-
-&lt;p&gt;It turns out that clever Golang programmers embed all there files and external dependencies themselves within their application binaries. This is done with a mixture of voodoo that can include compression (ie zip, or gzip), base64 encoding, directory and file walking, pre-build work, and internal application clever path management of the then incorporated files. There are a few options around that can be used to achieved this:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Write your own - such as the Syncthing author @calmh did&amp;mdash;reading (or in my case trying to unpick and decipher) the &lt;a href=&#34;https://github.com/syncthing/syncthing&#34; title=&#34;&#39;Syncthing&#39; - @calmh&#34;&gt;Syncthing source code&lt;/a&gt;, it has build scripts and asset creation code which is very useful;&lt;/li&gt;
-&lt;li&gt;Use a native Golang tool for the job such as: &lt;a href=&#34;https://github.com/jteeuwen/go-bindata&#34; title=&#34;go-bindata - *A small utility which generates Go code from any file.* - @jteeuwen&#34;&gt;go-bindata&lt;/a&gt;, &lt;a href=&#34;https://github.com/GeertJohan/go.rice&#34; title=&#34;go.rice - *a Go package that makes working with resources such as html,js,css,images,templates, etc very easy.* - @GeertJohan&#34;&gt;go.rice&lt;/a&gt; which provide an out of the box solution which I found via Google search;&lt;/li&gt;
-&lt;li&gt;Also courtesy of an &lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34; title=&#34;&#39;esc: Embedding Static Assets in Go&#39; - blog by @mjibson&#34;&gt;blog article&lt;/a&gt; on this same subject, there is @mjibson&amp;rsquo;s own &lt;a href=&#34;https://github.com/mjibson/esc&#34; title=&#34;&#39;esc - *A simple file embedder for Go*&#39; - @mjibson&#34;&gt;ecs&lt;/a&gt;, and another I didnt find &lt;a href=&#34;https://github.com/rakyll/statik&#34; title=&#34;&#39;statik - *Embed static files into a Go executable*&#39;&#39; - @rakyll&#34;&gt;statik&lt;/a&gt;. Thanks to the weekly &lt;a href=&#34;http://golangweekly.com/&#34; title=&#34;&#39;A great weekly &#39;Go Newsletter&#39; sent to your inbox&amp;amp;mdash;once your subscribe of course!&#39;&#39; - @mattrco and @kelseyhightower&#34;&gt;Go Newsletter&lt;/a&gt; &lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34; title=&#34;Go Newsletter Issue #37&#34;&gt;Issue #37&lt;/a&gt; for helping me find this resource!&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;conclusion:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;So there are plenty of solutions out there to this issue, and I am sure that I can use one of the approaches listed above to incorporate a working model and solution into my own application. Time for more reading, coding experiments, and hopefully a working application soon!&lt;/p&gt;
-
-&lt;h2 id=&#34;questions-for-the-future:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Questions for the Future&lt;/h2&gt;
-
-&lt;p&gt;Not researched this question yet&amp;mdash;but if web applications that are run from users local machines are going to increase over time (I run a few myself already)&amp;mdash;how are we going to manage the proliferation of port usage for all the local web servers running each application? Each web server, for each web application will need its own local port.&lt;/p&gt;
-
-&lt;p&gt;So, currently when a web application is written, it runs its own web server on an unprivileged port on the local machine (ie &lt;code&gt;http://localhost:8080/&lt;/code&gt; where &lt;code&gt;8080&lt;/code&gt; is the port). That port defaults to one chosen by the codes author. If we all pick the same ones, then the user is going to be left with the task of re-configuring the application and assigning a free port on their computer.&lt;/p&gt;
-
-&lt;p&gt;So the question is: &lt;em&gt;is there a local web server port usage/allocation solution out there, or some kind of mux, or Application Programming Interface (API) we can use?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;As I said at the start of this article - Go has a &amp;lsquo;modern awareness of the web&amp;rsquo;, so does it already have a clever solution we can all adopt?&lt;/p&gt;
-
-&lt;p&gt;Otherwise&amp;mdash;time to research local machine port scanning code to find a solution!&lt;/p&gt;
-
-&lt;h2 id=&#34;further-information:2de44f727331bc94e7adcfd52d4575cc&#34;&gt;Further Information&lt;/h2&gt;
-
-&lt;p&gt;Further resources and information used in-conjunction with the above article (and linked to in-line) can be found here:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://golang.org/&#34;&gt;http://golang.org/&lt;/a&gt; &amp;lsquo;The Go Programming Language&amp;rsquo; - @google&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mattn.github.io/go-gtk/&#34;&gt;http://mattn.github.io/go-gtk/&lt;/a&gt; &amp;lsquo;Go GTK&amp;rsquo; - @mattn&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/visualfc/goqt&#34;&gt;https://github.com/visualfc/goqt&lt;/a&gt; &amp;lsquo;GoQT&amp;rsquo; - @visualfc&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/AndrewBC/cursed&#34;&gt;https://github.com/AndrewBC/cursed&lt;/a&gt; &amp;lsquo;Cursed&amp;rsquo; - @AndrewBC&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;https://github.com/go-qml/qml&lt;/a&gt; &amp;lsquo;go-qml&amp;rsquo; - @go-qml&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nsf/termbox-go&#34;&gt;https://github.com/nsf/termbox-go&lt;/a&gt; &amp;lsquo;termbox-go&amp;rsquo; - @nsf&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/syncthing/syncthing&#34;&gt;https://github.com/syncthing/syncthing&lt;/a&gt; &amp;lsquo;Syncthing&amp;rsquo; - @calmh&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://getbootstrap.com/&#34;&gt;http://getbootstrap.com/&lt;/a&gt; &amp;lsquo;Bootstrap open-sourced framework&amp;rsquo; - @mdo and @fat&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34;&gt;https://golang.org/doc/articles/wiki/&lt;/a&gt; Golang.org wiki article: &amp;lsquo;Writing Web Applications&amp;rsquo;- @google&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.reinbach.com/&#34;&gt;http://www.reinbach.com/&lt;/a&gt; Greg Reinbach blog article &amp;lsquo;Golang Web Apps&amp;rsquo;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&#34;&gt;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&lt;/a&gt; &amp;lsquo;Why Two Log Outputs?&amp;rsquo; - @wiremoons&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://golang.org/pkg/html/template&#34;&gt;http://golang.org/pkg/html/template&lt;/a&gt; &amp;lsquo;HTML Templates Package&amp;rsquo; - @google&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&#34;&gt;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&lt;/a&gt; &amp;lsquo;Quick and Clean in Go&amp;rsquo; - blog article by @zeebo&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jteeuwen/go-bindata&#34;&gt;https://github.com/jteeuwen/go-bindata&lt;/a&gt; go-bindata - &lt;em&gt;A small utility which generates Go code from any file.&lt;/em&gt; - @jteeuwen&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/GeertJohan/go.rice&#34;&gt;https://github.com/GeertJohan/go.rice&lt;/a&gt; go.rice - &lt;em&gt;a Go package that makes working with resources such as html,js,css,images,templates, etc very easy.&lt;/em&gt; - @GeertJohan&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34;&gt;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&lt;/a&gt; &amp;lsquo;esc: Embedding Static Assets in Go&amp;rsquo; - blog by @mjibson&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/mjibson/esc&#34;&gt;https://github.com/mjibson/esc&lt;/a&gt; &amp;lsquo;esc - &lt;em&gt;A simple file embedder for Go&lt;/em&gt;&amp;rsquo; - @mjibson&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rakyll/statik&#34;&gt;https://github.com/rakyll/statik&lt;/a&gt; &amp;lsquo;statik - &lt;em&gt;Embed static files into a Go executable&lt;/em&gt;&amp;rdquo; - @rakyll&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://syncthing.net/&#34;&gt;http://syncthing.net/&lt;/a&gt; &amp;lsquo;Syncthing - &lt;em&gt;Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized&lt;/em&gt;&amp;lsquo;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.sqlite.org/&#34;&gt;http://www.sqlite.org/&lt;/a&gt; SQlite - &lt;em&gt;SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://golangweekly.com/&#34;&gt;http://golangweekly.com/&lt;/a&gt; &amp;lsquo;A great weekly &amp;lsquo;Go Newsletter&amp;rsquo; sent to your inbox&amp;mdash;once your subscribe of course!&amp;rdquo; - @mattrco and @kelseyhightower&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34;&gt;http://www.golangweekly.com/archive/go-newsletter-issue-37/&lt;/a&gt; Go Newsletter Issue #37&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://wiremoons.github.io/posts/2014-11-30-serving-up-static-content-from-golang-apps/</guid>
+      <description>The Background Go is a great programming language, and three of the features I like the most are:
+ its easy cross platform program creation - write a program on a Linux 64bit system&amp;mdash;cross compile easily, and deploy the executable straight onto a Windows 32bit computer (if you so desire of course!); its modern awareness of the web - and therefore inclusion of commonly required application functionality built-in to the language libraries; its static compilation - related to the first one, but key in that it is only the executable that needs to be deployed&amp;mdash;no library dependency, DLL hell, or installation packaging needed.</description>
     </item>
     
   </channel>
