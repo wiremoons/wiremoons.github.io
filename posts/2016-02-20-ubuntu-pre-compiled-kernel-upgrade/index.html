@@ -1,0 +1,302 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="https://www.wiremoons.com/">
+    <title> Ubuntu Pre Compiled Kernel Upgrade </title>
+    <link rel="canonical" href="https://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/">
+    
+
+<link rel="stylesheet" href="https://www.wiremoons.com/css/poole.css">
+<link rel="stylesheet" href="https://www.wiremoons.com/css/syntax.css">
+<link rel="stylesheet" href="https://www.wiremoons.com/css/lanyon.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+</head>
+
+
+<body class="theme-base-0d">
+  
+
+
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="https://www.wiremoons.com/">Home</a>
+
+    <a class="sidebar-nav-item" href="https://www.wiremoons.com/posts">Blog Articles</a>
+    <a class="sidebar-nav-item" href="https://www.wiremoons.com/categories">Blog Categories</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2020 www.wiremoons.com<br>
+      Powered by <a href="http://gohugo.io/">Hugo</a>.<br>
+      Design adapted from <a href="http://lanyon.getpoole.com">Lanyon</a>.
+    </p>
+  </div>
+</div>
+
+
+  
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="https://www.wiremoons.com/posts" title="Blog">Blog Posts</a>
+        </h3>
+      </div>
+    </div>
+
+    
+    <div class="container content">
+      <h1 class="post-title">Ubuntu Pre Compiled Kernel Upgrade</h1>
+        <section id="main">
+          <h5 id="date"> Sat 20 Feb 2016 </h5>
+          <h1 id="ubuntu-pre-compiled-kernel-installation">Ubuntu Pre-Compiled Kernel Installation</h1>
+<h2 id="about">About</h2>
+<p>If you are not familar with Ubuntu - a good overveiw of this execellent free
+operating system&rsquo;s features can be found here: <a href="http://www.ubuntu.com/desktop/features">Ubuntu</a></p>
+<p>The instructions below are for obtaining and installing a pre-compiled Ubuntu
+kernel, from the <a href="http://kernel.ubuntu.com/">ubuntu.com kernel web site</a>.</p>
+<p>The instructions explain how a computer already running the Ubuntu operating
+system can use the latest Ubuntu kernel available from the Ubuntu Kernel web
+site.</p>
+<p>The kernels are provided by the Ubuntu community, and are pre-compiled for you</p>
+<ul>
+<li>so all you have to do is download and install the one you want.</li>
+</ul>
+<p>This approach will often let you enjoy the latest Linux kernel features and
+obtain any performance improvements included - without having to wait for your
+Ubuntu distribution release to be updated first, or go through the compile
+process yourself!</p>
+<p>These kernels include the Ubuntu specific features and patches, but are built
+using the mainstream Linux Kernel source code also - so the best of both
+worlds if you are a Ubuntu user.</p>
+<p>Obviously bear in mind that these kernels are installed at your own risk - so
+if you have doubts about doing this, it is probably best to wait until the
+newer kernel is included as part of a software update, or newer Ubuntu
+release.</p>
+<p>I choose this route as I needed a number of newer kernel fixes to ensure my
+Microsoft Surface Pro 3 Type Cover keyboard worked properly, and as a
+consequence I also obtained newer kernel features and improvements too! I did
+not fancy going through the compile process myself - as it takes a little while
+to compile a Linux Kernel on the Surface Pro 3 computer, and this method is
+practically instant.</p>
+<p>As a sideline - the <a href="https://www.reddit.com/r/surfacelinux">Reddit Surface
+Linix</a> pages are a great source of
+support and information for running Linux on this particular hardware.</p>
+<h2 id="obtaining-the-ubuntu-kernel">Obtaining the Ubuntu Kernel</h2>
+<p>The Ubuntu kernel needs to be downloaded from the Ubuntu web site located
+<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">here</a>:</p>
+<pre><code>» http://kernel.ubuntu.com/~kernel-ppa/mainline/
+</code></pre>
+<p>Scroll down the above web page to locate the kernels available for your
+current distribution (ie Ubuntu 15.10 is called &lsquo;Wily&rsquo;), and then select the
+highest kernel version you want to use. Note that some of the kernels provided
+are &lsquo;release candidates&rsquo; - identified by &lsquo;rc&rsquo; in their names. Choose a non
+&lsquo;rc&rsquo; version if you need stability over the very newest features and of course
+potential bugs.</p>
+<p>For example the latest Wily (Ubuntu 15.10) kernel version 4.4 can be found in
+the directory <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4-wily/">here</a> at the time of writing:</p>
+<pre><code>» http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4-wily/
+</code></pre>
+<p>Additional higher versions will be added from time to time, so check for
+additional v4.4.x kernel versions as needed.</p>
+<p>Once in the correct directory for the kernel version that you have chosen to
+use, you will see a selection of files. If you want to know what improvements
+and fixes the particular kernel version includes, then look in the file
+called: &lsquo;CHANGES&rsquo;. There is also a file called &lsquo;README&rsquo; in each directory too</p>
+<ul>
+<li>that contains additional helpful information.</li>
+</ul>
+<p>If you wish to proceed with trying this particular kernel on your own
+computer, you need to download the following three &lsquo;.deb&rsquo; files for each
+kernel installation - assuming you don&rsquo;t need any of the alternative
+specialised kernels of course!</p>
+<p>The computer used in the example described below is a Microsoft Surface Pro 3,
+which is a 64bit computer and is running Ubuntu Wily 15.10 64 bit operating
+system. Your own needs may differ - if the generic kernel is unsuitable to your
+own use case or computer hardware, then select the corresponding alternative
+files to those presented here - the overall process is the same though.</p>
+<p>Note that in the file names shown below, the &lsquo;xxxx&rsquo; element is the version
+number of the kernel - so it will vary based on your own kernel version number
+selection.</p>
+<p>The files to download are:</p>
+<p>The Linux headers specific to you machine type (ie amd64) and kernel
+usage (ie generic) - so file &lsquo;linux-header-xxxx-generic-amd64.deb&rsquo;:</p>
+<pre><code>» linux-headers-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+</code></pre>
+<p>The &lsquo;linux-headers-xxxx-all.deb&rsquo; which is generic to any of the other
+two files listed here (ie the other headers and image files):</p>
+<pre><code>» linux-headers-4.4.0-040400_4.4.0-040400.201601101930_all.deb
+</code></pre>
+<p>The Linux kernel image file is the third file needed, so to match the above
+files already downloaded, obtain &lsquo;linux-image-xxxx-amd64.deb&rsquo; - again specific
+to your machine (ie amd64):</p>
+<pre><code>» linux-image-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+</code></pre>
+<p>The above three files are needed for each Linux Kernel upgrade on a 64bit
+generic computer.</p>
+<p>Download them and put them in their own directory on your computer, so they
+don&rsquo;t get mixed up with other similar kernel versions and files you may have
+already downloaded.</p>
+<h2 id="install-the-new-kernel">Install the New Kernel</h2>
+<p>Once the three files are obtained, you can install the newly downloaded kernel
+<code>.deb</code> files (ie see instructions above). The three files obtained that are
+required for each upgrade are:</p>
+<pre><code>» linux-headers-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+» linux-image-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+» linux-headers-4.4.0-040400_4.4.0-040400.201601101930_all.deb
+</code></pre>
+<p>These can be installed with the command line below - where the three files are
+the only ones on the current directory of course:</p>
+<pre><code>» sudo dpkg -i linux-headers* linux-image*
+</code></pre>
+<p>If after installing the kernel using the above command, there are dependency
+issues reported, you can run the following command to try to fix them:</p>
+<pre><code>» sudo apt-get -f upgrade
+</code></pre>
+<p>You will also need to update update Grub to ensure the computer boots
+from the the new kernel with the command:</p>
+<pre><code>» sudo grub-install
+</code></pre>
+<p>You should now be able to reboot and test your new kernel installation!</p>
+<p>Once you reboot your computer you can check what kernel version it is running
+with the command:</p>
+<pre><code>» uname -a
+</code></pre>
+<h2 id="fixing-issues-with-boot-problems">Fixing Issues with Boot Problems</h2>
+<p>Hopefully the above process runs well, and your computer runs the newly
+installed kernel without issue.</p>
+<p>Before you install however, you should really familiarise yourself with howto
+fixing Ubuntu boot problems - just in case! This information is worth knowing
+anyway&hellip;</p>
+<p>The Techradar web site has a good article which maybe of interest <a href="http://www.techradar.com/how-to/computing/how-to-boot-repair-ubuntu-1315203">Techradar -
+How to repair Ubuntu if it won&rsquo;t
+boot</a></p>
+<p>There are of course plenty of other helpful resources on the internet too
+should you run into problems - just search on
+<a href="https://www.google.co.uk/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=ubuntu%20boot%20failure">Google</a>
+for solutions!</p>
+<h2 id="updated-information---wily-kernel-443">Updated Information - Wily Kernel 4.4.3</h2>
+<p>On the 25 feb 2016 a new version of the Wily-4.4.x Ubuntu kernel was made
+available as
+<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/">v4.4.3-wily</a>.</p>
+<p>Based on the artcile above (ie to suit a 64bit generic kernel requirement) I downloaded the
+following files:</p>
+<ul>
+<li><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-headers-4.4.3-040403-generic_4.4.3-040403.201602251634_amd64.deb">linux-headers-4.4.3 generic</a></li>
+<li><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-headers-4.4.3-040403_4.4.3-040403.201602251634_all.deb">linux-headers-4.4.3 all</a></li>
+<li><a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-image-4.4.3-040403-generic_4.4.3-040403.201602251634_amd64.deb">linux-image-4.4.3 generic</a></li>
+</ul>
+<p>Save the above three files in a directory on there own, and then run the
+following command in the Ubuntu Terminal, in that directory:</p>
+<pre><code>sudo dpkg -i linux-headers* linux-image*
+</code></pre><p>Once the new Ubuntu Kernel files where installed, I then ran the following two
+commands (just as a precation) - but no additional packages were installed on my
+particular system - that may vary for yours of course!:</p>
+<pre><code>sudo apt-get -f upgrade
+sudo grub-install
+</code></pre><p>Follow the other steps in the main article above if you need more information.</p>
+<p>The are a significant number of patches and files in this v4.4.3 kernel - as
+listed in the accompanying
+<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/CHANGES">CHANGES</a>
+file.</p>
+
+        </section>
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  
+
+<div class="container">
+  <hr />
+  <hr />
+  
+    <span class="left">
+    &nbsp; <em>&laquo; Previous:</em> <a class="next" href="https://www.wiremoons.com/posts/2016-03-05-cycling-restart/">Cycling Restart</a>
+    </span>
+  
+
+  
+    <span class="right">
+    <em>Next: </em><a class="next" href="https://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/"> &nbsp; New Text Editors for All</a> &raquo;
+    </span>
+  
+</div>
+
+  <br />
+  
+<div class="container">
+  <ul class="catlist">
+    <li><em>Categories: </em></li>
+    
+      <li><a href="https://www.wiremoons.com/categories/linux">linux</a> </li>
+    
+      <li><a href="https://www.wiremoons.com/categories/ubuntu">ubuntu</a> </li>
+    
+      <li><a href="https://www.wiremoons.com/categories/upgrade-kernel">upgrade kernel</a> </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="container">
+	    <div id="disqus_thread"></div>
+    	<script type="text/javascript">
+         
+        var disqus_shortname = 'wiremoonscom'; 
+
+         
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    	</script>
+    	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+  
+  
+
+<div class="container content">
+<footer>
+  <div>
+    <p class="right credit">
+     &copy; www.wiremoons.com  2020. Return to <a href="https://www.wiremoons.com/">Home Page</a>
+    </p>
+  </div>
+</footer>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31223730-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
+
+
+
+
