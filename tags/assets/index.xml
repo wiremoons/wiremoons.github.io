@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>assets on Wiremoons Web Site</title>
+    <link>http://www.wiremoons.com/tags/assets/</link>
+    <description>Recent content in assets on Wiremoons Web Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 30 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.wiremoons.com/tags/assets/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Serving Up Static Content from Golang Apps</title>
+      <link>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</link>
+      <pubDate>Sun, 30 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</guid>
+      <description>The Background Go is a great programming language, and three of the features I like the most are:
+ its easy cross platform program creation - write a program on a Linux 64bit system—cross compile easily, and deploy the executable straight onto a Windows 32bit computer (if you so desire of course!); its modern awareness of the web - and therefore inclusion of commonly required application functionality built-in to the language libraries; its static compilation - related to the first one, but key in that it is only the executable that needs to be deployed—no library dependency, DLL hell, or installation packaging needed.</description>
+    </item>
+    
+  </channel>
+</rss>

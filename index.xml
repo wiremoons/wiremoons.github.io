@@ -1,0 +1,1242 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wiremoons Web Site </title>
+    <link>http://www.wiremoons.com/</link>
+    <language>en-us</language>
+    <author></author>
+    <rights>(C) 2020</rights>
+    <updated>2020-04-18 00:00:00 &#43;0000 UTC</updated>
+
+    
+      <item>
+        <title>Nim Debugging Approaches</title>
+        <link>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</link>
+        <pubDate>Sat, 18 Apr 2020 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</guid>
+        <description>&lt;h1 id=&#34;nim-debugging-approaches&#34;&gt;Nim Debugging Approaches&lt;/h1&gt;
+&lt;p&gt;The article explores debugging &lt;a href=&#34;https://nim-lang.org/&#34;&gt;Nim&lt;/a&gt; programs, and different approaches to outputting debug messages from a simple example program. All the included code was tested with Nim compiler version 1.2.0 running on Linux ARM.&lt;/p&gt;
+&lt;h3 id=&#34;approaches-to-debugging-source-code&#34;&gt;Approaches to Debugging Source Code&lt;/h3&gt;
+&lt;p&gt;Whatever programming language is being used, one requirement that pretty much exists in all of them, is the ability to carryout debugging. Nim, while being a concise and no fuss language with easy to read and very Python like source code syntax, is no different.&lt;/p&gt;
+&lt;p&gt;When you have an error in a program being written, or just want to check a bit of code is working as expected, or to trouble shoot a breakage - some method is needed to provide a level of extra detailed information when the program runs.&lt;/p&gt;
+&lt;p&gt;The best approach is to use an actual debugger most of time, such as &lt;a href=&#34;https://www.gnu.org/software/gdb/&#34;&gt;GDB&lt;/a&gt;, to step through the program and view everything you need. Sometimes this is overkill, and all you want is for you program to print out a message to say it has reached a certain point when running, or tell you what a variable currently contains.&lt;/p&gt;
+&lt;p&gt;Of course just printing out messages is often the simplest approach, and easiest too. It does mean that the source code can get littered with &lt;code&gt;echo &amp;quot;debug message&amp;quot;&lt;/code&gt; or even &lt;code&gt;write(stderr, &amp;quot;debug message\n&amp;quot;)&lt;/code&gt;. Once the program is complete, unless they are removed one by one, these extra code snippets of course end up being compiled into the program, even though it is no longer being debugged!&lt;/p&gt;
+&lt;p&gt;So what are the approaches that can be used?&lt;/p&gt;
+&lt;h3 id=&#34;a-very-simple-nim-program&#34;&gt;A Very Simple Nim Program&lt;/h3&gt;
+&lt;p&gt;To demonstrate some different approaches, a very simple (and boring) example program in Nim is needed:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg:&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; myMsg
+  
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above example code can be saved in a text file named: &lt;code&gt;myprog.nim&lt;/code&gt; and then can be compiled with the command: &lt;code&gt;nim c myprog.nim&lt;/code&gt;. The compiled program can be run as &lt;code&gt;./myprog&lt;/code&gt; or on Windows with &lt;code&gt;myprog.exe&lt;/code&gt;. All it does is print out: &lt;code&gt;My message is: Hello from Nim!&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;adding-basic-debug-output&#34;&gt;Adding Basic Debug Output&lt;/h3&gt;
+&lt;p&gt;So lets add some extra output to help debug the program, to see what it is doing as it is run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg: &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: in proc &amp;#39;messageOut&amp;#39; with myMsg: &amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; myMsg &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;.&amp;#34;&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt;, myMsg
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is running!&amp;#34;&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is done&amp;#34;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above works when compiled in the same way, and we can now track what the program is doing as it runs!&lt;/p&gt;
+&lt;p&gt;But this source code looks very messy, and of course that extra debug code is always going to be printing all that extra &amp;lsquo;DEBUG&amp;rsquo; output information whenever it runs. Not a very good solution, except for a very quick temporary debug perhaps&amp;hellip;&lt;/p&gt;
+&lt;h3 id=&#34;controlling-the-kind-of-compiled-program&#34;&gt;Controlling the Kind of Compiled Program&lt;/h3&gt;
+&lt;p&gt;So what other approach could be used? Well Nim is clever in that when it compiles the program, you can tell it if you want a &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; or &amp;lsquo;&lt;em&gt;release&lt;/em&gt;&amp;rsquo; version of the program. This can be done as extra flags to the compile command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# for a &amp;#39;debug&amp;#39; version (the default):&lt;/span&gt;
+nim c myprog.nim     becomes:     nim c -d:debug myprog.nim
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# for a &amp;#39;release&amp;#39; version:&lt;/span&gt;
+nim c myprog.nim     becomes:     nim c -d:release myprog.nim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The advantage of this approach is that we can now better manage the debug messages in to programs code, so it will only display the additional debug messages, when it is compiled as a &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; version of the program.&lt;/p&gt;
+&lt;p&gt;This can then be used by our program, by adding an extra check in the source code. This check is used to see what was requested when the program compiled - so that when it is run, it can be decided if the extra debug output should be displayed or not. The updated source code file adds this additional check with: &lt;code&gt;when not defined(release): &lt;/code&gt; as shown below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg:&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release): echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: in proc &amp;#39;messageOut&amp;#39; with myMsg: &amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; myMsg &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;.&amp;#34;&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt;,myMsg
+  
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release): echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is running!&amp;#34;&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release): echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is done&amp;#34;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the above is compiled again, but this time also specifying it is either a &amp;lsquo;&lt;em&gt;release&lt;/em&gt;&amp;rsquo; of &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; version, the debug extra output will only appear when it is specifically compiled as a &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; version of the program.&lt;/p&gt;
+&lt;p&gt;Well that&amp;rsquo;s an improvement, but it is still quite a lot of extra code to sprinkled throughout the programs source code. So the next improvement is to use a &lt;strong&gt;Nim &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&#39;&lt;/strong&gt;!&lt;/p&gt;
+&lt;h3 id=&#34;using-a-nim-template-to-manage-debug-output&#34;&gt;Using a Nim Template to Manage Debug Output&lt;/h3&gt;
+&lt;p&gt;In the main source code file, just above the existing &lt;code&gt;proc messageOut()&lt;/code&gt; code, a Nim &lt;em&gt;template&lt;/em&gt; has been added (see below). This simplifies the output of any debug information that needs to be displayed. It creates the ability to use &lt;code&gt;debug&lt;/code&gt; in place of our previous &lt;code&gt;echo&lt;/code&gt; command as used before. It will still only output any debug messages when the program is compiled in &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; mode. So we don&amp;rsquo;t loose any of the previous functionally, just gain a simplification, and cleaner looking, with easier to understand code!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# template added&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;template&lt;/span&gt; debug(data: untyped) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release):
+    echo data
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# source below updated to use &amp;#39;debug&amp;#39; template&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg:&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: in proc &amp;#39;messageOut&amp;#39; with myMsg: &amp;#39;&amp;#34;&lt;/span&gt;,myMsg,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;.&amp;#34;&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt;,myMsg
+  
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is running!&amp;#34;&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is done&amp;#34;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The program is compiled and run as before, and if compiled as a &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; program (ie not &amp;lsquo;&lt;em&gt;release&lt;/em&gt;&#39;), then as before, it outputs the additional information. The source code looks a lot cleaner, and is easier to understand overall, once it is understood what the extra &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; part of the code is for!&lt;/p&gt;
+&lt;h3 id=&#34;debugging-for-multiple-source-code-files-in-projects&#34;&gt;Debugging For Multiple Source Code Files in Projects&lt;/h3&gt;
+&lt;p&gt;While this is fine for our very simple program with one source code file, what if we had a project with lots of different source code files, and we want to use the new &lt;code&gt;debug&lt;/code&gt; feature in all of them?&lt;/p&gt;
+&lt;p&gt;Well, the &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; can be put into its own source code file as a Nim &amp;lsquo;&lt;em&gt;module&lt;/em&gt;&#39;, and then just imported into any of the other source code file(s) in our project, that may want to use it. To convert our small program ready for this approach, we create two source code files now, as below.&lt;/p&gt;
+&lt;p&gt;The first one just holds our &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; &lt;code&gt;debug&lt;/code&gt; output code - but note: &lt;strong&gt;it is important to add a &amp;lsquo;&lt;code&gt;*&lt;/code&gt;&amp;rsquo; after the name of the template name - in our case after the word &lt;code&gt;debug&lt;/code&gt;&lt;/strong&gt;. This tells the Nim compiler that this &lt;em&gt;template&lt;/em&gt; code can be used by other source code files in our project. This allows the actual main program code to call the debug &lt;em&gt;template&lt;/em&gt;. Without this additional &amp;lsquo;&lt;code&gt;*&lt;/code&gt;&amp;rsquo; this wont work!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;debugUtils.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;template&lt;/span&gt; debug&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(data: untyped) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release):
+    echo data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The main source code file remains much as before - except there is an &lt;code&gt;import debugUtils&lt;/code&gt; statement, which allows the &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; code to be used. This same approach can be repeated across many other source code files that our project may have, which wish to also use the &lt;code&gt;debug&lt;/code&gt; output capability too!&lt;/p&gt;
+&lt;p&gt;Also note that the &amp;lsquo;&lt;em&gt;templates&lt;/em&gt;&amp;rsquo; source code file name suffix (ie &lt;code&gt;.nim&lt;/code&gt;) is not included in the &lt;code&gt;import debugUtils&lt;/code&gt; statement. If the &lt;code&gt;.nim&lt;/code&gt; part is included the compiler will report an error and not work. The complete main program source code file is now as below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# import the debug code template: &amp;#39;debugUtils.nim&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; debugUtils
+
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg: &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: in proc &amp;#39;messageOut&amp;#39; with myMsg: &amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; myMsg &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;.&amp;#34;&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt;, myMsg
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is running!&amp;#34;&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: program is done&amp;#34;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The program is still compiled as before: &lt;code&gt;nim c myprog.nim&lt;/code&gt;, and the compiler is clever enough to include the additional &lt;code&gt;debugUtils.nim&lt;/code&gt; source coded file on its own. The program should run as before once compiled.&lt;/p&gt;
+&lt;p&gt;This final &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; option is much cleaner, more versatile, and flexible, and saves a lot of repeated code in a project. It also allows one file to be changed that affects all the other files that use the &lt;code&gt;debug&lt;/code&gt; facility. The &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; code can be adjusted if need, without having to find every &lt;code&gt;debug&lt;/code&gt; output statement in all the source code files that a project may have.&lt;/p&gt;
+&lt;h3 id=&#34;debug-messages-as-errors&#34;&gt;Debug Messages As Errors&lt;/h3&gt;
+&lt;p&gt;So far, the &amp;lsquo;&lt;em&gt;DEBUG&lt;/em&gt;&amp;rsquo; messages we have added have been displayed when the program runs, and are mixed in with programs normal output.
+While this works well, it is better to allow the debug messages to still be displayed, but also allow them to be managed separately if needed. It is good practice to print debug messages as &amp;lsquo;&lt;em&gt;error&lt;/em&gt;&amp;rsquo; outputs - not a part of the normal programs output. So to achieve this separation, the Nim &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; can be adjusted to send it output to &amp;lsquo;&lt;strong&gt;stderr&lt;/strong&gt;&amp;rsquo; an abbreviation for &amp;lsquo;&lt;em&gt;standard error&lt;/em&gt;&#39;. Normal program output is sent to &amp;lsquo;&lt;strong&gt;stdout&lt;/strong&gt;&#39;, which is an abbreviation for &amp;lsquo;&lt;em&gt;standard output&lt;/em&gt;&#39;. Standard output is is what the Nim &lt;code&gt;echo&lt;/code&gt; procedure uses.&lt;/p&gt;
+&lt;p&gt;To send the &amp;lsquo;&lt;em&gt;debug&lt;/em&gt;&amp;rsquo; output to &amp;lsquo;&lt;em&gt;stderr&lt;/em&gt;&amp;rsquo; instead, we need to switch from &lt;code&gt;echo&lt;/code&gt; to &lt;code&gt;write&lt;/code&gt;, that provides this extra capability.&lt;/p&gt;
+&lt;p&gt;Another improvement is that any debug output can be prefixed with &amp;lsquo;&lt;em&gt;DEBUG&lt;/em&gt;&amp;rsquo; by the &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; - so removing the need to add this extra text in our main programs source code files over and over again! The &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; (see below) now adds the &amp;lsquo;&lt;em&gt;DEBUG&lt;/em&gt;&amp;rsquo; text before the actual debug message, and then also appends a newline character (ie &lt;code&gt;\n&lt;/code&gt;) to the end, so we start a new display line after the debug message is output.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;debugUtils.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;template&lt;/span&gt; debug&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(data: untyped) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;when&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; defined(release):
+    write(stderr, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The main program source code is as before, just the &amp;lsquo;DEBUG&amp;rsquo; text has been removed from the debug messages, as that is added now automatically by the &amp;lsquo;&lt;em&gt;template&lt;/em&gt;&amp;rsquo; instead.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# file called &amp;#39;myprog.nim&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# import the debug code template: &amp;#39;debugUtils.nim&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; debugUtils
+
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;proc &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;messageOut&lt;/span&gt;(myMsg: &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
+  debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;in proc &amp;#39;messageOut&amp;#39; with myMsg: &amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; myMsg &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#39;.&amp;#34;&lt;/span&gt;
+  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My message is: &amp;#34;&lt;/span&gt;, myMsg
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# runs from here&lt;/span&gt;
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;program is running!&amp;#34;&lt;/span&gt;
+messageOut(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello from Nim!&amp;#34;&lt;/span&gt;)
+debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;program is done&amp;#34;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&amp;rsquo;s it - just compile and run as before, and the output should be the same as before too. Now however, the program can also be run with additional parameters: &lt;code&gt;./myprog 2&amp;gt; debug.txt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When run in this way, the debug messages no longer get shown on screen, and just the programs normal output is seen - much the same as when it is compiled as a &amp;lsquo;&lt;em&gt;release&lt;/em&gt;&amp;rsquo; version of the program.&lt;/p&gt;
+&lt;p&gt;What the extra &lt;code&gt; 2&amp;gt; debug.txt&lt;/code&gt; part does is redirect any error output into a new file called &lt;code&gt;debug.txt&lt;/code&gt;. If you view this file in a text editor (or: &lt;code&gt;cat ./debug.txt&lt;/code&gt;) it will show all the debug messages it captured when the program ran. This is a nice way to separate out the debug messages being sent to &amp;lsquo;&lt;em&gt;stderr&lt;/em&gt;&amp;rsquo; and the normal programs output being sent to &amp;lsquo;&lt;em&gt;stdout&lt;/em&gt;&#39;.&lt;/p&gt;
+&lt;p&gt;Hopefully this ability to manage debug output in an Nim program is useful, and helps to keep the main source code neat and clean, much like Nim source code is generally supposed to be!&lt;/p&gt;
+&lt;h3 id=&#34;ensuring-extra-debug-information-is-included-for-gdb&#34;&gt;Ensuring Extra Debug Information is Included for GDB&lt;/h3&gt;
+&lt;p&gt;Of course, this does not replace in depth debugging to investigate a &lt;code&gt;SEG FAULT&lt;/code&gt; perhaps, but it is certainly very useful, and often all that is needed in everyday coding with Nim. Keep it simple!&lt;/p&gt;
+&lt;p&gt;If you do plan to use a debugger such as &lt;code&gt;gdb&lt;/code&gt; with your Nim program, then it is worth ensuring Nim compiles as much debug support information into you program as it can. The additional Nim compiler flags that can be used to help achieve this are as follows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-nim&#34; data-lang=&#34;nim&#34;&gt;nim c &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;d:debug &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;lineDir:on &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;debuginfo &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;debugger:native myprog.nim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to find out more about Nim, visit the great web site pages here: &lt;a href=&#34;https://nim-lang.org/&#34;&gt;Nim language site&lt;/a&gt; or if you need more help, the &lt;a href=&#34;https://forum.nim-lang.org&#34;&gt;Nim Forum&lt;/a&gt; is friendly and supportive community location to call on.&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Training in a Polarised Fashion</title>
+        <link>http://www.wiremoons.com/posts/2020-04-16-training-in-a-polarised-fashion/</link>
+        <pubDate>Thu, 16 Apr 2020 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2020-04-16-training-in-a-polarised-fashion/</guid>
+        <description>&lt;h1 id=&#34;training-in-a-polarised-fashion&#34;&gt;Training in a Polarised Fashion&lt;/h1&gt;
+&lt;p&gt;It is important that you enjoy your sport of choice and get whatever you wish to achieve from it—be it fun, fitness, welfare, completing a goal, improved health, or just the social aspect that it provides. When first starting out in a sport, it may begin as a recreational activity, and all that matters is the achievement of carrying out the activity, plus any basic equipment required to participate—such as pair of trainers (ie running shoes), a bike, a swimming costume, etc.&lt;/p&gt;
+&lt;p&gt;For some this is enough, and a lifetime of enjoyment and fun ensues! For others, the ‘&lt;em&gt;recreational only&lt;/em&gt;’ activity grows into something a bit more involved&amp;hellip;&lt;/p&gt;
+&lt;p&gt;One of these alterations is probably training—even if it is not formally carried out. Perhaps just an increase in the participation of the activity, so also increasing the amount of time invested. For some people however, a curiosity starts, and an interest and exploration into the world of: training plans; diet management; measurements; analysis; coaching; and even an expansion into additional sports to support the primary activity, along with a large increase in time and commitment. There goes that fun — unless you manage it right of course&amp;hellip;&lt;/p&gt;
+&lt;p&gt;If done right, and with the correct support, help, and knowledge—a once &amp;lsquo;&lt;em&gt;recreational activity&lt;/em&gt;&amp;rsquo; grows into creating someone who has become an athlete in their own right, even if this athleticism still has a focus on personal fitness and enjoyment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;athlete&lt;/em&gt; (noun) :  a person trained to compete in sports or exercises involving physical strength, speed, or endurance&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If the goal of the athlete is being met, and they are happy to accept the benefits they have obtained, and they are happy with the methods used, the costs incurred (money wise or time invested), and so on—then this is great, job done!&lt;/p&gt;
+&lt;p&gt;However, some of us can not get the lid back onto Pandora&amp;rsquo;s Box.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Pandora&amp;rsquo;s Box&lt;/em&gt; is an artefact from a Greek mythology story, and is a container that once opened released death and many other evils into the world.  In modern times an idiom has grown from it meaning &amp;ldquo;&lt;em&gt;Any source of great and unexpected troubles&lt;/em&gt;&amp;quot;, or alternatively &amp;ldquo;&lt;em&gt;A present which seems valuable but which in reality is a curse&lt;/em&gt;&amp;quot;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As with most things in life, balance is the key then!&lt;/p&gt;
+&lt;p&gt;So if the enjoyment of a recreational activity appears to be taking on a obsessive and disproportional investment based on the objective, perhaps it is worth re-examining the balance&amp;hellip;&lt;/p&gt;
+&lt;p&gt;There are of course different ways to approach training, effort invested, and outcomes achieved. When I started cycling again most of the information available that I came across was focused on &lt;strong&gt;threshold training&lt;/strong&gt;. The basic premise is that you work out your Functional Threshold Power (FTP), preferably with a power meter — or using other methods too, and structure your training around your own magic FTP number.&lt;/p&gt;
+&lt;p&gt;Each persons FTP is individual them. The higher the number does not mean the more powerful the cyclist however — a mistake lots of people make to start with. FTP is a number that is supposed to represent the maximum power output that can be produced by a rider for an hour long period. The FTP can then be used to identify the persons power zones, and then ensure the training is proportional effort wise, and to focus their training efforts correctly.&lt;/p&gt;
+&lt;p&gt;This training (in most man stream information sources) then tends to focus on &amp;lsquo;&lt;em&gt;threshold&lt;/em&gt;&amp;rsquo; training, sometimes referred to as &amp;lsquo;thrash-hold training&amp;rsquo; by those people not too keen on it as an approach. The basic idea is you can carry out activities such as &lt;em&gt;Sweet Spot Training&lt;/em&gt; to push your FTP higher over time, or instead, focus on much harder &lt;em&gt;VO2 max intervals&lt;/em&gt;, and pull you FTP up to a higher number. Or if you are really into getting a bigger FTP, a mixture of both!&lt;/p&gt;
+&lt;p&gt;Not being a big fan of failure to complete workouts — I would tend to go for the sweet spot training, as this is less harsh, and as long as you are not trying to impress people with your FTP number (ie making it higher than it actually is!) — then this training is very repeatable and manageable, and in my own experience, it does work too.&lt;/p&gt;
+&lt;p&gt;When I wished to loose weight, and get fit at the same time, a 50 minute structured sweet spot session each day certainly worked. Can&amp;rsquo;t say it immediately did a lot for my FTP — but then loosing weight and pushing your FTP up are not normally two things that go well together, especially if you are impatient for results on the weight loss side&amp;hellip; You will probably loose some muscle weight too, if you go at it too hard. Without the right food to fuel the workout (I was fasted training also - just cause I could!) your body is clever enough to harvest what it needs from other &amp;lsquo;easy to get at&amp;rsquo; sources, such as your own muscles. Oh look - balance again.&lt;/p&gt;
+&lt;p&gt;I have been there, and pushed my weight loss to quickly at the expense of lowering my FTP too. Only when I got the weight off, and then focused on my FTP did I get both right, and I improved my FTP significantly. I don&amp;rsquo;t have that FTP anymore though, as it soon drifts off if you don&amp;rsquo;t work at it, and I am not getting any younger either. It is nice to know it exists (or existed I expect!) though, and hard work can pay off.&lt;/p&gt;
+&lt;p&gt;So after obsessing over my weight and FTP, and going around the loop a few times over a couple of years (which was fun mostly) I certainly learnt a lot. It was time for a different approach though, because of course an approach has to exists were you can do less exercise and still get great results&amp;hellip; well I can dream, and I did for quite a few months trying.&lt;/p&gt;
+&lt;p&gt;Enter a more &lt;em&gt;polarised training&lt;/em&gt; approach, which is different from a threshold focused approach!&lt;/p&gt;
+&lt;p&gt;Again, the basic premise is (and this is very simplified!) that instead of trashing away each day with sweet spot training to push the FTP up, you instead focus in two extremes. One or two hard (like very hard VO2 max sessions) a week, plus all other rides focused on ridding very very easily. Sounds great right - how hard can it be to ride easily every where most of the week, and then just go mad in one session per week&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Well, to be honest, it was lots of fun to start with, and I did enjoy trying out different VO2 max intervals, as I had not previously had any reason to hate myself enough to do them before this&amp;hellip; I enjoyed looking at the various example VO2 max workout sessions, and thinking &amp;ldquo;how hard can that be - you only hold it for 30 seconds (1min or 2 mins etc)&amp;rdquo; - and then you rest and recover, then do it again&amp;hellip; easy right.   WRONG! Very wrong!&lt;/p&gt;
+&lt;p&gt;What about the easy riding bit then — that must have been relaxing and enjoyable right&amp;hellip; Well no, because unless you lock yourself into a workout to ensure you don&amp;rsquo;t over do the power output (the only way I could achieve this), it wont work.&lt;/p&gt;
+&lt;p&gt;If you are at all competitive, and have little self restraint when someone else innocently passes you, then you will be in trouble. Perhaps you like to push a bit on hills, because they are more fun if you ride them like a car is chasing you? Well, then you will hate crawling up the hill at two mph as you have to keep the power down, while everyone else rides past. You also imagine of course (as you are bored!) that while they glide past, they are all thinking you have really let your fitness go now — as you would never of been overtake before on a hill a few weeks ago&amp;hellip; Oh, and the purpose of these sloooow sessions is more about spending a very long time riding too. So you get to ride about like a snail going backwards for at least an hour and a half - but over two hours would be more beneficial. Trying fitting that in around work&amp;hellip;&lt;/p&gt;
+&lt;p&gt;I tried it out for a few months. It did not do me any harm. It did not increase (or really impact) my FTP. I enjoyed trying it, and the experience was fun mostly. I found some VO2 max sessions that I wont ever be doing again that is for sure! I then burnt out on training&amp;hellip; and so have not really done much since.&lt;/p&gt;
+&lt;p&gt;Last year (2019) I only rode out doors once (on 01 January 2019), and didn&amp;rsquo;t hit my annual target mileage, which was a reduce against the prior year anyway. I had achieved my cycling goals though, got very fit compared to before, and my weight is now manageable and in check mostly.&lt;/p&gt;
+&lt;p&gt;I still ride every week indoors, mostly focused on 30 minute rides to satisfy my Apple Watch exercise target. My fitness level has dropped dramatically too - but I am not unfit either. It is now being 2020, I am starting to re-kindle my interested, and thoughts of sweet spot trading have again crossed my mind. I might even get outside too, if the COVID-19 bans are lifted before the summer ends!&lt;/p&gt;
+&lt;p&gt;The main thing is — I have found a balance again, and have incorporated cycling back into my everyday life, but without trying to become a pro rider in my fifty&amp;rsquo;s&amp;hellip;  Will I ever learn?&lt;/p&gt;
+&lt;p&gt;I hope not :)&lt;/p&gt;
+&lt;h3 id=&#34;sources&#34;&gt;Sources:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://baronbiosys.com/sweet-spot-threshold-and-polarized-training-by-the-numbers/&#34;&gt;Baron Biosystems: Sweet Spot, Threshold and Polarized Training … By the Numbers &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Cycling Restart</title>
+        <link>http://www.wiremoons.com/posts/2016-03-05-cycling-restart/</link>
+        <pubDate>Sat, 05 Mar 2016 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2016-03-05-cycling-restart/</guid>
+        <description>&lt;h1 id=&#34;cycling-restart&#34;&gt;Cycling Restart&lt;/h1&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;So I decided to get fit again. After not doing any activity at all for quite a
+while—and not cycling for approximately 20 years!&lt;/p&gt;
+&lt;p&gt;I thought I would capture the background and the early part of this
+journey, before I forget the details, and so I can review the reasons in
+the future—when I inevitably fail to remember the point to exercising again.&lt;/p&gt;
+&lt;p&gt;So - why would I do this, and what was the catalyst?&lt;/p&gt;
+&lt;h2 id=&#34;journey-start&#34;&gt;Journey Start&lt;/h2&gt;
+&lt;p&gt;As my job is mainly desk based (yes—another IT geek!) I was very inactive
+for most of the week. While more active on the weekends—I still didn&amp;rsquo;t do
+too much more then either. At least on the weekends I would get out and take
+photos or walk the dog (or both), visit some castle, beach or hill top
+somewhere for fresh air.&lt;/p&gt;
+&lt;p&gt;It wasn&amp;rsquo;t that I felt particularly unfit either, over weight or even old. I
+certainly didn&amp;rsquo;t wake up one morning and decide to do this—it just sort of
+crept up on me, and I would find myself wondering (or &lt;em&gt;day dreaming&lt;/em&gt;) about
+the impact of little or no exercise on my life.&lt;/p&gt;
+&lt;p&gt;Over the past five years I suddenly realised that my clothes had started to
+get tighter around the waist as my gut grew over time, shirts would not be so
+loose, my belt notches would go up one, and when I looked down I would see a
+definite increase to my waist girth!&lt;/p&gt;
+&lt;p&gt;Of course being past my mid forties now—all this could be just put down to
+the inevitable &lt;em&gt;middle-age spread&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;middle-aged spread&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;noun&lt;/em&gt;
+noun: middle-age spread
+the fat that may accumulate around the abdomen in middle age.
+&amp;ldquo;&lt;em&gt;at 40, you developed something unavoidable called middle-aged spread&lt;/em&gt;&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At the end of the day I might be getting a bit heavier—but at least I wasn&amp;rsquo;t
+fat, or too unfit—so I thought anyway!!&lt;/p&gt;
+&lt;h2 id=&#34;the-justification&#34;&gt;The Justification&lt;/h2&gt;
+&lt;p&gt;After all (as I would justify it to myself), I used to cycle, canoe, run, etc
+a lot about 25 years ago. All that fitness would last for ages, and I have a
+high metabolism, never had to watch what I eat. Maybe I just had had too many
+beers recently—it would all soon sort itself out—I was sure of that!&lt;/p&gt;
+&lt;p&gt;I had enjoyed sports in school including cross country running, cycling,
+canoeing and was in the school rugby team for all my senior years too. This
+continued as mainly cycling when I left school. Once I got married in my early
+twenties, had children, and spent quite a lot of time travelling for work, my
+sports activities soon stopped. This wasn&amp;rsquo;t planned or a conscious decision—it
+just happened. After all having young children keeps you active in a different
+sort of way, and my job was a busy one—so I never really stopped to think it
+over.&lt;/p&gt;
+&lt;p&gt;Of course I smoked since aged 14 too. That wasn&amp;rsquo;t good—but again as I did lots
+of sports this was offset in my mind, and I was young and fit. So should I get
+something nasty as a consequence—it would just be one of those unfortunate
+life events—so I told myself.&lt;/p&gt;
+&lt;p&gt;By the time I reached about 38—when smoking became less &amp;lsquo;popular&amp;rsquo;, and
+40 was not only an age your Dad had, but one I would get soon too—I did
+start to slow the smoking down. What followed was an onslaught of Nicotine
+patches, gum, a switch to cigars and back again, only social smoking, only
+weekend smoking, etc, which occupied next 10 years. Inevitable I suppose for
+an obsessive type person with a nicotine habit, and with plenty of addict
+&amp;lsquo;clever&amp;rsquo; excuses —I carried on kidding myself it would all be fine. And
+of course, anything was better than 20 a day too!&lt;/p&gt;
+&lt;p&gt;It didn&amp;rsquo;t matter anyway—I was still young and fit, didn&amp;rsquo;t drink much (very
+often) and was otherwise healthy. Basically I thought of myself as &lt;em&gt;one of
+the lucky ones&lt;/em&gt;—no need to keep fit or be too bothered about health, diet,
+weight, or fitness!&lt;/p&gt;
+&lt;h2 id=&#34;the-realisation&#34;&gt;The Realisation&lt;/h2&gt;
+&lt;p&gt;The first rude awakening came at the end of 2009. I woke up with a cricked
+neck one morning, and thought little of it. Two weeks later I woke up and my
+right arm would not lift up—it had stopped working overnight!&lt;/p&gt;
+&lt;p&gt;After various tests and MRI scans I had surgery on 14 Dec 2009 for a &lt;a href=&#34;http://www.spine-health.com/treatment/spinal-fusion/acdf-anterior-cervical-discectomy-and-fusion&#34; title=&#34;&#39;Anterior Cervical Dissectomy Fusion (ACDF) information&#39; - @spine-health.com&#34;&gt;anterior
+cervical dissectomy fusion (ACDF)&lt;/a&gt; and plating, on C4/C5 and C5/6 of my
+spine. Three of my neck vertebrae where fused together permanently with a
+plate and screws, after two broken disks were taken out, and replaced with
+cages and donor bone.&lt;/p&gt;
+&lt;p&gt;I thought nothing of it too much—I was just glad to have working arm
+back!&lt;/p&gt;
+&lt;p&gt;I was back in work at a new job within five weeks too—very pleased with
+my progress. With hind sight (always a great thing!)—this was to catch
+me up later and knock me over emotionally nearly six months later—when
+it suddenly became real I suppose&amp;hellip;&lt;/p&gt;
+&lt;p&gt;The second event didn&amp;rsquo;t involved my own health. My wife has a long term
+illness called &lt;a href=&#34;http://www.nhs.uk/Conditions/lupus/Pages/Introduction.aspx&#34; title=&#34;&#39;NHS Choices - Lupus&#39; - @NHS UK Web Site&#34;&gt;Lupus&lt;/a&gt;—along with a myriad of other related &amp;lsquo;minor&amp;rsquo;
+conditions. This condition and its various feast of &amp;lsquo;challenges&amp;rsquo; has been part
+of life since just after we married over a quarter of a century ago now! This
+obviously caused issues, but none so devastating as when she had a
+&lt;a href=&#34;http://www.nhs.uk/conditions/stroke/pages/introduction.aspx&#34; title=&#34;&#39;NHS Choices - Stroke&#39; - @NHS UK Web Site&#34;&gt;stroke&lt;/a&gt; in June 2013, and the consequential long term damage it caused.&lt;/p&gt;
+&lt;p&gt;The immediate impact was to her loss of sight. She maintains some weird patchy
+eye sight—called &lt;a href=&#34;http://www.eyesearch.ucl.ac.uk/es/es_hemianopia.php&#34; title=&#34;&#39;What is hemianopia?&#39; - @UCL Institute of Neurology&#34;&gt;Hemianopia&lt;/a&gt;, and as a consequence is now
+registered &lt;a href=&#34;http://www.rnib.org.uk/about-rnib&#34; title=&#34;&#39;About the Royal National Institute of Blind People&#39; - @RNIB Web Site&#34;&gt;blind&lt;/a&gt;—or as it now called these days &amp;lsquo;&lt;a href=&#34;http://www.rnib.org.uk/eye-health-registering-your-sight-loss/criteria-certification&#34; title=&#34;&#39;Criteria for blind vs partially sighted&#39; - @RNIB Web Site&#34;&gt;Severely Sight
+Impaired&lt;/a&gt;&#39;.&lt;/p&gt;
+&lt;p&gt;Luckily (that&amp;rsquo;s how we look at it) she primarily only lost her sight—it
+could of been worse as many other stroke victims and their families will no
+doubt attest too. However, adapting to such a life changing event takes quite
+a while—and to be honest the full impact is still playing out in various
+ways for her health over two and a half years on!&lt;/p&gt;
+&lt;p&gt;Someone you love having a stroke in their early forties (she is two years
+younger than me), that strips so much of their independence overnight is is a
+bit of a cruel joke. It was also another reminder that life is short and
+health is not something you can rely on either—despite my previous
+personal justifications to the contrary!&lt;/p&gt;
+&lt;p&gt;It was the above two personal events, as well as a general increase of
+information in the media and in work, that made me more and more aware over 18
+months or so, that perhaps I should start to consider my own activity levels
+more—however obviously my weight and fitness were fine of course!&lt;/p&gt;
+&lt;h2 id=&#34;increase-daily-activitymdashhow-hard-can-that-be&#34;&gt;Increase Daily Activity—How Hard Can That Be!&lt;/h2&gt;
+&lt;p&gt;I was starting to be aware of just how little activity I was doing on a daily
+basis. Being a bit of a data and analysis geek, I needed some facts to see
+just how inactive or active I actually was. I knew the results would not be
+too good—but as usual—I also thought they cant be too bad either! I did
+get out of bed in the morning and go to work, and walked about to get coffee
+and meals after-all—that was activity!&lt;/p&gt;
+&lt;p&gt;The first step was when I bought a Fitbit that clipped to my pocket to measure
+the steps I was talking each day. This was a very unpleasant surprise. I
+would do less than 2,000 steps a day. Fitbit recommended that I should be
+doing 10,000. Of course my first thought was that the settings must be wrong,
+and 10,000 was for a postman or something. But no—that was a &lt;a href=&#34;http://www.nhs.uk/Livewell/loseweight/Pages/10000stepschallenge.aspx&#34; title=&#34;&#39;NHS Choices - The 10,000 steps challenge&#39; - @NHS UK Web Site&#34;&gt;reasonable
+amount&lt;/a&gt;, especially for someone who did little else activities wise.&lt;/p&gt;
+&lt;p&gt;My first steps (excuse the pun) were to try and walk more frequently, so I
+used to walk to the shop lunchtimes to buy my sandwich, Kitkat, packet of
+crisps, and can of sugary drink. When I could, I parked in the furthest away
+car park from the office, take the stairs and so on.&lt;/p&gt;
+&lt;p&gt;This worked but I still wasn&amp;rsquo;t happy—and felt I should do more. I tried to
+run—but hated it.&lt;/p&gt;
+&lt;h2 id=&#34;back-on-the-bike&#34;&gt;Back On The Bike&lt;/h2&gt;
+&lt;p&gt;I decided to try to cycling again—I always enjoyed it, especially road
+cycling as opposed to mountain biking. I had a concern that the angle my neck
+would need to be in while on the bike might not be sustainable for long
+periods of time—so did not want to jump in too hard until I had sussed
+this concern out. This would be done with lots of pointless research (with
+many tangents), boring the wife with excuses and procrastination, and plans to
+some how spend some time on a road bike first to see—just in case, being
+sensible about it and all that.&lt;/p&gt;
+&lt;p&gt;In the end I thought I should just do it, and so I bought a very nice &lt;a href=&#34;http://road.cc/content/review/87462-boardman-road-sport&#34; title=&#34;&#39;Boardman Road Sport bike review&#39; - @road.cc&#34;&gt;Boardman
+Road Sport bike&lt;/a&gt; from Halfords in mid August 2015.&lt;/p&gt;
+&lt;p&gt;The first thing I found was my mind was writing checks my body couldn&amp;rsquo;t cash!!&lt;/p&gt;
+&lt;p&gt;I decided to ride the new bike home from the shop. I live in a hilly area, and
+the shop is at approximately sea level, and I live on a hill a few miles away.
+No problem—I used to cycle around this area as a kid, so how hard can it
+be for a man to do the same hills on a super modern and light road bike&amp;hellip;&lt;/p&gt;
+&lt;p&gt;I set off from the shop having got a lift there from my son in his car. I
+first had to figure out the strange gear changing mechanism—some bright
+spark has now integrated this into the brake levers—what happened to the
+good old &lt;a href=&#34;https://en.wikipedia.org/wiki/Shifter_(bicycle_part)&#34; title=&#34;&#39;Bicycle Gear Shifters&#39; - @wikipedia&#34;&gt;down tube shifters&lt;/a&gt; of my day? Down tube shifters are now classed
+as &lt;em&gt;vintage&lt;/em&gt; apparently&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;vintage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;noun&lt;/em&gt;
+the time that something of quality was produced.
+&lt;em&gt;&amp;ldquo;rifles of various sizes and vintages&amp;rdquo;&lt;/em&gt;
+synonyms:	period, era, epoch, time, origin;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Say no more I guess.&lt;/p&gt;
+&lt;p&gt;Also the bike is so light too, so concerns about it snapping were in the back
+of my mind, and as it was so light, questions about had I overdone it, and
+bought something that was way out of my league&amp;hellip;&lt;/p&gt;
+&lt;p&gt;After about a mile of downhill/flat progress, and further ongoing amazement and
+familiarisation with the bike—while travelling along on the other new modern
+cycling feature called a &lt;em&gt;cycle path&lt;/em&gt;—I arrive at the first hill&amp;hellip;&lt;/p&gt;
+&lt;p&gt;I hit the first hill hard, due to my obvious considerable past cycling
+experience and form, that I undoubtedly still had hidden away—it just
+needed unleashing on modern times. Soon (like very soon) heavy breathing
+kicked in, vision started getting duller, and then become more tunnel like,
+and the horrific burning pain in my leg muscles started!&lt;/p&gt;
+&lt;p&gt;I pushed on, with Tour De France TV replays going on in my head with me
+winning a climb up &lt;a href=&#34;https://en.wikipedia.org/wiki/Alpe_d%27Huez&#34; title=&#34;&#39;Alpe d&#39;Huez&#39; - @Wikiedia&#34;&gt;Alpe d&amp;rsquo;Huez&lt;/a&gt;, while setting personal goals of &lt;em&gt;just to
+the next lamppost&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Three quarters of the way up I seriously considered phoning a ambulance at one
+point—which was a little scary and a major reality check on just how
+extremely unfit I actually was!&lt;/p&gt;
+&lt;p&gt;I stopped opposite a police station—to drink and rest for a minute,
+hoping they might notice a collapsed cyclist out of the window should the
+worst happen. Eventually having downed a litre of water I decided to set off
+again&amp;hellip; how hard can it be!&lt;/p&gt;
+&lt;p&gt;Making it across the roundabout (approx 250 meters on) I felt even worse, and
+was forced to pull over. Now not even standing up felt good, so time to rest
+the bike against a tree and sit on the nearest kerb. Feeling dizzy and sick, my
+heart pounding, head throbbing, and feeling disconnected from reality, I
+thought the last thing I should do is suddenly just stop—or the rest of
+my body might get the same idea!  So with a sudden rush of adrenaline at the
+thought of dying at the side of the road on my first bike ride in 20 years,
+the elite racing machine and I made our way up the rest of the hill, me on
+foot!&lt;/p&gt;
+&lt;p&gt;I ended up walking with bike up the rest of the hills, and just rode back home
+on the flat bits only. All those miles and rides I had planned in my head were
+placed to one side as I realised that it would be months before I would be able
+to cycle them. Also I had always prided myself in &lt;strong&gt;never&lt;/strong&gt; getting off and
+pushing a bike up a hill, so this was a real downfall of my ego and past
+capabilities too.&lt;/p&gt;
+&lt;h2 id=&#34;making-progress&#34;&gt;Making Progress&lt;/h2&gt;
+&lt;p&gt;From the ride home from the bike shop I decided to do short but frequent bike
+rides (3 miles, then rising up to 7 miles). I also discovered &lt;a href=&#34;https://www.strava.com/athletes/10691628&#34; title=&#34;&#39;Simon Rowe - Strava *athlete* page&#39; - @Strava&#34;&gt;Strava&lt;/a&gt;,
+which allowed me to keep records of my activities, and track improvements. I
+bought a heart rate monitor, to give me confidence that I wasn&amp;rsquo;t over doing
+it—like I did on the ride back from the bike shop!&lt;/p&gt;
+&lt;p&gt;Winter was approaching—which for me was the first sign of rain at the
+start of October. The justification to myself (and signed off by the wife too
+of course, once she was bored of hearing about the &lt;em&gt;plans&lt;/em&gt;) was:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;no winter cycling gear or the extra cost of buying it;&lt;/li&gt;
+&lt;li&gt;the dangers of falling off due to excessive leaves and eventually
+ice and/or snow;&lt;/li&gt;
+&lt;li&gt;no mud guards to protect the elite cycling machine and my nice new cycling
+shoes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plus my now highly tuned cycling muscles would not perform as well in the
+cold winter air. Of course all the above could also reduce my considerable
+Strava performance and credibility, and growing reputation as a force to be
+reckoned with on my local 7 mile ride via the local Porthkerry Park route I had
+become a &lt;em&gt;tour de force&lt;/em&gt; on.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;tour de force&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;noun&lt;/em&gt;
+a performance or achievement that has been accomplished or managed with great
+skill.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My longest single ride before I came indoors for the &lt;em&gt;winter&lt;/em&gt; was approx. 15.9
+miles, but I was then also averaging 30 miles a week—which I was very
+pleased with. On Strava I could also see regular improvements on sections of
+my ride (called segments on Strava)—and this gave me encouragement to
+keep improving too.&lt;/p&gt;
+&lt;p&gt;My cycling continued to progress, and between mid August 2015 and end of
+October 2015 I had started to feel fitter and the fear of keeling over had
+passed. I was making steady improvements on my weekly mileage goals, and
+attacking hills on my 7 mile morning route with newly found vigour. I had
+re-found my cycling passion—and was enjoying it—with the side
+benefit of fitness!&lt;/p&gt;
+&lt;p&gt;Once the winter was approaching—knowing I did not fancy riding in the
+rain and cold, I bought some rollers to ride on indoors. I did the usual
+lengthy research first of course! As I had already spent enough money to fund a
+small countries cycling team, the compromise (signed off by the wife/household
+Financial Director) was to get the rollers—as they were &amp;lsquo;cheaper&amp;rsquo; and
+offered better fitness benefits too (apparently).&lt;/p&gt;
+&lt;p&gt;These I have nick named the &amp;lsquo;&lt;strong&gt;rollers of doom&lt;/strong&gt;&amp;rsquo; as they are hard to balance
+on—and I have already fallen off once, badly bruising one side of my body
+and knocking a whole into the plaster board wall of my dinning room! They also
+have an uncomfortable side effect in my gentleman area—causing
+numbness—but that is a story for another time perhaps&amp;hellip; They also (as I
+have a fear of impending visits to a fracture clinic while ridding them) stop
+you from drinking water, moving your hands from the handlebars (unless you
+slide them very carefully), and that&amp;rsquo;s nothing when compared with the lactic
+build up pain and boredom—despite trying to distract yourself with
+the TV.&lt;/p&gt;
+&lt;p&gt;I was hopeful that my roller skills would improve during the winter&amp;hellip; but
+again the move to the winter training camp (also called &lt;a href=&#34;http://zwift.com/&#34; title=&#34;&#39;Zwift - ride on!!&#39; - @GoZwift&#34;&gt;Zwift Island&lt;/a&gt; by
+most people) is another story too.&lt;/p&gt;
+&lt;h2 id=&#34;it-turns-out-youre-fat&#34;&gt;It Turns Out You&amp;rsquo;re Fat&lt;/h2&gt;
+&lt;p&gt;Almost three months in, I was starting to find out how to improve my cycling
+performance. No longer did I need an ambulance to be on standby whenever I
+went for a ride, and I had discovered my maximum heart rate a few
+times—sprinkled with more than enough algorithms for finding out what
+it actually should be set to in my Garmin—but that is another story as
+well!&lt;/p&gt;
+&lt;p&gt;Looking on &lt;a href=&#34;https://www.strava.com/athletes/10691628&#34; title=&#34;&#39;Simon Rowe - Strava *athlete* page&#39; - @Strava&#34;&gt;Strava&lt;/a&gt; to compare my times over segments against the hundreds of
+other local cyclists, my times were very slow. Of course I believed that most
+of them must be using mopeds to get such good times—however, I should
+still be able to get better times up hills I was ridding, without getting all
+Lance Armstrong over it&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Time to do more research and chuck a mountain of data at myself—cadence,
+heart rate, carbon fibre, muscles, diet, lifestyle, bike components, clothing,
+power meters, tyre size, gear choice, bike choice, fitness, and weight.&lt;/p&gt;
+&lt;p&gt;Checking the weight area in more detail—mainly just to tick it off the
+list, as only a &lt;a href=&#34;http://www.teamsky.com/teamsky/home&#34; title=&#34;&#39;Team Sky cycling team&#39; - @TeamSky&#34;&gt;Team Sky&lt;/a&gt; type &lt;em&gt;marginal gain&lt;/em&gt;, I found out that I was
+now in fact a fat person!! &lt;strong&gt;WTF&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My &lt;a href=&#34;http://www.nhs.uk/Tools/Pages/Healthyweightcalculator.aspx&#34; title=&#34;&#39;NHS Choices - BMI Calculator&#39; - @NHS UK Web Site&#34;&gt;Body Mass Index (BMI)&lt;/a&gt; was well into the &amp;lsquo;Overweight&amp;rsquo; category on the
+NHS Choices web site—and looking at other second opinions, I was indeed
+classed as an overweight person. Oh dear!&lt;/p&gt;
+&lt;p&gt;Time for another project to start during the indoor cycling months—loose
+weight.&lt;/p&gt;
+&lt;p&gt;From the end of October 2015 until March 2016 I have been learning about
+dieting, protein, fats, carbohydrates, and Calories. It has done me some
+good—I am now approximately 22lbs lighter (which is 1.5 stone or just
+under 10Kgs). I hate to think what I weighed when I started cycling three
+months before I discovered my new fatty label in life!&lt;/p&gt;
+&lt;p&gt;Other things I have learnt about (apart from dieting) are on subjects such as
+power meters, heart rate monitors, fitness watches, indoor riding, smart
+trainers, Zwift Island, Traineroad, different bike types, what is new in
+cycling compared to 20 years ago, food types, cycling related books, YouTube
+Channels, training approaches, fasted training, cleats and clothes, and of
+course plenty of self inflicted lactate induced pain!!&lt;/p&gt;
+&lt;p&gt;All in the name of good fun of course.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There is nothing that quite provides so much fun for friends and family as an
+obsessive detail orientate person getting a new hobby!&lt;/p&gt;
+&lt;p&gt;Some quick noob cycling related tips I have already learnt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Carbon grip paste is not the same as Vaseline;&lt;/li&gt;
+&lt;li&gt;Correct seat height is important—and make sure you measure it correctly
+before you ride nearly everyday for two months on a new bike;&lt;/li&gt;
+&lt;li&gt;Related to the above—don&amp;rsquo;t become obsessive about goniometer measurements;&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t train too hard or you will go backwards in your power output;&lt;/li&gt;
+&lt;li&gt;Carb loading is not about eating loads of sweats and chocolate cake;&lt;/li&gt;
+&lt;li&gt;When riding on rollers - don&amp;rsquo;t assume a dinning room chair will act as a
+good barrier to falling off;&lt;/li&gt;
+&lt;li&gt;There are loads of crazy views on cycling and health on the internet—not
+all are true either.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hopefully I will find time to share some more ramblings on these others areas,
+and add them here.&lt;/p&gt;
+&lt;p&gt;For now I have three weeks of &lt;a href=&#34;http://www.cyclingweekly.co.uk/&#34; title=&#34;&#39;Cycling Weekly&#39; - @cyclingweekly magazine&#34;&gt;Cycling Weekly&lt;/a&gt; magazine to catch up on&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;article-links&#34;&gt;Article Links&lt;/h2&gt;
+&lt;p&gt;Below is a list of links referenced in the article above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.spine-health.com/treatment/spinal-fusion/acdf-anterior-cervical-discectomy-and-fusion&#34;&gt;http://www.spine-health.com/treatment/spinal-fusion/acdf-anterior-cervical-discectomy-and-fusion&lt;/a&gt; &amp;ldquo;&amp;lsquo;Anterior Cervical Dissectomy Fusion (ACDF) information&amp;rsquo; - @spine-health.com&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.nhs.uk/Conditions/lupus/Pages/Introduction.aspx&#34;&gt;http://www.nhs.uk/Conditions/lupus/Pages/Introduction.aspx&lt;/a&gt; &amp;ldquo;&amp;lsquo;NHS Choices - Lupus&amp;rsquo; - @NHS UK Web Site&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.nhs.uk/conditions/stroke/pages/introduction.aspx&#34;&gt;http://www.nhs.uk/conditions/stroke/pages/introduction.aspx&lt;/a&gt; &amp;ldquo;&amp;lsquo;NHS Choices - Stroke&amp;rsquo; - @NHS UK Web Site&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.eyesearch.ucl.ac.uk/es/es_hemianopia.php&#34;&gt;http://www.eyesearch.ucl.ac.uk/es/es_hemianopia.php&lt;/a&gt; &amp;ldquo;&amp;lsquo;What is hemianopia?&amp;rsquo; - @UCL Institute of Neurology&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.rnib.org.uk/about-rnib&#34;&gt;http://www.rnib.org.uk/about-rnib&lt;/a&gt; &amp;ldquo;&amp;lsquo;About the Royal National Institute of Blind People&amp;rsquo; - @RNIB Web Site&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.rnib.org.uk/eye-health-registering-your-sight-loss/criteria-certification&#34;&gt;http://www.rnib.org.uk/eye-health-registering-your-sight-loss/criteria-certification&lt;/a&gt; &amp;ldquo;&amp;lsquo;Criteria for blind vs partially sighted&amp;rsquo; - @RNIB Web Site&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.nhs.uk/Livewell/loseweight/Pages/10000stepschallenge.aspx&#34;&gt;http://www.nhs.uk/Livewell/loseweight/Pages/10000stepschallenge.aspx&lt;/a&gt; &amp;ldquo;&amp;lsquo;NHS Choices - The 10,000 steps challenge&amp;rsquo; - @NHS UK Web Site&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://road.cc/content/review/87462-boardman-road-sport&#34;&gt;http://road.cc/content/review/87462-boardman-road-sport&lt;/a&gt; &amp;ldquo;&amp;lsquo;Boardman Road Sport bike review&amp;rsquo; - @road.cc&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Shifter_(bicycle_part)&#34;&gt;https://en.wikipedia.org/wiki/Shifter_(bicycle_part)&lt;/a&gt; &amp;ldquo;&amp;lsquo;Bicycle Gear Shifters&amp;rsquo; - @wikipedia&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Alpe_d%27Huez&#34;&gt;https://en.wikipedia.org/wiki/Alpe_d%27Huez&lt;/a&gt; &amp;ldquo;&amp;lsquo;Alpe d&amp;rsquo;Huez&amp;rsquo; - @Wikiedia&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.strava.com/athletes/10691628&#34;&gt;https://www.strava.com/athletes/10691628&lt;/a&gt; &amp;ldquo;&amp;lsquo;Simon Rowe - Strava &lt;em&gt;athlete&lt;/em&gt; page&amp;rsquo; - @Strava&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://zwift.com/&#34;&gt;http://zwift.com/&lt;/a&gt; &amp;ldquo;&amp;lsquo;Zwift - ride on!!&amp;rsquo; - @GoZwift&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.teamsky.com/teamsky/home&#34;&gt;http://www.teamsky.com/teamsky/home&lt;/a&gt; &amp;ldquo;&amp;lsquo;Team Sky cycling team&amp;rsquo; - @TeamSky&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.nhs.uk/Tools/Pages/Healthyweightcalculator.aspx&#34;&gt;http://www.nhs.uk/Tools/Pages/Healthyweightcalculator.aspx&lt;/a&gt; &amp;ldquo;&amp;lsquo;NHS Choices - BMI Calculator&amp;rsquo; - @NHS UK Web Site&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Ubuntu Pre Compiled Kernel Upgrade</title>
+        <link>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</link>
+        <pubDate>Sat, 20 Feb 2016 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</guid>
+        <description>&lt;h1 id=&#34;ubuntu-pre-compiled-kernel-installation&#34;&gt;Ubuntu Pre-Compiled Kernel Installation&lt;/h1&gt;
+&lt;h2 id=&#34;about&#34;&gt;About&lt;/h2&gt;
+&lt;p&gt;If you are not familar with Ubuntu - a good overveiw of this execellent free
+operating system&amp;rsquo;s features can be found here: &lt;a href=&#34;http://www.ubuntu.com/desktop/features&#34;&gt;Ubuntu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The instructions below are for obtaining and installing a pre-compiled Ubuntu
+kernel, from the &lt;a href=&#34;http://kernel.ubuntu.com/&#34;&gt;ubuntu.com kernel web site&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The instructions explain how a computer already running the Ubuntu operating
+system can use the latest Ubuntu kernel available from the Ubuntu Kernel web
+site.&lt;/p&gt;
+&lt;p&gt;The kernels are provided by the Ubuntu community, and are pre-compiled for you&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;so all you have to do is download and install the one you want.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This approach will often let you enjoy the latest Linux kernel features and
+obtain any performance improvements included - without having to wait for your
+Ubuntu distribution release to be updated first, or go through the compile
+process yourself!&lt;/p&gt;
+&lt;p&gt;These kernels include the Ubuntu specific features and patches, but are built
+using the mainstream Linux Kernel source code also - so the best of both
+worlds if you are a Ubuntu user.&lt;/p&gt;
+&lt;p&gt;Obviously bear in mind that these kernels are installed at your own risk - so
+if you have doubts about doing this, it is probably best to wait until the
+newer kernel is included as part of a software update, or newer Ubuntu
+release.&lt;/p&gt;
+&lt;p&gt;I choose this route as I needed a number of newer kernel fixes to ensure my
+Microsoft Surface Pro 3 Type Cover keyboard worked properly, and as a
+consequence I also obtained newer kernel features and improvements too! I did
+not fancy going through the compile process myself - as it takes a little while
+to compile a Linux Kernel on the Surface Pro 3 computer, and this method is
+practically instant.&lt;/p&gt;
+&lt;p&gt;As a sideline - the &lt;a href=&#34;https://www.reddit.com/r/surfacelinux&#34;&gt;Reddit Surface
+Linix&lt;/a&gt; pages are a great source of
+support and information for running Linux on this particular hardware.&lt;/p&gt;
+&lt;h2 id=&#34;obtaining-the-ubuntu-kernel&#34;&gt;Obtaining the Ubuntu Kernel&lt;/h2&gt;
+&lt;p&gt;The Ubuntu kernel needs to be downloaded from the Ubuntu web site located
+&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» http://kernel.ubuntu.com/~kernel-ppa/mainline/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Scroll down the above web page to locate the kernels available for your
+current distribution (ie Ubuntu 15.10 is called &amp;lsquo;Wily&amp;rsquo;), and then select the
+highest kernel version you want to use. Note that some of the kernels provided
+are &amp;lsquo;release candidates&amp;rsquo; - identified by &amp;lsquo;rc&amp;rsquo; in their names. Choose a non
+&amp;lsquo;rc&amp;rsquo; version if you need stability over the very newest features and of course
+potential bugs.&lt;/p&gt;
+&lt;p&gt;For example the latest Wily (Ubuntu 15.10) kernel version 4.4 can be found in
+the directory &lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4-wily/&#34;&gt;here&lt;/a&gt; at the time of writing:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4-wily/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Additional higher versions will be added from time to time, so check for
+additional v4.4.x kernel versions as needed.&lt;/p&gt;
+&lt;p&gt;Once in the correct directory for the kernel version that you have chosen to
+use, you will see a selection of files. If you want to know what improvements
+and fixes the particular kernel version includes, then look in the file
+called: &amp;lsquo;CHANGES&amp;rsquo;. There is also a file called &amp;lsquo;README&amp;rsquo; in each directory too&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;that contains additional helpful information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you wish to proceed with trying this particular kernel on your own
+computer, you need to download the following three &amp;lsquo;.deb&amp;rsquo; files for each
+kernel installation - assuming you don&amp;rsquo;t need any of the alternative
+specialised kernels of course!&lt;/p&gt;
+&lt;p&gt;The computer used in the example described below is a Microsoft Surface Pro 3,
+which is a 64bit computer and is running Ubuntu Wily 15.10 64 bit operating
+system. Your own needs may differ - if the generic kernel is unsuitable to your
+own use case or computer hardware, then select the corresponding alternative
+files to those presented here - the overall process is the same though.&lt;/p&gt;
+&lt;p&gt;Note that in the file names shown below, the &amp;lsquo;xxxx&amp;rsquo; element is the version
+number of the kernel - so it will vary based on your own kernel version number
+selection.&lt;/p&gt;
+&lt;p&gt;The files to download are:&lt;/p&gt;
+&lt;p&gt;The Linux headers specific to you machine type (ie amd64) and kernel
+usage (ie generic) - so file &amp;lsquo;linux-header-xxxx-generic-amd64.deb&amp;rsquo;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» linux-headers-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &amp;lsquo;linux-headers-xxxx-all.deb&amp;rsquo; which is generic to any of the other
+two files listed here (ie the other headers and image files):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» linux-headers-4.4.0-040400_4.4.0-040400.201601101930_all.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The Linux kernel image file is the third file needed, so to match the above
+files already downloaded, obtain &amp;lsquo;linux-image-xxxx-amd64.deb&amp;rsquo; - again specific
+to your machine (ie amd64):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» linux-image-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above three files are needed for each Linux Kernel upgrade on a 64bit
+generic computer.&lt;/p&gt;
+&lt;p&gt;Download them and put them in their own directory on your computer, so they
+don&amp;rsquo;t get mixed up with other similar kernel versions and files you may have
+already downloaded.&lt;/p&gt;
+&lt;h2 id=&#34;install-the-new-kernel&#34;&gt;Install the New Kernel&lt;/h2&gt;
+&lt;p&gt;Once the three files are obtained, you can install the newly downloaded kernel
+&lt;code&gt;.deb&lt;/code&gt; files (ie see instructions above). The three files obtained that are
+required for each upgrade are:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» linux-headers-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+» linux-image-4.4.0-040400-generic_4.4.0-040400.201601101930_amd64.deb
+» linux-headers-4.4.0-040400_4.4.0-040400.201601101930_all.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These can be installed with the command line below - where the three files are
+the only ones on the current directory of course:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» sudo dpkg -i linux-headers* linux-image*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If after installing the kernel using the above command, there are dependency
+issues reported, you can run the following command to try to fix them:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» sudo apt-get -f upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will also need to update update Grub to ensure the computer boots
+from the the new kernel with the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» sudo grub-install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should now be able to reboot and test your new kernel installation!&lt;/p&gt;
+&lt;p&gt;Once you reboot your computer you can check what kernel version it is running
+with the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;» uname -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;fixing-issues-with-boot-problems&#34;&gt;Fixing Issues with Boot Problems&lt;/h2&gt;
+&lt;p&gt;Hopefully the above process runs well, and your computer runs the newly
+installed kernel without issue.&lt;/p&gt;
+&lt;p&gt;Before you install however, you should really familiarise yourself with howto
+fixing Ubuntu boot problems - just in case! This information is worth knowing
+anyway&amp;hellip;&lt;/p&gt;
+&lt;p&gt;The Techradar web site has a good article which maybe of interest &lt;a href=&#34;http://www.techradar.com/how-to/computing/how-to-boot-repair-ubuntu-1315203&#34;&gt;Techradar -
+How to repair Ubuntu if it won&amp;rsquo;t
+boot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There are of course plenty of other helpful resources on the internet too
+should you run into problems - just search on
+&lt;a href=&#34;https://www.google.co.uk/webhp?sourceid=chrome-instant&amp;amp;ion=1&amp;amp;espv=2&amp;amp;ie=UTF-8#q=ubuntu%20boot%20failure&#34;&gt;Google&lt;/a&gt;
+for solutions!&lt;/p&gt;
+&lt;h2 id=&#34;updated-information---wily-kernel-443&#34;&gt;Updated Information - Wily Kernel 4.4.3&lt;/h2&gt;
+&lt;p&gt;On the 25 feb 2016 a new version of the Wily-4.4.x Ubuntu kernel was made
+available as
+&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/&#34;&gt;v4.4.3-wily&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Based on the artcile above (ie to suit a 64bit generic kernel requirement) I downloaded the
+following files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-headers-4.4.3-040403-generic_4.4.3-040403.201602251634_amd64.deb&#34;&gt;linux-headers-4.4.3 generic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-headers-4.4.3-040403_4.4.3-040403.201602251634_all.deb&#34;&gt;linux-headers-4.4.3 all&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/linux-image-4.4.3-040403-generic_4.4.3-040403.201602251634_amd64.deb&#34;&gt;linux-image-4.4.3 generic&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Save the above three files in a directory on there own, and then run the
+following command in the Ubuntu Terminal, in that directory:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo dpkg -i linux-headers* linux-image*
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once the new Ubuntu Kernel files where installed, I then ran the following two
+commands (just as a precation) - but no additional packages were installed on my
+particular system - that may vary for yours of course!:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get -f upgrade
+sudo grub-install
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Follow the other steps in the main article above if you need more information.&lt;/p&gt;
+&lt;p&gt;The are a significant number of patches and files in this v4.4.3 kernel - as
+listed in the accompanying
+&lt;a href=&#34;http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/CHANGES&#34;&gt;CHANGES&lt;/a&gt;
+file.&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>New Text Editors for All</title>
+        <link>http://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/</link>
+        <pubDate>Sun, 12 Jul 2015 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/</guid>
+        <description>&lt;h2 id=&#34;new-text-editors-for-all&#34;&gt;New Text Editors for All&lt;/h2&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The most popular text editors have been &lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt; (or
+Vi) and &lt;a href=&#34;https://www.gnu.org/software/emacs/&#34;&gt;Emacs&lt;/a&gt; for many
+years. Many an Internet flame-war has taken place over the virtues,
+differences, and capabilities of each editor, over the other. New
+&amp;lsquo;&lt;em&gt;easier&lt;/em&gt;&amp;rsquo; text editors have appeared too, and some have stayed
+around - such as &lt;a href=&#34;http://www.nano-editor.org/&#34;&gt;Nano&lt;/a&gt; that ships
+with just about all Linux distros.&lt;/p&gt;
+&lt;p&gt;Now there is a new set of text editors, all looking similar, all offering
+something new, all cross platform, and so on—and the reason?&lt;/p&gt;
+&lt;h2 id=&#34;so-what-is-it-about-text-editors&#34;&gt;So What Is It About Text Editors?&lt;/h2&gt;
+&lt;p&gt;While I believe there will always be a need to have a good text editor that you
+are comfortable with, that is minimal, but powerfull too—for those times
+you need to use the command line. There is also an equal place for editors that
+run in Graphical User Environments (GUI) too. At the end of the day, a computer
+is a tool to do something with (be that for pleasure or work) and ensuring it
+therefore provides software &amp;lsquo;&lt;em&gt;fit for purpose&lt;/em&gt;&amp;rsquo; is very important.&lt;/p&gt;
+&lt;p&gt;I have tried a lot of text editors over the years and have settle on
+Emacs (yes - I like some features in Vim too!). I have also been a paid up
+user of &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; since 2012. I
+use Sublime Text in Windows on a daily basis (work and home), but also
+use it on Linux, and in the past on Macs.&lt;/p&gt;
+&lt;p&gt;Emacs on the Mac and Linux is great—but never quite felt right on
+Windows for some reason&amp;hellip; The fact I only use the terminal version
+(ie &lt;code&gt;emacs -nw&lt;/code&gt;) probably has something to do with this though.&lt;/p&gt;
+&lt;p&gt;There has been the &amp;lsquo;&lt;em&gt;great wait&lt;/em&gt;&amp;rsquo; for Sublime Text 3, and this continues at the
+time of writing. Visit the Sublime Text web site user forums if you
+wish—and read the continuing gripes and complaints, even threats, all from
+disgruntled and frustrated users. For commercial software, it is very odd that a
+developer (who has basically taken a large lump of the market share) lets
+their nice product fade away! People are impatient, especially those involved in
+technology (generally), and they will soon move to alternatives if progress or
+perceived progress stalls.&lt;/p&gt;
+&lt;p&gt;I use &lt;a href=&#34;http://www.lynda.com/&#34;&gt;Lynda.com&lt;/a&gt; for keeping up to date with
+technology, photography courses, and anything else that takes my
+fancy. Looking at the courses they have for text editors, is an
+interesting side line barometer for what is popular maybe?&lt;/p&gt;
+&lt;p&gt;After all Lynda&amp;rsquo;s courses are only created to make money at the end of
+the day, like all businesses. So it is a sensible decision they make
+to ensure they have courses for popular software and interests. They
+have a healthy open source software stance (ie showing 203 courses for
+&amp;lsquo;&lt;em&gt;opensource&lt;/em&gt;&#39;), and it is refreshing to see a &amp;lsquo;&lt;em&gt;main stream&lt;/em&gt;&amp;rsquo;
+Computer Based Training (CBT) provider covering all types of
+software—with courses such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Wireshark-tutorials/Troubleshooting-Your-Network-Wireshark/366447-2.html&#34;&gt;Troubleshooting Your Network with Wireshark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/course-tutorials/GIMP-Essential-Training/112673-2.html&#34;&gt;GIMP Essential Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Git-tutorials/Git-Essential-Training/100222-2.html&#34;&gt;Git Essential Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Fedora-tutorials/Up-Running-Fedora-Linux/159632-2.html&#34;&gt;Up and Running with Fedora Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Ubuntu-tutorials/Up-Running-Ubuntu-Desktop-Linux/159637-2.html&#34;&gt;Up and Running with Ubuntu Desktop Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/CentOS-tutorials/Up-Running-CentOS-Linux/159633-2.html&#34;&gt;Up and Running with CentOS Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many more too! Shame there is nothing for Golang
+(yet?)—but plenty for many of the other programming languages
+though! Looking forward to the &lt;a href=&#34;https://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; course though&amp;hellip; LOL&lt;/p&gt;
+&lt;p&gt;So, of the popular editors we mentioned above, which have training courses available?&lt;/p&gt;
+&lt;p&gt;I found the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/nano-tutorials/Up-Running-nano/189067-2.html&#34;&gt;nano - &amp;lsquo;Up and Running with nano&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/vi-tutorials/Up-Running-vi/170336-2.html&#34;&gt;Vi - &amp;lsquo;Up and Running with vi&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.lynda.com/Sublime-Text-tutorials/Up-Running-Sublime-Text-2/114325-2.html&#34;&gt;Sublime - &amp;lsquo;Up and Running with Sublime Text 2&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are no equivalent dedicated courses for Emacs though :(&lt;/p&gt;
+&lt;p&gt;So the above is a bit of a tangent, and what really was interesting me
+was the new text editors appearing, which so far I have
+noticed includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Atom - from GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nuclide.io/&#34;&gt;Nuclide - from Facebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://brackets.io/&#34;&gt;Brackets - from Adobe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;Visual Studio Code (VSCode) - from Microsoft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of all the above—what is striking to me is the similarities!&lt;/p&gt;
+&lt;p&gt;If you saw a group of screen shots, you might be hard pressed to notice the
+differences. It is refreshing to have so much &amp;lsquo;free&amp;rsquo; choice though, and
+available for any mainstream operating system too!!&lt;/p&gt;
+&lt;p&gt;They all look similar, but they all pitch their purpose or use slight
+differently too. From developers editor, Integrated Development Environment
+(IDE), embracing open source editors, web developers editor, and so on.&lt;/p&gt;
+&lt;p&gt;I am not compaining—it is great to have such choice, and from what I have
+seen—great functional software too!  With this kind of eco system and
+&amp;lsquo;&lt;em&gt;frendly&lt;/em&gt;&amp;rsquo; open source competition, it will be nice to see what innervations we
+end up with, and what the new &amp;lsquo;&lt;em&gt;baseline&lt;/em&gt;&amp;rsquo; GUI text editor will needs to have,
+to be acceptable going forward. The healthy mix of community and large corporate
+companies being involved is great too!&lt;/p&gt;
+&lt;p&gt;Also, I dont think they are a threat to existing command line editors, but
+hopefully will be another driving force for them. As the new editor baseline is set, so
+other existing programs will also adapt, as users want what they are
+used too!&lt;/p&gt;
+&lt;h3 id=&#34;so-what-i-am-i-using&#34;&gt;So What I Am I Using?&lt;/h3&gt;
+&lt;p&gt;So far, of the above I have tried VSCode and Atom.&lt;/p&gt;
+&lt;p&gt;I liked VSCode, but only switched to Atom due to the current license confusion,
+that I guess won&amp;rsquo;t be sorted out until it comes out of beta. Also I was sure if
+it includes any spyware—similar to that you get of you are a beta tester
+for Windows 10&amp;hellip; See &lt;a href=&#34;http://www.gnu.org/proprietary/proprietary-surveillance.en.html&#34;&gt;GNU Proprietary
+Surveillance&lt;/a&gt;
+page for a bit more information on this area.&lt;/p&gt;
+&lt;p&gt;I have now moved to Atom, and I like it too. I havent used Sublime
+Text in a while now, and doubt I will go back—there is no
+reason too, that I can think of. I have yet to install Atom on Linux and use
+it (another job for the todo list!), but my son is happily using Atom
+on his Apple Macs now, and has also switched from Sublime Text.&lt;/p&gt;
+&lt;p&gt;There are lots of reviews of Atom all over the internet, a couple I
+have enjoyed and found useful are included below. The Atom version 1.0
+release video is quite funny and worth watching too!&lt;/p&gt;
+&lt;p&gt;Another text editor I have been keeping an eye on, that looks similar
+to all the others, but in fact is written in Go (Golang) instead of
+using &lt;a href=&#34;http://www.nodejs.org/&#34;&gt;Node.js&lt;/a&gt; based technologies—which
+I believe all the above editor do in one way or another.&lt;/p&gt;
+&lt;p&gt;This editor is called &lt;a href=&#34;http://limetext.org/&#34;&gt;Lime Text&lt;/a&gt;. It&amp;rsquo;s stated goal is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We want to bring you an Open Source text editor with great
+capabilities, as a successor to Sublime Text.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;!-- raw HTML omitted --&gt;Lime Text Blog Article: &amp;lsquo;We now have a Website!&amp;rsquo; — 27 Nov 2013&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A full list of Lime Text&amp;rsquo;s opensource &lt;a href=&#34;https://github.com/limetext/lime/wiki/Goals&#34;&gt;projects
+goals&lt;/a&gt; are also available.&lt;/p&gt;
+&lt;p&gt;So there we are—interesting times for the good old text editor!&lt;/p&gt;
+&lt;h3 id=&#34;other-resources&#34;&gt;Other Resources&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/Y7aEiVwBAdk&#34;&gt;Atom Release 1.0 Video (on Youtube)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://marcio.io/2015/07/supercharging-atom-editor-for-go-development/&#34;&gt;&amp;lsquo;Supercharging the Atom Editor for Go Development&amp;rsquo; - by Marcio Castilho&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.daniel-klose.com/technology/atom-editor-for-sublime-text-users/&#34;&gt;&amp;lsquo;Atom Editor for Sublime Text Users&amp;rsquo; - by Daniel Klose&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Easy Passwords Everywhere</title>
+        <link>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</link>
+        <pubDate>Thu, 22 Jan 2015 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</guid>
+        <description>&lt;h2 id=&#34;easy-passwords-everywhere&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The internet news of two days ago (20 Jan 2014) was all about the
+terrible passwords being used in 2014 for protecting access to online
+services. The news originated from a press release posted the password
+management company SplashData.&lt;/p&gt;
+&lt;p&gt;The most commonly used top 10 poor passwords were:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;123456&lt;/li&gt;
+&lt;li&gt;password&lt;/li&gt;
+&lt;li&gt;12345&lt;/li&gt;
+&lt;li&gt;12345678&lt;/li&gt;
+&lt;li&gt;qwerty&lt;/li&gt;
+&lt;li&gt;123456789&lt;/li&gt;
+&lt;li&gt;1234&lt;/li&gt;
+&lt;li&gt;baseball&lt;/li&gt;
+&lt;li&gt;dragon&lt;/li&gt;
+&lt;li&gt;football&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These passwords were obtained by looking at the reams of leaked
+password lists (over 3 million passwords) that are available on the
+internet, published following security breaches at various
+companies. While the leaking of a persons password is unfortunate, it
+does give an insight into the continued poor password choices being
+made by individuals to protect their online assets.&lt;/p&gt;
+&lt;h2 id=&#34;a-solution&#34;&gt;A Solution?&lt;/h2&gt;
+&lt;p&gt;What is common to all the passwords shown in the list, is that they
+are all easy to remember! This is probably why they were chosen in the
+first place. People don&amp;rsquo;t want to have complex passwords that they
+can&amp;rsquo;t easily remember, and have to look up constantly. It is a case of
+convenience over risk.&lt;/p&gt;
+&lt;p&gt;Also as pointed out in an earlier post I made
+&lt;a href=&#34;http://www.wiremoons.com/posts/2014-12-09-Three-Letter-Word-Passwords&#34;&gt;2014-12-09-Three-Letter-Word-Passwords&lt;/a&gt;,
+the requirements to make a password &amp;lsquo;complex&amp;rsquo; are misunderstood.&lt;/p&gt;
+&lt;p&gt;A password should only be complex for a computer to break — but not
+necessarily for a human to remember. These are two different
+requirements often merged into one concept.&lt;/p&gt;
+&lt;p&gt;This means not making it easy by using normal dictionary words(ie
+password; qwerty; baseball; dragon; football) — as a computer can
+check these extremely fast, making them pretty much useless. Also,
+using the simple substitutions for letters such as &amp;lsquo;p@55word&amp;rsquo; instead
+should be avoided, as once again these are so well known, they can
+easily be checked by a computer also, using the large dictionary word
+list, and just tweaking it with these substitutions too!&lt;/p&gt;
+&lt;p&gt;So we need an easy to remember password without using a single dictionary
+word?&lt;/p&gt;
+&lt;p&gt;Well humans aren&amp;rsquo;t too good at remembering long numbers either, so how
+about a selection of small words?&lt;/p&gt;
+&lt;p&gt;These small words together make up a nonsense word for a computer, and
+therefore it has to check all combination to work the actual password
+being used. However, passwords made up of small easy to remember words
+are not too hard for us recall, and we are able to pick out the
+individual words (&lt;a href=&#34;http://bigthink.com/endless-innovation/humans-are-the-worlds-best-pattern-recognition-machines-but-for-how-long&#34;&gt;human pattern recognition is actual very very
+good!&lt;/a&gt;)
+— thus offering a much better password, and one that makes it easier
+to remember as well.&lt;/p&gt;
+&lt;p&gt;You can have a look at two programs I have written —  both available from my GitHub account.
+One is written in c, and the other using Go. They both carry out the same
+task in offering a randomly generated password using a dictionary of over 1,000 three letter
+English words. Maybe they will help create a more secure password for you to use&amp;hellip;&lt;/p&gt;
+&lt;p&gt;They were written for fun, and for my own personal use, and they are both Open-source and free!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/sugpass&#34;&gt;sugpass - &amp;lsquo;Suggest Password - program written in c&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen - &amp;lsquo;Password Generate - program written in Go&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;referenced-sites&#34;&gt;Referenced Sites&lt;/h2&gt;
+&lt;p&gt;A few of the sites with 2014 common password lists and news articles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://splashdata.com/press/worstpasswords2013.htm&#34;&gt;splashdata - &amp;lsquo;&amp;ldquo;Password&amp;rdquo; unseated by &amp;ldquo;123456&amp;rdquo; on SplashData&amp;rsquo;s annual &amp;ldquo;Worst Passwords&amp;rdquo; list&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://time.com/3672431/worst-passwords/&#34;&gt;Time - &amp;lsquo;These are the 25 worst passwords of 2014&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mashable.com/2015/01/20/worst-passwords-of-2014/&#34;&gt;Mashable Uk - &amp;lsquo;Worst passwords of 2014 are just as terrible as you&amp;rsquo;d think&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Three Letter Passwords</title>
+        <link>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</link>
+        <pubDate>Tue, 09 Dec 2014 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</guid>
+        <description>&lt;h2 id=&#34;three-word---password-generator&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;I recently created a simple application named uniquely as &lt;code&gt;passgen&lt;/code&gt;
+which was written to generate a random password created from a pool of
+English three letter words. This gave me a small Golang project to
+work on, and also to create a handy tool to generate strong passwords.&lt;/p&gt;
+&lt;h3 id=&#34;how-does-it-work&#34;&gt;How Does it Work?&lt;/h3&gt;
+&lt;p&gt;This application generates password suggestions based on a pool of
+several hundred three letter English words. The words are selected
+from the pool randomly, and then displayed to the screen so you can
+choose one for use as a very secure password.&lt;/p&gt;
+&lt;p&gt;It is important that you combine the three letter words together to
+form a single string of characters (without the spaces)—to
+obtain a password with a minimum length on 9 characters. Longer
+combinations are stronger, but unfortunately not all sites or computer
+systems accept really long passwords still.&lt;/p&gt;
+&lt;p&gt;You can of course add digits/numbers to your password also, and
+punctuation characters too if you wish—but it would be wiser to
+keep the password simple, and easy to remember, but change it more
+frequently instead, using a fresh newly generated one every few weeks.&lt;/p&gt;
+&lt;p&gt;An example of the output from the program is below:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;            THREE WORD - PASSWORD GENERATOR
+            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+• Number of three letter words available in the pool is: 573
+• Number of three letter words to include in the suggested password is: 3
+  • Password character length will therefore be: 9
+• Mixed case passwords to be provided: false
+• Offering 3 suggested passwords for your consideration:
+
+   din wry ran
+   ova ram lit
+   ski yea koa
+
+All is well
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;are-these-passwords-secure&#34;&gt;Are These Passwords Secure?&lt;/h3&gt;
+&lt;p&gt;While the passwords generated look far too simple and easy to be
+secure, they are in fact very secure, and difficult to crack. Just
+because they look simple to a human—it doesn&amp;rsquo;t mean they are
+simple to work out using a computer. They are in fact quite hard to
+work out for a computer, as they are random, not a single dictionary
+word, or a single common name (with perhaps number substitutions and
+other common &amp;lsquo;complex&amp;rsquo; combinations)—or some combination of
+these approaches.  It is a common misconception that a password has to
+be &amp;lsquo;complex&amp;rsquo; to be any good.&lt;/p&gt;
+&lt;p&gt;Unfortunately we have been led to believe that the more complex a
+password is—the better and more secure it will be—which is
+in fact wrong.&lt;/p&gt;
+&lt;p&gt;In fact a longer password, but one that can that can be more easily
+remembered, and therefore consequentially be changed more frequently,
+actually offers a far greater degree of security.&lt;/p&gt;
+&lt;p&gt;For more information or more detailed explanations of this approach,
+please see the web pages included below under &amp;lsquo;References&amp;rsquo;. There are
+plenty of other expert sources on the Internet also, that will explain
+the security benefits of using a randomly generated three word (or
+more) combination password. Just remember—your password must be
+at least nine characters in total—or longer if possible. You can
+of course always add additional punctuation, and/or numbers, should
+you wish!&lt;/p&gt;
+&lt;h3 id=&#34;so-how-many-possible-passwords-are-there&#34;&gt;So How Many Possible Passwords Are There?&lt;/h3&gt;
+&lt;p&gt;There are over 500 three letter words in the pool that can be chosen
+from, and assuming you use at least three of these words combined,
+that provide 500^3 (500 to power of 3) possible combinations—of
+which one is your password.&lt;/p&gt;
+&lt;p&gt;So - 500 x 500 x 500 = 125,000,000 (one hundred and twenty five
+million) possibilities.&lt;/p&gt;
+&lt;p&gt;Maybe that doesn&amp;rsquo;t sound like a lot - but if you could check 20 of
+them every second, 24 hours a day, you would need roughly 60 days to
+get through them all!&lt;/p&gt;
+&lt;p&gt;If you use the mixed case option (upper and lower case)—then
+that number increases further of course—and you can still add
+numbers, and/or punctuation characters if you wish too.&lt;/p&gt;
+&lt;p&gt;Or just increase you password length to 12 characters, so use four of
+the three letter words combined, and you end up with 62,500,000,000 (sixty two
+billion five hundred million) possibilities—and that just lower case
+letters only.&lt;/p&gt;
+&lt;h3 id=&#34;so-where-is-it-then&#34;&gt;So Where Is It Then?&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/wiremoons/passgen&#34;&gt;passgen source code&lt;/a&gt; is available from my GitHub page, and I have made
+pre-compiled binaries for Windows, Mac, and Linux available from a
+&lt;a href=&#34;https://github.com/wiremoons/passgen/releases&#34;&gt;Release Page&lt;/a&gt;. The application is not feature complete yet—but it
+does work well, and will improve as I get time to work on it further.&lt;/p&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Thomas Baekdal - The Usability of Passwords - FAQ&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.baekdal.com/insights/the-usability-of-passwords-faq&#34;&gt;http://www.baekdal.com/insights/the-usability-of-passwords-faq&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Steve Gibson - GRC &amp;lsquo;How Big is Your Haystack?&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.grc.com/haystack.htm&#34;&gt;https://www.grc.com/haystack.htm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Serving Up Static Content from Golang Apps</title>
+        <link>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</link>
+        <pubDate>Sun, 30 Nov 2014 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</guid>
+        <description>&lt;h2 id=&#34;the-background&#34;&gt;The Background&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://golang.org/&#34; title=&#34;&#39;The Go Programming Language&#39; - @google&#34;&gt;Go&lt;/a&gt; is a great programming language, and three of the features I like the most are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;its easy cross platform program creation&lt;/strong&gt; - write a program on a Linux 64bit system—cross compile easily, and deploy the executable straight onto a Windows 32bit computer (if you so desire of course!);&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;its modern awareness of the web&lt;/strong&gt; - and therefore inclusion of commonly required application functionality built-in to the language libraries;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;its static compilation&lt;/strong&gt; - related to the first one, but key in that it is only the executable that needs to be deployed—no library dependency, DLL hell, or installation packaging needed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What I dont like to much at the moment—or probably more correctly—I am coming to terms with, is the different approach is the lack of a standard graphical user interface (GUI) libraries. There is lots of work going on to port the usual suspects (&lt;a href=&#34;http://mattn.github.io/go-gtk/&#34; title=&#34;&#39;Go GTK&#39; - @mattn&#34;&gt;GTK&lt;/a&gt;, &lt;a href=&#34;https://github.com/visualfc/goqt&#34; title=&#34;&#39;GoQT&#39; - @visualfc&#34;&gt;QT&lt;/a&gt;, &lt;a href=&#34;https://github.com/AndrewBC/cursed&#34; title=&#34;&#39;Cursed&#39; - @AndrewBC&#34;&gt;ncurses&lt;/a&gt;, &lt;a href=&#34;https://github.com/go-qml/qml&#34; title=&#34;&#39;go-qml&#39; - @go-qml&#34;&gt;QML&lt;/a&gt;), and there are some good native Go libraries about too (&lt;a href=&#34;https://github.com/nsf/termbox-go&#34; title=&#34;&#39;termbox-go&#39; - @nsf&#34;&gt;termbox-go&lt;/a&gt;) and of course the ability to use a web interface.&lt;/p&gt;
+&lt;p&gt;So while I am personally quite happy with the command line interface (CLI), and most quick applications I write are just that, if you ever want to make your computer program accessible to the majority of computer users, a familiar GUI is required.&lt;/p&gt;
+&lt;p&gt;So, I thought I would have a go at creating an application that is managed and controlled by the user through a web browser. My inspiration for this is the fantastic open source application called &lt;a href=&#34;http://syncthing.net/&#34; title=&#34;&#39;Syncthing - *Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized*&#39;&#34;&gt;Syncthing&lt;/a&gt;. When you start this application (you can optional disable this behaviour of course!) it will open the users web browser, and provide a very modern (using &lt;a href=&#34;http://getbootstrap.com/&#34; title=&#34;&#39;Bootstrap open-sourced framework&#39; - @mdo and @fat&#34;&gt;Bootstrap&lt;/a&gt; and other code) interface, that is intuitive, informative, instructional, and independent.&lt;/p&gt;
+&lt;p&gt;What do I mean by this?  Well:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;intuitive&lt;/strong&gt;: when you see the interface you immediately get an idea of what it is for, and how you might interact with it—it&amp;rsquo;s in the web browser which you use frequently and are familiar with (hopefully!);&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;informative&lt;/strong&gt;: the interface contains useful functional information that serves a purpose, and therefore inspires confidence that in will do what it is designed for;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;instructional&lt;/strong&gt;: the interface contains enough hints, labels, indicators, and meta help to ensure you are confident to interact with it—without fear it destroy you computer;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;independent&lt;/strong&gt;: the interface is self contained on one web page; doesn&amp;rsquo;t sprawl onto other areas, doesn&amp;rsquo;t needs other &amp;lsquo;stuff&amp;rsquo; to make it work (expect the modern browser), and feels contained and manageable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So that covers off the user needs, well a lot of the key &lt;em&gt;getting going&lt;/em&gt; ones anyway!&lt;/p&gt;
+&lt;p&gt;So how hard is it to make something as cool as &lt;a href=&#34;https://github.com/syncthing/syncthing&#34; title=&#34;&#39;Syncthing&#39; - @calmh&#34;&gt;Syncthing&lt;/a&gt;&amp;lsquo;s awesome offering?&lt;/p&gt;
+&lt;p&gt;How does it work in the background?  How do I get a functional &lt;em&gt;under the hood&lt;/em&gt; application to sync my files—and a cool user interface? Where does it store all the code, the web pages, the web-server, the Bootstrap, JavaScript, never-mind the actual programs original file-syncing purpose?&lt;/p&gt;
+&lt;p&gt;Well that&amp;rsquo;s the journey I have begun, trying to figure out what I need to do to replicate this, or something close to it—and add a nice web browser based GUI to one of my programs, that is currently a CLI application only.&lt;/p&gt;
+&lt;p&gt;Just to make it easy on myself the application I want to put a front end on is quite simple, but does use a database to store its information. This is currently in &lt;a href=&#34;http://www.sqlite.org/&#34; title=&#34;SQlite - *SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.*&#34;&gt;SQLite&lt;/a&gt;—so maybe I will write another post in the future about my quest on using non Go and native Go databases in my applications&amp;hellip;&lt;/p&gt;
+&lt;p&gt;So, this article is going to just focus on managing the GUI interface content in the application, and specifically how it can be included in the application binary?&lt;/p&gt;
+&lt;h2 id=&#34;the-problem-to-be-solved&#34;&gt;The Problem to be Solved&lt;/h2&gt;
+&lt;p&gt;So surely you just write you application, throw in a &lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34; title=&#34;Golang.org wiki article: &#39;Writing Web Applications&#39;- @google&#34;&gt;simple Go web server&lt;/a&gt;, give it some HTML pages, chuck in some Bootstrap CSS and job done?&lt;/p&gt;
+&lt;p&gt;Well that&amp;rsquo;s what I first thought too, being an optimist when it comes to starting a new hobby programming endeavour! Just quickly wrap those add-ons around my code—job done—while the kettle is boiling ready for my next coffee break. I expect any professional programmer reading this is banging his head against the desk while cackling to themselves now!&lt;/p&gt;
+&lt;p&gt;So back to the five minute job. I thought I would start with a simple web server, and the Bootstrap integration, how hard can that be. I found on Google a great article by Greg Reinbach on building &lt;a href=&#34;http://www.reinbach.com/&#34; title=&#34;Greg Reinbach blog article &#39;Golang Web Apps&#39;&#34;&gt;Golang Web Apps&lt;/a&gt; which fitted the bill perfectly. After being completely side tracked (see my previous article: &lt;a href=&#34;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&#34; title=&#34;&#39;Why Two Log Outputs?&#39; - @wiremoons&#34;&gt;&amp;lsquo;Why Two Log Outputs?&#39;&lt;/a&gt;) I finally got a web server running. After also reading another helpful article  by @zeebo called &lt;a href=&#34;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&#34; title=&#34;&#39;Quick and Clean in Go&#39; - blog article by @zeebo&#34;&gt;&amp;lsquo;Quick and Clean in Go&amp;rsquo;&lt;/a&gt;, I believed I was there!&lt;/p&gt;
+&lt;p&gt;I managed to create some static pages, and got a brief understanding of &lt;a href=&#34;http://golang.org/pkg/html/template&#34; title=&#34;&#39;HTML Templates Package&#39; - @google&#34;&gt;html templates&lt;/a&gt;, chucked in the download Bootstrap CSS, tested it locally, and so was &lt;em&gt;good to go&lt;/em&gt;—or not&amp;hellip;&lt;/p&gt;
+&lt;p&gt;My application maybe used in an environment where it will not be able to access the internet—so it needs to be self sufficient. It also will run across different platforms (Linux, Mac and Windows), so the application should be a self contained binary to make upgrades easy, and therefore with as few external dependencies as possible (ie no database files; web pages; CSS style sheet; graphics; etc).&lt;/p&gt;
+&lt;p&gt;No worries I thought, along with the the go application code I wrote—all my other dependencies files are laid out in directories alongside the Go code file (templates, static files, css, etc)—just as all the internet articles I read suggest (or more importantly I had assumed was implied)—so surely all that stuff I massaged together into a nice logical file structure gets included once my application is built right! After all Go builds self contained static binaries with all the required libraries and dependencies taken care of!&lt;/p&gt;
+&lt;p&gt;Wrong. Build the application and it runs fine locally. Excitably deploy it to another computer (or virtual machine), and you end up with panics, errors and screens of information telling you that you are obviously stupid and incompetent when it comes to programming, as the content cant be found any more!&lt;/p&gt;
+&lt;p&gt;Back to &amp;lsquo;the Google&amp;rsquo; for some more advice and answers to question that are only provided in the context that you ask them in—so this time I asked with a wider context, less assumptions, and more perceived wisdom, the research restarted.&lt;/p&gt;
+&lt;p&gt;It turns out that clever Golang programmers embed all there files and external dependencies themselves within their application binaries. This is done with a mixture of voodoo that can include compression (ie zip, or gzip), base64 encoding, directory and file walking, pre-build work, and internal application clever path management of the then incorporated files. There are a few options around that can be used to achieved this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Write your own - such as the Syncthing author @calmh did—reading (or in my case trying to unpick and decipher) the &lt;a href=&#34;https://github.com/syncthing/syncthing&#34; title=&#34;&#39;Syncthing&#39; - @calmh&#34;&gt;Syncthing source code&lt;/a&gt;, it has build scripts and asset creation code which is very useful;&lt;/li&gt;
+&lt;li&gt;Use a native Golang tool for the job such as: &lt;a href=&#34;https://github.com/jteeuwen/go-bindata&#34; title=&#34;go-bindata - *A small utility which generates Go code from any file.* - @jteeuwen&#34;&gt;go-bindata&lt;/a&gt;, &lt;a href=&#34;https://github.com/GeertJohan/go.rice&#34; title=&#34;go.rice - *a Go package that makes working with resources such as html,js,css,images,templates, etc very easy.* - @GeertJohan&#34;&gt;go.rice&lt;/a&gt; which provide an out of the box solution which I found via Google search;&lt;/li&gt;
+&lt;li&gt;Also courtesy of an &lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34; title=&#34;&#39;esc: Embedding Static Assets in Go&#39; - blog by @mjibson&#34;&gt;blog article&lt;/a&gt; on this same subject, there is @mjibson&amp;rsquo;s own &lt;a href=&#34;https://github.com/mjibson/esc&#34; title=&#34;&#39;esc - *A simple file embedder for Go*&#39; - @mjibson&#34;&gt;ecs&lt;/a&gt;, and another I didnt find &lt;a href=&#34;https://github.com/rakyll/statik&#34; title=&#34;&#39;statik - *Embed static files into a Go executable*&#39;&#39; - @rakyll&#34;&gt;statik&lt;/a&gt;. Thanks to the weekly &lt;a href=&#34;http://golangweekly.com/&#34; title=&#34;&#39;A great weekly &#39;Go Newsletter&#39; sent to your inbox—once your subscribe of course!&#39;&#39; - @mattrco and @kelseyhightower&#34;&gt;Go Newsletter&lt;/a&gt; &lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34; title=&#34;Go Newsletter Issue #37&#34;&gt;Issue #37&lt;/a&gt; for helping me find this resource!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;So there are plenty of solutions out there to this issue, and I am sure that I can use one of the approaches listed above to incorporate a working model and solution into my own application. Time for more reading, coding experiments, and hopefully a working application soon!&lt;/p&gt;
+&lt;h2 id=&#34;questions-for-the-future&#34;&gt;Questions for the Future&lt;/h2&gt;
+&lt;p&gt;Not researched this question yet—but if web applications that are run from users local machines are going to increase over time (I run a few myself already)—how are we going to manage the proliferation of port usage for all the local web servers running each application? Each web server, for each web application will need its own local port.&lt;/p&gt;
+&lt;p&gt;So, currently when a web application is written, it runs its own web server on an unprivileged port on the local machine (ie &lt;code&gt;http://localhost:8080/&lt;/code&gt; where &lt;code&gt;8080&lt;/code&gt; is the port). That port defaults to one chosen by the codes author. If we all pick the same ones, then the user is going to be left with the task of re-configuring the application and assigning a free port on their computer.&lt;/p&gt;
+&lt;p&gt;So the question is: &lt;em&gt;is there a local web server port usage/allocation solution out there, or some kind of mux, or Application Programming Interface (API) we can use?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I said at the start of this article - Go has a &amp;lsquo;modern awareness of the web&amp;rsquo;, so does it already have a clever solution we can all adopt?&lt;/p&gt;
+&lt;p&gt;Otherwise—time to research local machine port scanning code to find a solution!&lt;/p&gt;
+&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
+&lt;p&gt;Further resources and information used in-conjunction with the above article (and linked to in-line) can be found here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/&#34;&gt;http://golang.org/&lt;/a&gt; &amp;lsquo;The Go Programming Language&amp;rsquo; - @google&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mattn.github.io/go-gtk/&#34;&gt;http://mattn.github.io/go-gtk/&lt;/a&gt; &amp;lsquo;Go GTK&amp;rsquo; - @mattn&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/visualfc/goqt&#34;&gt;https://github.com/visualfc/goqt&lt;/a&gt; &amp;lsquo;GoQT&amp;rsquo; - @visualfc&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/AndrewBC/cursed&#34;&gt;https://github.com/AndrewBC/cursed&lt;/a&gt; &amp;lsquo;Cursed&amp;rsquo; - @AndrewBC&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;https://github.com/go-qml/qml&lt;/a&gt; &amp;lsquo;go-qml&amp;rsquo; - @go-qml&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nsf/termbox-go&#34;&gt;https://github.com/nsf/termbox-go&lt;/a&gt; &amp;lsquo;termbox-go&amp;rsquo; - @nsf&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/syncthing/syncthing&#34;&gt;https://github.com/syncthing/syncthing&lt;/a&gt; &amp;lsquo;Syncthing&amp;rsquo; - @calmh&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://getbootstrap.com/&#34;&gt;http://getbootstrap.com/&lt;/a&gt; &amp;lsquo;Bootstrap open-sourced framework&amp;rsquo; - @mdo and @fat&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.org/doc/articles/wiki/&#34;&gt;https://golang.org/doc/articles/wiki/&lt;/a&gt; Golang.org wiki article: &amp;lsquo;Writing Web Applications&amp;rsquo;- @google&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.reinbach.com/&#34;&gt;http://www.reinbach.com/&lt;/a&gt; Greg Reinbach blog article &amp;lsquo;Golang Web Apps&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&#34;&gt;http://www.wiremoons.com/posts/2014-10-01-goLang-why-two-log-outputs&lt;/a&gt; &amp;lsquo;Why Two Log Outputs?&amp;rsquo; - @wiremoons&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/pkg/html/template&#34;&gt;http://golang.org/pkg/html/template&lt;/a&gt; &amp;lsquo;HTML Templates Package&amp;rsquo; - @google&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&#34;&gt;http://shadynasty.biz/blog/2012/07/30/quick-and-clean-in-go/&lt;/a&gt; &amp;lsquo;Quick and Clean in Go&amp;rsquo; - blog article by @zeebo&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jteeuwen/go-bindata&#34;&gt;https://github.com/jteeuwen/go-bindata&lt;/a&gt; go-bindata - &lt;em&gt;A small utility which generates Go code from any file.&lt;/em&gt; - @jteeuwen&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/GeertJohan/go.rice&#34;&gt;https://github.com/GeertJohan/go.rice&lt;/a&gt; go.rice - &lt;em&gt;a Go package that makes working with resources such as html,js,css,images,templates, etc very easy.&lt;/em&gt; - @GeertJohan&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&#34;&gt;http://mattjibson.com/blog/2014/11/19/esc-embedding-static-assets/&lt;/a&gt; &amp;lsquo;esc: Embedding Static Assets in Go&amp;rsquo; - blog by @mjibson&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/mjibson/esc&#34;&gt;https://github.com/mjibson/esc&lt;/a&gt; &amp;lsquo;esc - &lt;em&gt;A simple file embedder for Go&lt;/em&gt;&amp;rsquo; - @mjibson&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rakyll/statik&#34;&gt;https://github.com/rakyll/statik&lt;/a&gt; &amp;lsquo;statik - &lt;em&gt;Embed static files into a Go executable&lt;/em&gt;&amp;rsquo;&amp;rsquo; - @rakyll&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://syncthing.net/&#34;&gt;http://syncthing.net/&lt;/a&gt; &amp;lsquo;Syncthing - &lt;em&gt;Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized&lt;/em&gt;&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.sqlite.org/&#34;&gt;http://www.sqlite.org/&lt;/a&gt; SQlite - &lt;em&gt;SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golangweekly.com/&#34;&gt;http://golangweekly.com/&lt;/a&gt; &amp;lsquo;A great weekly &amp;lsquo;Go Newsletter&amp;rsquo; sent to your inbox—once your subscribe of course!&amp;rsquo;&amp;rsquo; - @mattrco and @kelseyhightower&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.golangweekly.com/archive/go-newsletter-issue-37/&#34;&gt;http://www.golangweekly.com/archive/go-newsletter-issue-37/&lt;/a&gt; Go Newsletter Issue #37&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Go Web Server - Why Two Log Outputs?</title>
+        <link>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</link>
+        <pubDate>Sat, 01 Nov 2014 00:00:00 UTC</pubDate>
+        <author></author>
+        <guid>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</guid>
+        <description>&lt;h1 id=&#34;the-go-program&#34;&gt;The Go Program&lt;/h1&gt;
+&lt;p&gt;Create a very simple Go web server as follows, by saving the following Go code into a file called server.go:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+	&amp;quot;io&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;net/http&amp;quot;
+)
+
+// Function Home - that handles a web server request for a page
+func Home(w http.ResponseWriter, req *http.Request) {
+	// write some text to the calling web browser
+	io.WriteString(w, &amp;quot;Hello World!&amp;quot;)
+	// output to the console that we did something
+	log.Println(&amp;quot;served a web page&amp;quot;)
+}
+
+// Function: MAIN
+func main() {
+	// start up output - to let us know the web server is starting
+	log.Println(&amp;quot;Starting server...&amp;quot;)
+	// handler registered for requests to the root of our web server - send them to the function &#39;Home&#39;
+	http.HandleFunc(&amp;quot;/&amp;quot;, Home)
+	// start a web server on localhost port 8000 grabbing any errors that occur
+	err := http.ListenAndServe(&amp;quot;:8000&amp;quot;,nil)
+	// check for any errors from the above web server start-up
+	if err != nil {
+		log.Fatal(&amp;quot;ListenAndServer: &amp;quot;, err)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Assuming you already have Go installed on your computer and configured correctly, the above can be run with:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;go run server.go
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;the-strange-output&#34;&gt;The Strange Output?&lt;/h2&gt;
+&lt;p&gt;So what&amp;rsquo;s the point?&lt;/p&gt;
+&lt;p&gt;Well we now have a simple web server that displays &lt;strong&gt;&amp;ldquo;Hello World!&amp;quot;&lt;/strong&gt; in you browser window, which is very cool for so little code! You need to send browser to the URL:  http://localhost:8000&lt;/p&gt;
+&lt;p&gt;But the curious thing (to me) was whenever I visit the page or just refreshed it, I was seeing two outputs on the console window as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2014/11/01 07:31:02 served a web page
+2014/11/01 07:31:02 served a web page
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The time stamp is the same for both outputs—and I only visited the page once. So why two outputs??&lt;/p&gt;
+&lt;p&gt;The outputs are being provided by the code that runs each time the handler function called &amp;lsquo;&lt;code&gt;Home&lt;/code&gt;&amp;rsquo; to serve a web page is run, the output is generated by the &lt;code&gt;log.Println(&amp;quot;served a web page&amp;quot;)&lt;/code&gt; instruction. But why is it output twice?&lt;/p&gt;
+&lt;h2 id=&#34;the-investigation&#34;&gt;The Investigation&lt;/h2&gt;
+&lt;p&gt;So a quick search on Google to find out! Nothing obvious to explain it. Time to figure it out&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Reasons I thought of:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A bug in Go?  I doubt it very much—the &lt;code&gt;log.Println&lt;/code&gt; is used by lots of people&amp;rsquo;s programs, so I hardly think I am the first person to notice something as simple as this - so probably not a bug!&lt;/li&gt;
+&lt;li&gt;Maybe it is outputting a log entry for both stdout and stderr?  Possible—but unlikely for a default setting.&lt;/li&gt;
+&lt;li&gt;I have done something dumb (again!) and the output is getting called twice due to some programming logic error—quite possible—but checking the code logic, nothing stands out!&lt;/li&gt;
+&lt;li&gt;So—must be some other issue causing it I guess—time to find out more&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We need to isolate why we are getting two log outputs for one page visit. So some way to see if the two log outputs are for the same reason (ie duplicates)—or in fact they are generated correctly for two different reasons. But how?&lt;/p&gt;
+&lt;p&gt;Well, if the &lt;code&gt;Home&lt;/code&gt; function is being call twice (as the log output indicates), then there must be two requests being handled by the web server?&lt;/p&gt;
+&lt;p&gt;Ok, so how can I differentiate between the two log outputs?&lt;/p&gt;
+&lt;p&gt;Looking at the &lt;code&gt;Home&lt;/code&gt; function I see it requires two parameters when it is called to serve a web page:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func Home(w http.ResponseWriter, req *http.Request)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The parameters are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;1st function parameter : &lt;code&gt;w http.ResponseWriter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2nd function parameter : &lt;code&gt;req *http.Request&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The 2nd is the &lt;code&gt;http.Request&lt;/code&gt;—so the Hyper Text Transfer Protocol (HTTP) request to serve some content. This is the request sent by our web browser asking for something to be provided by our web server!&lt;/p&gt;
+&lt;p&gt;So if we are genuinely getting two requests (hence to log output)—we should be able to see them by checking the requests themselves!&lt;/p&gt;
+&lt;h2 id=&#34;the-re-code-to-find-the-problem&#34;&gt;The Re-Code to Find the Problem&lt;/h2&gt;
+&lt;p&gt;Quick change to the code—so the log output also provides the &lt;code&gt;http.Request&lt;/code&gt; we get from the browser—so we can examine them:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+	&amp;quot;io&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;net/http&amp;quot;
+)
+
+// Function Home - that handles a web server request for a page
+func Home(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, &amp;quot;Hello World!&amp;quot;)
+	log.Print(&amp;quot;served a web page:\n&amp;quot;,req,&amp;quot;\n\n&amp;quot;)
+}
+
+// Function: MAIN
+func main() {
+	// start up output - to let us know the web server is starting
+	log.Println(&amp;quot;Starting server...&amp;quot;)
+	// handler registered for requests to the root of our web server - send them to the function &#39;Home&#39;
+	http.HandleFunc(&amp;quot;/&amp;quot;, Home)
+	// start a web server on localhost port 8000 grabbing any errors that occur
+	err := http.ListenAndServe(&amp;quot;:8000&amp;quot;,nil)
+	// check for any errors from the above web server start-up
+	if err != nil {
+		log.Fatal(&amp;quot;ListenAndServer: &amp;quot;, err)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In the code, we have altered the request to the log package—asking it now also to provide a copy of the &lt;code&gt;http.Request&lt;/code&gt; it received (ie information held in the variable: &lt;code&gt;req&lt;/code&gt;) as well as a few newlines (ie &lt;code&gt;\n&lt;/code&gt;) to improve the output formatting to the console. The new line of code is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;log.Print(&amp;quot;served a web page\n&amp;quot;,req,&amp;quot;\n\n&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The output we see when now when re-running the server and requesting a page is as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2014/11/01 07:51:02 Starting server...
+2014/11/01 07:51:06 served a web page:
+&amp;amp;{GET / HTTP/1.1 1 1 map[Accept:[text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8] User-Agent:[Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36] Dnt:[1] Accept-Encoding:[gzip,deflate,sdch] Accept-Language:[en-US,en;q=0.8] Connection:[keep-alive] Cache-Control:[max-age=0]] 0x7eb1c0 0 [] false localhost:8000 map[] map[] &amp;lt;nil&amp;gt; map[] 127.0.0.1:54933 / &amp;lt;nil&amp;gt;}
+
+2014/11/01 07:51:06 served a web page:
+&amp;amp;{GET /favicon.ico HTTP/1.1 1 1 map[Dnt:[1] User-Agent:[Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36] Accept-Encoding:[gzip,deflate,sdch] Accept-Language:[en-US,en;q=0.8] Connection:[keep-alive] Accept:[*/*]] 0x7eb1c0 0 [] false localhost:8000 map[] map[] &amp;lt;nil&amp;gt; map[] 127.0.0.1:54933 /favicon.ico &amp;lt;nil&amp;gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Looking at the two outputs again—we can now see they are both different requests!!  But why?&lt;/p&gt;
+&lt;p&gt;The first request starts with:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;{GET / HTTP/1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which is a &lt;code&gt;GET&lt;/code&gt; for &lt;code&gt;/&lt;/code&gt; —so asking (ie GETting) a copy of the web page located on the web server at the location &lt;code&gt;/&lt;/code&gt; —which is the root of the web site.  That is is fine—and what we would expect—a request to provide a web page&amp;hellip;&lt;/p&gt;
+&lt;p&gt;The second request then—this starts with:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;amp;{GET /favicon.ico HTTP/1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which is a &lt;code&gt;GET&lt;/code&gt; for &lt;code&gt;/favicon.ico&lt;/code&gt; - so asking (ie GETting) a copy of a file called &lt;code&gt;favicon.ico&lt;/code&gt; located on the web server. Ok—so the browser issues a second request to our web server—asking for a copy of the icon our web site uses—the little icon you see for the site in your bookmarks, to help identify the site.&lt;/p&gt;
+&lt;p&gt;Now it makes sense why we are getting two request for every single web page served. No bug, no coding error, no weird log options—just a simple double request each time a page is served—once for the page content, and a second for any fav icon our site might have.&lt;/p&gt;
+&lt;p&gt;The tin foil hat can go back into the cupboard—this is normal.&lt;/p&gt;
+&lt;h2 id=&#34;what-next&#34;&gt;What Next?&lt;/h2&gt;
+&lt;p&gt;Well—now we have this logging facility, we might as well keep it, and add an option to our code to turn it on and off. We need to add another package to provide this functionality called &lt;code&gt;io/ioutil&lt;/code&gt; and add another line to manage the output to our main function: &lt;code&gt;log.SetOutput(ioutil.Discard)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This discards (ie throws away) the log output if we wish. To re-enable it—change this line to: &lt;code&gt;log.SetOutput(io.Stderr)&lt;/code&gt; —or just comment the line out to go back to the default behaviour. If you do comment it out though—you will also need to comment out the &lt;code&gt;io/ioutil&lt;/code&gt; package as well—as you wont be using it any more in the program, and the Go compiler will spot this and complain to you!&lt;/p&gt;
+&lt;p&gt;The final code looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+	&amp;quot;io&amp;quot;
+	&amp;quot;io/ioutil&amp;quot;
+	&amp;quot;log&amp;quot;
+	&amp;quot;net/http&amp;quot;
+)
+
+// Function that handles a web server request for a page
+func Home(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, &amp;quot;Hello World!&amp;quot;)
+	log.Print(&amp;quot;served a web page\n&amp;quot;,req,&amp;quot;\n\n&amp;quot;)
+}
+
+// Function: MAIN
+func main() {
+	// control log output: &#39;ioutil.discard&#39; == throw away  or  &#39;os.Stderr&#39; == output to Stderr (console)
+	log.SetOutput(ioutil.Discard)
+	// start up output
+	log.Println(&amp;quot;Starting server...&amp;quot;)
+	// handler registered for requests to the root of our web server - send them to the function &#39;Home&#39;
+	http.HandleFunc(&amp;quot;/&amp;quot;, Home)
+	// start a web server on localhost port 8000 grabbing any errors that occur
+	err := http.ListenAndServe(&amp;quot;:8000&amp;quot;,nil)
+	// check for any errors from the above web server start-up
+	if err != nil {
+		log.Fatal(&amp;quot;ListenAndServer: &amp;quot;, err)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
+&lt;p&gt;As an exercise—the flags package could be used to control the log output (ie turn logging output on or off) when the web server is started up.&lt;/p&gt;
+&lt;p&gt;Further resources and information used in-conjunction with the above can be found here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.reinbach.com/&#34;&gt;http://www.reinbach.com/&lt;/a&gt; - Greg Reinbach blog article &amp;ldquo;Golang Web Apps&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.goinggo.net/2013/11/using-log-package-in-go.html&#34;&gt;http://www.goinggo.net/2013/11/using-log-package-in-go.html&lt;/a&gt; - A Going Go Programming article on &amp;ldquo;Using The Log Package In Go&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://screamingatmyscreen.com/2013/6/http-request-and-goroutines/&#34;&gt;http://screamingatmyscreen.com/2013/6/http-request-and-goroutines/&lt;/a&gt; - Timo Zimmermann blog on &amp;ldquo;http.Request and goroutines&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22131865/defer-log-setoutputos-stdout-after-log-setoutputioutil-discard&#34;&gt;http://stackoverflow.com/questions/22131865/defer-log-setoutputos-stdout-after-log-setoutputioutil-discard&lt;/a&gt; - Stack Overflow article on ioutil changes&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/src/pkg/log/log.go&#34;&gt;http://golang.org/src/pkg/log/log.go&lt;/a&gt; - Go source code for the log package&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      </item>
+    
+
+  </channel>
+</rss>

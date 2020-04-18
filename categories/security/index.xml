@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on Wiremoons Web Site</title>
+    <link>http://www.wiremoons.com/categories/security/</link>
+    <description>Recent content in security on Wiremoons Web Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 22 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.wiremoons.com/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Easy Passwords Everywhere</title>
+      <link>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</link>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</guid>
+      <description>Easy Passwords Everywhere Summary The internet news of two days ago (20 Jan 2014) was all about the terrible passwords being used in 2014 for protecting access to online services. The news originated from a press release posted the password management company SplashData.
+The most commonly used top 10 poor passwords were:
+ 123456 password 12345 12345678 qwerty 123456789 1234 baseball dragon football  These passwords were obtained by looking at the reams of leaked password lists (over 3 million passwords) that are available on the internet, published following security breaches at various companies.</description>
+    </item>
+    
+    <item>
+      <title>Three Letter Passwords</title>
+      <link>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</link>
+      <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</guid>
+      <description>Three Word - Password Generator Summary I recently created a simple application named uniquely as passgen which was written to generate a random password created from a pool of English three letter words. This gave me a small Golang project to work on, and also to create a handy tool to generate strong passwords.
+How Does it Work? This application generates password suggestions based on a pool of several hundred three letter English words.</description>
+    </item>
+    
+  </channel>
+</rss>
