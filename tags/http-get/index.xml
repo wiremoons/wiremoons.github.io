@@ -13,10 +13,10 @@
     
     <item>
       <title>Go Web Server - Why Two Log Outputs?</title>
-      <link>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</link>
+      <link>http://www.wiremoons.com/post/2014-10-01-golang-why-two-log-outputs/</link>
       <pubDate>Sat, 01 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</guid>
+      <guid>http://www.wiremoons.com/post/2014-10-01-golang-why-two-log-outputs/</guid>
       <description>The Go Program Create a very simple Go web server as follows, by saving the following Go code into a file called server.go:
 package main import ( &amp;quot;io&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; ) // Function Home - that handles a web server request for a page func Home(w http.ResponseWriter, req *http.Request) { // write some text to the calling web browser io.WriteString(w, &amp;quot;Hello World!&amp;quot;) // output to the console that we did something log.</description>
     </item>

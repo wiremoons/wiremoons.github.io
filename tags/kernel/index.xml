@@ -13,10 +13,10 @@
     
     <item>
       <title>Ubuntu Pre Compiled Kernel Upgrade</title>
-      <link>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</link>
+      <link>http://www.wiremoons.com/post/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</link>
       <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</guid>
+      <guid>http://www.wiremoons.com/post/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</guid>
       <description>Ubuntu Pre-Compiled Kernel Installation About If you are not familar with Ubuntu - a good overveiw of this execellent free operating system&amp;rsquo;s features can be found here: Ubuntu
 The instructions below are for obtaining and installing a pre-compiled Ubuntu kernel, from the ubuntu.com kernel web site.
 The instructions explain how a computer already running the Ubuntu operating system can use the latest Ubuntu kernel available from the Ubuntu Kernel web site.</description>

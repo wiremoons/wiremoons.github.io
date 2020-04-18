@@ -13,10 +13,10 @@
     
     <item>
       <title>Nim Debugging Approaches</title>
-      <link>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</link>
+      <link>http://www.wiremoons.com/post/2020-04-18-nim-debugging-approaches/</link>
       <pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</guid>
+      <guid>http://www.wiremoons.com/post/2020-04-18-nim-debugging-approaches/</guid>
       <description>Nim Debugging Approaches The article explores debugging Nim programs, and different approaches to outputting debug messages from a simple example program. All the included code was tested with Nim compiler version 1.2.0 running on Linux ARM.
 Approaches to Debugging Source Code Whatever programming language is being used, one requirement that pretty much exists in all of them, is the ability to carryout debugging. Nim, while being a concise and no fuss language with easy to read and very Python like source code syntax, is no different.</description>
     </item>

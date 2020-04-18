@@ -5,15 +5,15 @@
     <language>en-us</language>
     <author></author>
     <rights>(C) 2020</rights>
-    <updated>2020-04-18 00:00:00 &#43;0000 UTC</updated>
+    <updated>2016-01-01 00:00:00 &#43;0000 UTC</updated>
 
     
       <item>
         <title>Nim Debugging Approaches</title>
-        <link>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</link>
+        <link>http://www.wiremoons.com/post/2020-04-18-nim-debugging-approaches/</link>
         <pubDate>Sat, 18 Apr 2020 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</guid>
+        <guid>http://www.wiremoons.com/post/2020-04-18-nim-debugging-approaches/</guid>
         <description>&lt;h1 id=&#34;nim-debugging-approaches&#34;&gt;Nim Debugging Approaches&lt;/h1&gt;
 &lt;p&gt;The article explores debugging &lt;a href=&#34;https://nim-lang.org/&#34;&gt;Nim&lt;/a&gt; programs, and different approaches to outputting debug messages from a simple example program. All the included code was tested with Nim compiler version 1.2.0 running on Linux ARM.&lt;/p&gt;
 &lt;h3 id=&#34;approaches-to-debugging-source-code&#34;&gt;Approaches to Debugging Source Code&lt;/h3&gt;
@@ -158,10 +158,10 @@ debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;program is done&amp;#34
     
       <item>
         <title>Training in a Polarised Fashion</title>
-        <link>http://www.wiremoons.com/posts/2020-04-16-training-in-a-polarised-fashion/</link>
+        <link>http://www.wiremoons.com/post/2020-04-16-training-in-a-polarised-fashion/</link>
         <pubDate>Thu, 16 Apr 2020 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2020-04-16-training-in-a-polarised-fashion/</guid>
+        <guid>http://www.wiremoons.com/post/2020-04-16-training-in-a-polarised-fashion/</guid>
         <description>&lt;h1 id=&#34;training-in-a-polarised-fashion&#34;&gt;Training in a Polarised Fashion&lt;/h1&gt;
 &lt;p&gt;It is important that you enjoy your sport of choice and get whatever you wish to achieve from it—be it fun, fitness, welfare, completing a goal, improved health, or just the social aspect that it provides. When first starting out in a sport, it may begin as a recreational activity, and all that matters is the achievement of carrying out the activity, plus any basic equipment required to participate—such as pair of trainers (ie running shoes), a bike, a swimming costume, etc.&lt;/p&gt;
 &lt;p&gt;For some this is enough, and a lifetime of enjoyment and fun ensues! For others, the ‘&lt;em&gt;recreational only&lt;/em&gt;’ activity grows into something a bit more involved&amp;hellip;&lt;/p&gt;
@@ -203,10 +203,10 @@ debug &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;program is done&amp;#34
     
       <item>
         <title>Cycling Restart</title>
-        <link>http://www.wiremoons.com/posts/2016-03-05-cycling-restart/</link>
+        <link>http://www.wiremoons.com/post/2016-03-05-cycling-restart/</link>
         <pubDate>Sat, 05 Mar 2016 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2016-03-05-cycling-restart/</guid>
+        <guid>http://www.wiremoons.com/post/2016-03-05-cycling-restart/</guid>
         <description>&lt;h1 id=&#34;cycling-restart&#34;&gt;Cycling Restart&lt;/h1&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;So I decided to get fit again. After not doing any activity at all for quite a
@@ -526,10 +526,10 @@ and add them here.&lt;/p&gt;
     
       <item>
         <title>Ubuntu Pre Compiled Kernel Upgrade</title>
-        <link>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</link>
+        <link>http://www.wiremoons.com/post/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</link>
         <pubDate>Sat, 20 Feb 2016 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</guid>
+        <guid>http://www.wiremoons.com/post/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</guid>
         <description>&lt;h1 id=&#34;ubuntu-pre-compiled-kernel-installation&#34;&gt;Ubuntu Pre-Compiled Kernel Installation&lt;/h1&gt;
 &lt;h2 id=&#34;about&#34;&gt;About&lt;/h2&gt;
 &lt;p&gt;If you are not familar with Ubuntu - a good overveiw of this execellent free
@@ -685,10 +685,10 @@ file.&lt;/p&gt;
     
       <item>
         <title>New Text Editors for All</title>
-        <link>http://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/</link>
+        <link>http://www.wiremoons.com/post/2015-07-12-new-text-editors-for-all/</link>
         <pubDate>Sun, 12 Jul 2015 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/</guid>
+        <guid>http://www.wiremoons.com/post/2015-07-12-new-text-editors-for-all/</guid>
         <description>&lt;h2 id=&#34;new-text-editors-for-all&#34;&gt;New Text Editors for All&lt;/h2&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;The most popular text editors have been &lt;a href=&#34;http://www.vim.org/&#34;&gt;Vim&lt;/a&gt; (or
@@ -819,10 +819,10 @@ goals&lt;/a&gt; are also available.&lt;/p&gt;
     
       <item>
         <title>Easy Passwords Everywhere</title>
-        <link>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</link>
+        <link>http://www.wiremoons.com/post/2015-01-22-easy-passwords-everywhere/</link>
         <pubDate>Thu, 22 Jan 2015 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</guid>
+        <guid>http://www.wiremoons.com/post/2015-01-22-easy-passwords-everywhere/</guid>
         <description>&lt;h2 id=&#34;easy-passwords-everywhere&#34;&gt;Easy Passwords Everywhere&lt;/h2&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;The internet news of two days ago (20 Jan 2014) was all about the
@@ -900,10 +900,10 @@ English words. Maybe they will help create a more secure password for you to use
     
       <item>
         <title>Three Letter Passwords</title>
-        <link>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</link>
+        <link>http://www.wiremoons.com/post/2014-12-09-three-letter-word-passwords/</link>
         <pubDate>Tue, 09 Dec 2014 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</guid>
+        <guid>http://www.wiremoons.com/post/2014-12-09-three-letter-word-passwords/</guid>
         <description>&lt;h2 id=&#34;three-word---password-generator&#34;&gt;Three Word - Password Generator&lt;/h2&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;I recently created a simple application named uniquely as &lt;code&gt;passgen&lt;/code&gt;
@@ -996,10 +996,10 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
     
       <item>
         <title>Serving Up Static Content from Golang Apps</title>
-        <link>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</link>
+        <link>http://www.wiremoons.com/post/2014-11-30-serving-up-static-content-from-golang-apps/</link>
         <pubDate>Sun, 30 Nov 2014 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</guid>
+        <guid>http://www.wiremoons.com/post/2014-11-30-serving-up-static-content-from-golang-apps/</guid>
         <description>&lt;h2 id=&#34;the-background&#34;&gt;The Background&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://golang.org/&#34; title=&#34;&#39;The Go Programming Language&#39; - @google&#34;&gt;Go&lt;/a&gt; is a great programming language, and three of the features I like the most are:&lt;/p&gt;
 &lt;ol&gt;
@@ -1077,10 +1077,10 @@ does work well, and will improve as I get time to work on it further.&lt;/p&gt;
     
       <item>
         <title>Go Web Server - Why Two Log Outputs?</title>
-        <link>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</link>
+        <link>http://www.wiremoons.com/post/2014-10-01-golang-why-two-log-outputs/</link>
         <pubDate>Sat, 01 Nov 2014 00:00:00 UTC</pubDate>
         <author></author>
-        <guid>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</guid>
+        <guid>http://www.wiremoons.com/post/2014-10-01-golang-why-two-log-outputs/</guid>
         <description>&lt;h1 id=&#34;the-go-program&#34;&gt;The Go Program&lt;/h1&gt;
 &lt;p&gt;Create a very simple Go web server as follows, by saving the following Go code into a file called server.go:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;package main

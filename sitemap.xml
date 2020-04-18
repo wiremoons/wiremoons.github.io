@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2020-04-18-nim-debugging-approaches/</loc>
+    <loc>http://www.wiremoons.com/post/2020-04-18-nim-debugging-approaches/</loc>
     <lastmod>2020-04-18T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,7 +48,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/</loc>
+    <loc>http://www.wiremoons.com/post/</loc>
     <lastmod>2020-04-18T00:00:00+00:00</lastmod>
   </url>
   
@@ -64,11 +64,6 @@
   
   <url>
     <loc>http://www.wiremoons.com/tags/template/</loc>
-    <lastmod>2020-04-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.wiremoons.com/</loc>
     <lastmod>2020-04-18T00:00:00+00:00</lastmod>
   </url>
   
@@ -113,12 +108,12 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2020-04-16-training-in-a-polarised-fashion/</loc>
+    <loc>http://www.wiremoons.com/post/2020-04-16-training-in-a-polarised-fashion/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2016-03-05-cycling-restart/</loc>
+    <loc>http://www.wiremoons.com/post/2016-03-05-cycling-restart/</loc>
     <lastmod>2016-03-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -153,13 +148,18 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</loc>
+    <loc>http://www.wiremoons.com/post/2016-02-20-ubuntu-pre-compiled-kernel-upgrade/</loc>
     <lastmod>2016-02-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wiremoons.com/categories/upgrade-kernel/</loc>
     <lastmod>2016-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wiremoons.com/</loc>
+    <lastmod>2016-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -178,7 +178,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2015-07-12-new-text-editors-for-all/</loc>
+    <loc>http://www.wiremoons.com/post/2015-07-12-new-text-editors-for-all/</loc>
     <lastmod>2015-07-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -198,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2015-01-22-easy-passwords-everywhere/</loc>
+    <loc>http://www.wiremoons.com/post/2015-01-22-easy-passwords-everywhere/</loc>
     <lastmod>2015-01-22T00:00:00+00:00</lastmod>
   </url>
   
@@ -248,7 +248,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2014-12-09-three-letter-word-passwords/</loc>
+    <loc>http://www.wiremoons.com/post/2014-12-09-three-letter-word-passwords/</loc>
     <lastmod>2014-12-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -263,7 +263,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2014-11-30-serving-up-static-content-from-golang-apps/</loc>
+    <loc>http://www.wiremoons.com/post/2014-11-30-serving-up-static-content-from-golang-apps/</loc>
     <lastmod>2014-11-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -283,7 +283,7 @@
   </url>
   
   <url>
-    <loc>http://www.wiremoons.com/posts/2014-10-01-golang-why-two-log-outputs/</loc>
+    <loc>http://www.wiremoons.com/post/2014-10-01-golang-why-two-log-outputs/</loc>
     <lastmod>2014-11-01T00:00:00+00:00</lastmod>
   </url>
   
