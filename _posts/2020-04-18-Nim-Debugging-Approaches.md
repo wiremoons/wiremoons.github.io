@@ -228,6 +228,15 @@ If you want to find out more about Nim, visit the great web site pages here: [Ni
 
 ### Article Details
 
+test text {{ post.title }}
+{{ post.url }}
+
+<p>
+may be html wrap it: tags {{ page.tags }} and {{ page.date }}
+
+</p>
+
+
 - Title: {{ post.title }}
 - Url : {{ post.url }}
 - Date : {{ page.date }}
