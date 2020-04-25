@@ -2,7 +2,6 @@
 title : "Serving Up Static Content from Golang Apps"
 description : "Some ramblings about Go applications that require content in their binary"
 published: true
-layout: post
 date : 2014-11-30
 tags : [ "go", "golang", "webserver", "assets", "static content", "binary packaging" ]
 categories : ["development", "golang", "go" ]

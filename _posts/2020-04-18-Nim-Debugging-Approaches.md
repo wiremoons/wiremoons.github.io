@@ -2,7 +2,6 @@
 title: "Nim Debugging Approaches"
 description: "A few different ways to manage debugging output in the Nim programming language"
 published: true
-layout: post
 date: 2020-04-18
 tags : [ "nim", "debug", "debugging", "nim-lang", "python", "template" ]
 categories : ["development", "debugging", "nim" ]

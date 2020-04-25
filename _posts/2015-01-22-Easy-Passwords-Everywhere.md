@@ -2,7 +2,6 @@
 title : "Easy Passwords Everywhere"
 description : "More password chaos revealed on the internet"
 published: true
-layout: post
 date : 2015-01-22
 tags : [ "c", "sugpass", "password", "passgen","three word password" ]
 categories : ["development", "c language", "c", "security" ]

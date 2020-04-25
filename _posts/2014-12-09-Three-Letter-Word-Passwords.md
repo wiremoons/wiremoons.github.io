@@ -2,7 +2,6 @@
 title : "Three Letter Passwords"
 description : "Exploring the use of three letter words to create a password"
 published: true
-layout: post
 date : 2014-12-09
 tags : [ "go", "golang", "password", "passgen","three word password" ]
 categories : ["development", "golang", "go", "security" ]

@@ -2,7 +2,6 @@
 title: "Ubuntu Pre Compiled Kernel Upgrade"
 description: "Quick overview on how to upgrade Ubuntu to use a newer kernel - without compiling a new Linux kernel yourself"
 published: true
-layout: post
 date: 2016-02-20
 tags : [ "linux", "ubuntu", "kernel", "surface pro 3" ]
 categories : ["linux", "ubuntu", "upgrade kernel",]

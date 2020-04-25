@@ -1,11 +1,10 @@
 ---
 title : "New Text Editors for All"
-description : "The continuing appearance of new text editors that are superficially the same?"
+description : "The continuing appearance of new text editors that are superficially the same"
 published: true
-layout: post
 date : 2015-07-12
 tags : [ "editors", "atom", "text editing", "development" ]
-categories : ["development", "text editing", ]
+categories : [ "development", "text editing" ]
 ---
 ## New Text Editors for All
 

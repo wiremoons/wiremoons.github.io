@@ -2,7 +2,6 @@
 title: "Go Web Server - Why Two Log Outputs?"
 description: "Golang web server and why two log events take place for each page visit"
 published: true
-layout: post
 date: 2014-11-01
 tags: [ "go", "golang", "webserver", "log", "http get", "favicon" ]
 categories: ["development", "golang", "go" ]

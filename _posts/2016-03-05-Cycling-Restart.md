@@ -2,10 +2,9 @@
 title: "Cycling Restart"
 description: "Background and rambling on my return to cycling"
 published: true
-layout: post
 date: 2016-03-05
 tags : [ "cycling", "fitness", "health", "road cycling" ]
-categories : ["health", "cycling",]
+categories : ["health", "cycling" ]
 ---
 # Cycling Restart
 

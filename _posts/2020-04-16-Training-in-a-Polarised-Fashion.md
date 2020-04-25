@@ -1,11 +1,10 @@
 ---
 title: "Training in a Polarised Fashion"
-description: "Thoughts and experiences of my cycling training approaches""
+description: "Thoughts and experiences of my cycling training approaches"
 published: true
-layout: post
 date: 2020-04-16
 tags : [ "cycling", "fitness", "health", "road cycling" ]
-categories :  ["health", "cycling",]
+categories :  ["health", "cycling" ]
 ---
 # Training in a Polarised Fashion
 
