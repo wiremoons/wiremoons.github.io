@@ -11,7 +11,7 @@ This is my website containing a general blog, and providing a jump point for oth
 
 
 ## Blog Posts
-Below is a selction of blog posts I have made on various topics which maybe of interest:
+Below is a selection of blog posts I have made on various topics which maybe of interest:
 
 <ul>
   {% for post in site.posts %}
