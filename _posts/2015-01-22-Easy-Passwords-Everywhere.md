@@ -96,7 +96,6 @@ A few of the sites with 2014 common password lists and news articles:
 
 ### Article Details
 
-- Title: {{ post.title }}
-- Url : {{ post.url }}
-- Date : {{ page.date }}
-- Tags: {{ page.tags }}
+- Title: {{ page.title }}
+- Published Date : {{ page.date | date: "%d %b %Y" }}
+

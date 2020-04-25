@@ -133,10 +133,7 @@ Further resources and information used in-conjunction with the above article (an
 [22]: http://www.golangweekly.com/archive/go-newsletter-issue-37/ "Go Newsletter Issue #37"
 
 
-
 ### Article Details
 
-- Title: {{ post.title }}
-- Url : {{ post.url }}
-- Date : {{ page.date }}
-- Tags: {{ page.tags }}
+- Title: {{ page.title }}
+- Published Date : {{ page.date | date: "%d %b %Y" }}

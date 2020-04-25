@@ -162,7 +162,5 @@ So there we are&mdash;interesting times for the good old text editor!
 
 ### Article Details
 
-- Title: {{ post.title }}
-- Url : {{ post.url }}
-- Date : {{ page.date }}
-- Tags: {{ page.tags }}
+- Title: {{ page.title }}
+- Published Date : {{ page.date | date: "%d %b %Y" }}

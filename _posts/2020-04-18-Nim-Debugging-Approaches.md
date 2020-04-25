@@ -229,6 +229,4 @@ If you want to find out more about Nim, visit the great web site pages here: [Ni
 ### Article Details
 
 - Title: {{ page.title }}
-- Url : {{ page.url }}
-- Date : {{ page.date | date: "%d %b %Y" }}
-- Tags: {{ page.tags }}
+- Published Date : {{ page.date | date: "%d %b %Y" }}

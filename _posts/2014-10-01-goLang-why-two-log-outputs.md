@@ -211,7 +211,5 @@ Further resources and information used in-conjunction with the above can be foun
 
 ### Article Details
 
-- Title: {{ post.title }}
-- Url : {{ post.url }}
-- Date : {{ page.date }}
-- Tags: {{ page.tags }}
+- Title: {{ page.title }}
+- Published Date : {{ page.date | date: "%d %b %Y" }}
