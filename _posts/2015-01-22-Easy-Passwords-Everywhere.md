@@ -92,3 +92,11 @@ A few of the sites with 2014 common password lists and news articles:
 - [splashdata - '"Password" unseated by "123456" on SplashData's annual "Worst Passwords" list'](http://splashdata.com/press/worstpasswords2013.htm)
 - [Time - 'These are the 25 worst passwords of 2014'](http://time.com/3672431/worst-passwords/)
 - [Mashable Uk - 'Worst passwords of 2014 are just as terrible as you'd think'](http://mashable.com/2015/01/20/worst-passwords-of-2014/)
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

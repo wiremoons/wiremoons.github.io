@@ -116,3 +116,10 @@ does work well, and will improve as I get time to work on it further.
 - Steve Gibson - GRC 'How Big is Your Haystack?'
  - https://www.grc.com/haystack.htm
 
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

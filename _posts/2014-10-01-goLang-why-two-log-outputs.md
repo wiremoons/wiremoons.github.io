@@ -207,3 +207,11 @@ Further resources and information used in-conjunction with the above can be foun
 - http://screamingatmyscreen.com/2013/6/http-request-and-goroutines/ - Timo Zimmermann blog on "http.Request and goroutines"
 - http://stackoverflow.com/questions/22131865/defer-log-setoutputos-stdout-after-log-setoutputioutil-discard - Stack Overflow article on ioutil changes
 - http://golang.org/src/pkg/log/log.go - Go source code for the log package
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

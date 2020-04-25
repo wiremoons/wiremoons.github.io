@@ -420,3 +420,11 @@ Below is a list of links referenced in the article above:
 "'NHS Choices - BMI Calculator' - @NHS UK Web Site"
 [15]: http://www.cyclingweekly.co.uk/ 
 "'Cycling Weekly' - @cyclingweekly magazine"
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

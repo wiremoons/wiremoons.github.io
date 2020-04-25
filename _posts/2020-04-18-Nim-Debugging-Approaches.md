@@ -225,3 +225,10 @@ nim c -d:debug --lineDir:on --debuginfo --debugger:native myprog.nim
 
 If you want to find out more about Nim, visit the great web site pages here: [Nim language site](https://nim-lang.org/) or if you need more help, the [Nim Forum](https://forum.nim-lang.org) is friendly and supportive community location to call on.
 
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

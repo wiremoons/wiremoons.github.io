@@ -200,3 +200,10 @@ listed in the accompanying
 [CHANGES](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/CHANGES)
 file.
 
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

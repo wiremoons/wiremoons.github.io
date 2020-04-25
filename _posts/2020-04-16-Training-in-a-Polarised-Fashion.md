@@ -66,3 +66,11 @@ I hope not :)
 ### Sources:
 
 * [Baron Biosystems: Sweet Spot, Threshold and Polarized Training … By the Numbers ](http://baronbiosys.com/sweet-spot-threshold-and-polarized-training-by-the-numbers/)
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

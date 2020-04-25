@@ -158,3 +158,11 @@ So there we are&mdash;interesting times for the good old text editor!
 - [Atom Release 1.0 Video (on Youtube)](https://youtu.be/Y7aEiVwBAdk)
 - ['Supercharging the Atom Editor for Go Development' - by Marcio Castilho](http://marcio.io/2015/07/supercharging-atom-editor-for-go-development/)
 - ['Atom Editor for Sublime Text Users' - by Daniel Klose](http://blog.daniel-klose.com/technology/atom-editor-for-sublime-text-users/)
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}

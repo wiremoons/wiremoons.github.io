@@ -131,3 +131,12 @@ Further resources and information used in-conjunction with the above article (an
 [20]: http://www.sqlite.org/ "SQlite - *SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.*"
 [21]: http://golangweekly.com/ "'A great weekly 'Go Newsletter' sent to your inbox&mdash;once your subscribe of course!'' - @mattrco and @kelseyhightower"
 [22]: http://www.golangweekly.com/archive/go-newsletter-issue-37/ "Go Newsletter Issue #37"
+
+
+
+### Article Details
+
+- Title: {{ post.title }}
+- Url : {{ post.url }}
+- Date : {{ page.date }}
+- Tags: {{ page.tags }}
