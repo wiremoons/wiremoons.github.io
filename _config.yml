@@ -2,3 +2,4 @@ theme: jekyll-theme-slate
 title: [wiremoons.com]
 description: [Home of all content for 'wiremoons.com']
 google_analytics: [UA-31223730-2]
+encoding: UTF-8
