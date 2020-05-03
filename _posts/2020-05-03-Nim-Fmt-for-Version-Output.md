@@ -8,7 +8,7 @@ categories : ["development", "text", "nim" ]
 ---
 # Nim 'fmt' and Version Display
 
-Having programmed with the [https://golang.org/](Go language) previously, one of the features I liked was being able to construct a text screen for output, but also include variables from the program, to display information collected when from it's run. It is a quick way to build a screen of information, that is dynamically completed, and then output when the program runs.
+Having programmed with the [Go language](https://golang.org/) previously, one of the features I liked was being able to quickly construct a text screen for output. This also included the ability to have variables from the program display information when it was run. Using this text template generated output method, was a quick way to build a screen of information, that is dynamically completed, and then output when the program runs.
 
 I was pleasantly surprised and pleased to discover the same great feature is a available for use with the language [Nim](https://nim-lang.org/).
 
@@ -18,13 +18,13 @@ Of course, as it is Nim code, it can also be used on other flavours of Linux, *B
 
 ### So What is this 'fmt' proc?
 
-Include in the fantastic '*batteries included*' Nim standard library (ie so it comes with the normal Nim complier installation) is a module called: `strformat'. A Nim module is similar to a '*library*' from other languages, so provides commonly used functionality for the language, to save you from having to write it yourself!
+Include in the fantastic '*batteries included*' Nim standard library (ie so it comes with the normal Nim complier installation) is a module called: `strformat`. A Nim module is similar to a '*library*' from other languages, so provides commonly used functionality for the language, to save you from having to write it yourself!
 
-The [Nim documentation page](https://nim-lang.org/docs/strformat.html) states this `strformat' module is to provide:
+The [Nim documentation page](https://nim-lang.org/docs/strformat.html) states the `strformat` module is to provide:
 
 > String interpolation / format inspired by Python's f-strings.
 
-I can't remember is if ever used the [Python language](https://www.python.org/) equivalent, as it was many years ago since I touched Python. But that is good, because while Python maybe slower generally and need more *baggage* runtime wise than Nim or Go, it is however a good and productive language to program in.
+I can't remember if I ever used the [Python language](https://www.python.org/) equivalent, as it was many years ago since I touched Python. But that is good, because while Python maybe slower generally and need more *baggage* runtime wise than Nim or Go, it is however a good and productive language to program in.
 
 So before looking at the `fmt` proc - what am I using it for exactly..?
 
@@ -85,11 +85,13 @@ But even for a small example it is a lot of repetitive code, such as the us of `
 
 So, this is where the `fmt` proc comes in to play. 
 
-It can allow the string variables and long string literals to be combined together for output.
+It can allow the programs *variables* and *long string literals* to be combined together for a screen of output.
 
 To use the `fmt` proc (as it is not on the `system` module that Nim imports by default) we need to add it to the program to use it. This is traditionally done at the start of the program with the key word `import`. 
 
-The string literal to be used then is sent to the `fmt` proc so it can work its magic, and then the whole constructed output is sent to the screen by `echo`. A simple example would look as follows:
+The string literal to be used then is sent to the `fmt` proc so it can work its magic, and then the whole constructed output is sent to the screen by `echo`. 
+
+**Note:** that any *variables* that are to be included and positioned in the output by `fmt` are placed in the text &mdash; but surrounded by curly braces (ie `{` and `}`). A simple example would look as follows:
 
 ```nim
 # make sure the 'strformat' module is available to our program
@@ -122,15 +124,16 @@ I think it that is a much better solution, and as the needed program output star
 
 Also, the above just starts to touch on what `fmt` can be used for! 
 
-It can also control the output of floating point numbers, so they only display two decimal places, or run and display other procedures output too:
+It can also control the output of floating point numbers, so they only display two decimal places for example; or run and display other procedures output too:
 
 ```nim
-# make sure the 'strformat' and 'times' modules are available to our program
+# make sure the additional 'strformat' and 'times' modules are 
+# available to our program
 import strformat, times
 
 # create a long floating point number, and then manage its output:
 let longFloat = 123.456789
-echo fmt"Number '{longFloat}' shown as two decimal places: {longFloat:0.2f}"
+echo fmt"Number '{longFloat}' as two decimal places: {longFloat:0.2f}"
 
 # run other procs inside the 'fmt' parameters
 echo fmt"""
@@ -144,7 +147,7 @@ echo fmt"""
 Will output as below, but with the date and time from when the program actually run:
 
 ```
-Number '123.456789' shown as two decimal places: 123.46
+Number '123.456789' as two decimal places: 123.46
 
    -> The date today is      :  2020-05-03
    -> The time currently is  :  11:39:23
@@ -212,14 +215,14 @@ For licenses and further information visit:
 
 ### What Next?
 
-Well hopefully that shows a useful example use of the `fmt` procedure can be used. The above `showVersion()` could be used as a basis to create a *version output* module, which could then be re-used for different Nim programs, that would only need minimal changes...
+Well hopefully that shows a useful example of how the `fmt` procedure can be used. The above `showVersion()` could be used as a basis to create a *version output* module, which could then be re-used for different Nim programs, that would only need minimal changes...
 
-Putting the `showVersion()` procedure in a separate module, also ensure the code doesn't cluttering up any main code file. It proc would need to be renamed as: `showVersion*()` to ensure it can be called from a different source file however.
+Putting the `showVersion()` procedure in a separate module, also ensures the code doesn't cluttering up any main code file. However, if the procedure is moved to its own module, it would also need to be renamed as: `showVersion*()` to ensure it can be called from a different source file (ie module).
 
 If you want to find out more about Nim, visit the great web site pages here: [Nim language site](https://nim-lang.org/) or if you need more help, the [Nim Forum](https://forum.nim-lang.org) is friendly and supportive community location to call on.
 
 
 ### Article Details
 
-- Title: {{ page.title }}
+- Title: *{{ page.title }}*
 - Published Date : {{ page.date | date: "%d %b %Y" }}
