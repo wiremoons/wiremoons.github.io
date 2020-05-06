@@ -1,6 +1,6 @@
 ---
 title: "Nim 'fmt' for Version Output"
-description: "Uisng the Nim programming language 'fmt' proc for outputting an applications version information"
+description: "Using the Nim programming language 'fmt' proc for outputting an applications version information"
 published: true
 date: 2020-05-03
 tags : [ "nim", "fmt", "text display", "version", "cli", "nim-lang", "python", "template" ]
