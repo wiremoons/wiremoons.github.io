@@ -14,7 +14,7 @@ I was pleasantly surprised and pleased to discover the same great feature is a a
 
 This article looks at the use of the Nim `fmt` proc, and then how I have used it in a few programs I have written to output the programs version information. All the included code was tested with [Nim compiler](https://github.com/nim-lang/Nim) version 1.2.0 running on a Raspberry Pi 4B, so Linux ARM. 
 
-Of course, as it is Nim code, it can also be used on other flavours of Linux, *BSD, Windows and macOS too, without any additional effort!
+Of course, as it is Nim code, it can also be used on other flavours of Linux, xBSD, Windows and macOS too, without any additional effort!
 
 ### So What is this 'fmt' proc?
 
