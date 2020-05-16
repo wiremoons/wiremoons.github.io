@@ -121,7 +121,7 @@ back up to date soon, and this method of installation will be more suitable.
 
 <hr>
 
-**2. Install With *choosenim** tool*
+**2. Install with the 'choosenim' tool**
 
 [choosenim](https://github.com/dom96/choosenim) is a tool written by Dominik Picheta who 
 is the author of the great [Nim in Action](https://www.manning.com/books/nim-in-action) 
@@ -161,7 +161,7 @@ curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 
 <hr>
 
-**3. Install by Compiling Nim from Source**
+**3. Install by compiling Nim from source**
 
 The instructions below are my preferred method of installing Nim on a Raspberry Pi. 
 Although it takes a bit longer, as it does a complete build of the compiler and 
