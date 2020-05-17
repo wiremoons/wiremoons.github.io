@@ -19,7 +19,7 @@ It runs Linux by default, using a distro called [Raspbian](https://www.raspbian.
 which is based on Debian. The little computer looked powerful enough to be worth 
 trying out, so I decided to buy one (without much of an expectation) and see 
 what the fuss was about. After a little bit of research I placed an order with 
-[The Pi Hut](https://thepihut.com/). The Raspberry Pi (RPI) soon turn up in the 
+[The Pi Hut](https://thepihut.com/). The Raspberry Pi (RPI) soon turned up in the 
 post, and my next hobby commenced... a year or so later, and now I have three of them!
 
 After trying out various development approaches (perhaps a topic of another post) 
@@ -27,34 +27,45 @@ the [Nim](https://nim-lang.org) programming language caught my interest by accid
 
 This language has the best of everything in my view, and allows me to quickly 
 build my ideas and projects, using a language that is very similar to Python. The 
-compiled output ends up being performant, easy to maintain, run across all major 
+compiled output ends up being very performant, and the source code is easy to maintain, 
+mainly due to its simplicity and clean presentation. Should you write a program 
+you want to use beyond a Raspberry Pi, Nim supports all major 
 operating systems and different CPU architectures, plus the compiled program 
-results in a small mostly static binary. Nim is language you encourage your 
-friends to use, while you keep it secret from your enemies!
+results in a small mostly static binary. 
+
+Nim is certainly a language you should encourage your friends to use!
 
 
 ### Why Nim on a Raspberry Pi?
 
 The Raspberry Pi 4B, is a Single Board Computer (SBC) with a four core 1.5Ghz 
 ARM processor, and a choice of 2Gb or 4Gb of RAM. It has a collection of interfaces 
-and ports including WiFi, Bluetooth, USB3 and Gbit Ethernet. It is therefore a reasonable 
-machine, but is not in the category of a speedy well equipped desktop. But that's 
-not the point.
+and ports including WiFi, Bluetooth, USB2, USB3 and Gbit Ethernet. 
+It is therefore certainly a reasonable machine, can be used as a desktop, but 
+is not in the category of a speedy well equipped desktop. But that's not the point.
 
 To get the best out of the computer, having fast, compiled, binary programs 
-is going to provide the most efficiency. It will offer a better use of the 
-computers resources, than using an interpreted 
-language such as Python, Node.js, etc. Choosing a language that also compiles to 
-small binary files sizes is better too, so unlike Go for example, which 
-produces quite large compiled binaries in comparison to Nim, C++, etc. 
+is going to provide the most efficiency. This approach will offer a better use of the 
+computers resources, especially when compared generally to using an interpreted 
+language such as Python, Node.js, etc. 
+
+Choosing a language that also compiles to small binary files sizes is better too, 
+so unlike Go (Golang) for example, which produces quite large compiled binaries in 
+comparison to Nim. When the SDCard based storage is slow (compared to 
+a SSD) loading smaller programs into memory when they run will be beneficial too!
 
 Java (and similar such as Clojure, Scala, Kotlin, etc) are nice languages, but while 
 the Java Virtual Machine (JVM) is very fast once running, it does have a load or 
 start up time delay &mdash; which if you are programming system tools and utilities 
 is not helpful. Java can also consume quite a bit of a computers memory, which 
-can sometimes be an issue in a resource constrained computer. Of course Rust 
-and C++ are efficient and fast &mdash; but personally I find them more complex and 
-consequently have they have slower development time than Nim for example.
+can sometimes be an issue in a resource constrained computer.
+
+Of course Rust and C++ are efficient and fast &mdash; but personally I find them 
+more complex and consequently they may have slower development times than Nim 
+for example. 
+
+When computing and development is a hobby, having a language such as Nim that 
+offers quick, clean and performant results, it is always nice bonus!
 
 Nim offers the best of lot of areas of consideration. Anyone who currently uses Python 
 (that is popular on a Raspberry Pi already), may enjoy switching to 
@@ -80,7 +91,7 @@ information outlined below.
 Make sure you have a working Raspberry Pi and have access to the command line, 
 before following these steps. Then choose one of the methods outlined - where the 
 third option is my own preference, but does take the longest to complete due to the 
-build process.
+build process. Not *that* long though of course!
 
 <hr>
 
@@ -138,7 +149,7 @@ dependencies are installed in Raspbian first. This can be
 done with the following commands.
 
 In a Terminal command line window, first update the packages, and then ensure
-you system has the latest packages and security fixes installed too:
+your Raspberry Pi has the latest packages and security fixes installed too:
 ```bash
 sudo apt update
 sudo apt -y upgrade
@@ -171,8 +182,8 @@ is created.
 Before building from source, the Nim dependencies need to be installed in 
 Raspbian first. This can be done with the following commands.
 
-In a Terminal command line window, first update the packages, and then ensure
-you system has the latest packages and security fixes installed too:
+In a Terminal command line window, first update the packages list, and ensure
+your Raspberry Pi has the latest packages and security fixes installed too:
 ```bash
 sudo apt update
 sudo apt -y upgrade
@@ -186,10 +197,10 @@ step to download the source code from the Nim web site:
 sudo apt -y install build-essential openssl curl
 ```
 
-The source code is already bundled up in format ready to be built, and can be 
+The Nim source code is already bundled up in a format ready to be built, and can be 
 obtained from the [Nim Unix download page](https://nim-lang.org/install_unix.html).
 
-You should check the '*Source Code*'' link on the above page, and if needed 
+You should check the '*Source archive*' link on the above page, and if needed 
 change to the latest stable version available. Currently the linked file name is for 
 source code version: **nim-1.2.0.tar.xz**.
 
@@ -211,42 +222,43 @@ Now the actual build process can begin! First run the command to commence the bu
 ./build.sh
 ```
 
-Once that completes, the build of `koch` program can be done with an existing older 
-version of the Nim compiler with command:
+Once that completes, the build of the `koch` program can be done with an existing 
+older supplied version of the Nim compiler with the command:
 ```bash
 bin/nim c koch
 ```
 
-The newly created `koch` tool can now be used:
+The newly created `koch` tool can now be used to compile so supporting tools:
 ```bash
 ./koch tools
 ``` 
 
-Next run the command with `koch` to create the `nimble` package manager tool:
+Next, run the command with `koch` to create the `nimble` package manager tool:
 ```bash
 ./koch nimble
 ```
 
-Now install everything into: `$HOME/.nimble` directory. This step also copies the 
-Nim tools into the same location as the Nim compiler:
+Now, using the Nim provided `install.sh` script, install everything 
+into: `$HOME/.nimble` directory. The second step below also copies the 
+Nim tools into the same location as the Nim compiler as well:
 ```bash
 sh ./install.sh $HOME/.nimble
 cp ./bin/* $HOME/.nimble/nim/bin/
 ```
 
-Next it is worth firstly updating the `nimble` package managers package manifest, 
+Next it is worth updating the `nimble` package managers package manifest, 
 and then using `nimble` to update itself to the latest version. The last command 
-moves the original (older) version of the `nimble` command to be called `nimble-orig`. 
-That way the newer version is run instead of the older one built from the source code 
-downloaded. Run these three steps as:
+moves the original (older) version of the `nimble` program to be called `nimble-orig`. 
+That way the newer version is run instead of the older one, that was built 
+from the source code downloaded. Run these three steps as:
 ```bash
 nimble refresh -y
 nimble install -y nimble
 mv $HOME/.nimble/nim/bin/nimble $HOME/.nimble/nim/bin/nimble-orig
 ```
 
-To ensure the `nim` compiler and supporting tool, plus `nimble` that were all 
-built on the computer are in your `PATH`, run the command:
+To ensure the `nim` compiler and supporting tools, plus `nimble` that were all 
+built on the Raspberry Pi computer are available in your `PATH`, run the command:
 ```bash
 export PATH="${PATH}":$HOME/.nimble/nim/bin:$HOME/.nimble/bin
 ```
@@ -257,7 +269,7 @@ login.
 
 That's it!
 
-You should now has a nice pristine new version of Nim tools, the `nim` 
+You should now have a nice pristine new stable version of Nim tools, the `nim` 
 compiler, and the `nimble` package manager. To check they are working, their 
 version numbers can be displayed with the following commands:
 ```bash
@@ -277,8 +289,13 @@ curl https://raw.githubusercontent.com/wiremoons/GenIsys-Pi4/master/install/nim-
 chmod 755 ./nim-install.sh
 ./nim-install.sh
 ```
-Once run, you will still needed to change you `PATH` in your you `~.profile` or `~.bashrc` 
-files as outlined above.
+Once run, you will still needed to change your `PATH` in your you `~.profile` or `~.bashrc` 
+files as outlined above. 
+
+If you want some more setup examples, my above 
+[GitHub repo called 'GenIsys-Pi4'](https://github.com/wiremoons/GenIsys-Pi4/) 
+contains all the files I clone onto a Raspberry Pi when is set it up from a 
+fresh Raspbian install.
 
 The [Nim web site Unix install page](https://nim-lang.org/install_unix.html) also 
 has plenty of helpful information, and offers more alternative install options such as 
@@ -288,7 +305,8 @@ using `docker` or `snaps` too.
 ### What Next?
 
 Now you have the latest stable version of Nim installed, you can start to develop 
-your own programs.
+your own programs. There are some very good tutorials on the 
+[Nim 'Learn'](https://nim-lang.org/learn.html) section of the Nim web site.
 
 A fairly simple Nim program I wrote is used to check the CPU temperature of my Raspberry 
 Pi. For more information see the page here: [systemp](https://github.com/wiremoons/systemp)
