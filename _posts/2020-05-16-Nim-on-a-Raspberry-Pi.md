@@ -305,8 +305,9 @@ using `docker` or `snaps` too.
 
 It was pointed out to me on the [Nim forum](https://forum.nim-lang.org) that 
 there are also pre-complied Nim binaries for many different platforms, including 
-the Raspberry Pi, available from the [Nim Github release pages](https://github.com/nim-lang/nightlies/releases/tag/2020-05-15-version-1-2-d2d401c). Just in case you don't 
-want to use one of the above  *build it yourself* options!
+the Raspberry Pi, available from the 
+[Nim Github release pages](https://github.com/nim-lang/nightlies/releases). 
+Just in case you don't want to use one of the above  *build it yourself* options!
 
 
 ### What Next?
