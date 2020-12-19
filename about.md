@@ -9,6 +9,8 @@ My web site is hosted on GitHub and has a redirect from my main domain name [www
 
 The site content is managed using default [Jekyll](https://jekyllrb.com/) provided by GitHub, with version control through [Git](http://git-scm.com/) locally as needed when adding posts. The theme being used for the sites 'look' is one of the [GitHub Supported themes](https://pages.github.com/themes/) called [Slate](https://github.com/pages-themes/slate).
 
+If you want to report a problem with one of the web pages, or you just want to leave me a message or comment, you are welcome use the GitHub form here: [Open Issue](https://github.com/wiremoons/wiremoons.github.io/issues/new/choose).
+
 In case you were wondering - '*wiremoons*' is an anagram for Simon Rowe - which is my name.
 
 ## My Other Internet Sites
