@@ -87,6 +87,15 @@ There are plenty of good articles for more background on Ada such as:
 - [Wikipedia Ada Language page](https://en.wikipedia.org/wiki/Ada_(programming_language))    
 - [AdaCore - resources page](https://www.adacore.com/resources)
 
+One great free resource to learn the Ada language so you can write your own programs is available here:
+
+- [Learn Ada Course](https://learn.adacore.com/courses/intro-to-ada/index.html)
+
+You can also download a nice PDF book to read of the above course here:
+
+- [Learn Ada Course (PDF)](https://learn.adacore.com/pdf_books/courses/intro-to-ada.pdf)
+
+
 
 ### Article Details
 
