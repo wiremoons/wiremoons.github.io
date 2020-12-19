@@ -7,8 +7,7 @@ markup : "md"
 
 ### Welcome to my website!
 
-This is my website containing a general blog, and providing a jump point for other wiremoons content on the Internet. Please see the [About](/about.html) page for other sites I sometime post content too as well.
-
+This is my website containing a general blog, and providing a jump point for other wiremoons content on the Internet. Please see the [About](/about.html) page for other sites I sometime post content too as well, or for help on how to leave comments or feedback.
 
 ## Blog Posts
 Below is a selection of blog posts I have made on various topics which maybe of interest:
