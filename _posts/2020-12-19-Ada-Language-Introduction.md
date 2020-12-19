@@ -1,6 +1,6 @@
 ---
 title: "Ada Language Introduction"
-description: "Brief introduction into the Ada lanaguage"
+description: "Brief introduction into the Ada language"
 published: true
 date: 2020-12-19
 tags : [ "ada", "language", "ada-lang", "introduction", "compile" ]
@@ -10,18 +10,18 @@ categories : ["development", "ada", "introduction" ]
 
 ## Background
 
-While exploring different computer programing langauges on the *Rosetta Code* web site, I came across a language called [Ada](http://rosettacode.org/wiki/Category:Ada). The syntax looked interesting, and the code while a bit more verbose than I was used to, was understandable, and looked logical and well formed. I was intrigued!
+While exploring different computer programming languages on the *Rosetta Code* web site, I came across a language called [Ada](http://rosettacode.org/wiki/Category:Ada). The syntax looked interesting, and the code while a bit more verbose than I was used to, was understandable, and looked logical and well formed. I was intrigued!
 
 So started a new journey of learning and exploration &mdash; primarily out of curiosity to start with. I found quite a few online resources and started to read. Consequently, for most of 2020 I have spent quite a bit of time learning more about the Ada language, and so far it has been an enjoyable journey!
 
 Ada is a well used language, although due to the nature and purpose of many of its programs, there is a not a massive amount of 'open source' code, at least to the same extent as *C*, *Python*, *Java*, or *Rust*. Nonetheless, if you look, it can be found, and what is about is normally of very good quality, and written by people who are just as passionate and helpful.
 
-Below is a brief introduction for the Ada language. There are plently of other overviews about, but these are the key points I noted.
+Below is a brief introduction for the Ada language. There are plenty of other overviews about, but these are the key points I noted.
 
 
 ## About the Ada Language
 
-Ada is a general purpose compiled systems programing language. Ada is heavily used in embedded real-time systems, many of which are safety critical. While Ada is and can be used as a general-purpose language, it will also really shine in low-level applications such as:
+Ada is a general purpose compiled systems programming language. Ada is heavily used in embedded real-time systems, many of which are safety critical. While Ada is and can be used as a general-purpose language, it will also really shine in low-level applications such as:
 
 * Embedded systems with low memory requirements;
 * Situations where no garbage collector is allowed;
@@ -29,7 +29,7 @@ Ada is a general purpose compiled systems programing language. Ada is heavily us
 * Soft or hard real time systems;
 * Low level systems programming.
 
-Specific domains seeing Ada usage include aerospace, defense, civil aviation,  rail, and many others. These applications require a high degree of safety: where a software defect is not just an annoyance, but may have severe consequences.
+Specific domains seeing Ada usage include aerospace, defence, civil aviation,  rail, and many others. These applications require a high degree of safety: where a software defect is not just an annoyance, but may have severe consequences.
 
 Ada code has facilitated such massive software projects such as the *Space Station* and the *Paris Metro*. These are just two examples of projects where safety is critical.
 
@@ -52,7 +52,7 @@ The official released versions of Ada are:
 * **Ada 2012** : inclusion of dynamic contracts and tasking;
 * **Ada 2020** : was anticipated for release in 2020, so final name to be confirmed.
 
-Other related areas or dialects are *Ravenscar Profile* and *SPARK*. The Ravenscar profile was added into Ada 2005, and enables the development of real-time programs with predictable behaviour. SPARK is a well defined subset of the Ada language that uses contracts to describe the specification of components to add support for both static and dynamic verification. Both these are seperate topics in their own right.
+Other related areas or dialects are *Ravenscar Profile* and *SPARK*. The Ravenscar profile was added into Ada 2005, and enables the development of real-time programs with predictable behaviour. SPARK is a well defined subset of the Ada language that uses contracts to describe the specification of components to add support for both static and dynamic verification. Both these are separate topics in their own right.
 
 The language is an international standard. The open source *GCC* compiler suite includes support for Ada as `gnat`.
 
@@ -63,13 +63,13 @@ This open source Ada compiler is also offered commercially as **GNATPro** from a
 
 Ada is a *multi-paradigm* language supporting object orientation and some  elements of functional programming. Its main core focus however is imperative (or procedural) much the same as the C language.
 
-The source code of Ada is **case-insensitive**, unlike most other languages. Ada is a **statically typed** language, so assuring code safety. It is also **nominative**and **strongly** typed. Ada supports **tasks** natively that are used to support multiple CPU computer processors. It has a full runtime library that was seen as large at one time, but compared to modern languages is now quite small.
+The source code of Ada is **case-insensitive**, unlike most other languages. Ada is a **statically typed** language, so assuring code safety. It is also **nominative**and **strongly** typed. Ada supports **tasks** naively that are used to support multiple CPU computer processors. It has a full runtime library that was seen as large at one time, but compared to modern languages is now quite small.
 
 Ada includes both static checking performed by the Ada compiler, and dynamic checking — carried out through code assertions.
 
 Some of the stated downsides of Ada language use are that it is sometimes perceived as complex &mdash; when compared with the C language. Ada has a large standards based specifications, making it complex to understand fully. There are a lots of types &mdash; for example there are more than ten types for *String* alone. It is *designed by committee* which is often seen negatively - but could quite easily be seen as a benefit too in some development scenarios... Many of these negatives are now outdated, but often persist as views perpetuated on the internet still. 
 
-To me Ada is robust, flexible, modern, clearly defined, builds fast statically compiled programs, and is fun to work with. As a hobby programmer I get to pick from any and all available lanaguges, and Ada is certainly my favorite so far!
+To me Ada is robust, flexible, modern, clearly defined, builds fast statically compiled programs, and is fun to work with. As a hobby programmer I get to pick from any and all available languages, and Ada is certainly my favourite so far!
 
 
 ## How to Get More Information
@@ -84,7 +84,7 @@ The AdaCore tools and libraries are all on GitHub here:
     
 There are plenty of good articles for more background on Ada such as:
 
-- [Wikipeda Ada Language page](https://en.wikipedia.org/wiki/Ada_(programming_language))    
+- [Wikipedia Ada Language page](https://en.wikipedia.org/wiki/Ada_(programming_language))    
 - [AdaCore - resources page](https://www.adacore.com/resources)
 
 
