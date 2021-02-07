@@ -1,10 +1,10 @@
 ---
-title: "Upgrading the Ada Language Server in Visual Studio Code"
-description: "Instructions for upgrading the Ada Language Server in Visual Studio Code on Ubuntu"
+title: "Upgrading the Ada Language Server Used with Visual Studio Code"
+description: "Instructions for upgrading the Ada Language Server used in Visual Studio Code on Ubuntu"
 published: true
 date: 2021-02-07
-tags : [ "ada", "language", "ada-lang", "format", "als", "ada_language_server", "source code" ]
-categories : ["development", "ada", "source code" ]
+tags : [ "ada", "language", "ada-lang", "format", "als", "ada_language_server", "source_code" ]
+categories : ["development", "ada", "source_code" ]
 ---
 # Upgrading the Ada Language Server for Visual Studio Code (VSC)
 
@@ -12,7 +12,7 @@ categories : ["development", "ada", "source code" ]
 
 The ***TL;DR*** version is:
 
-1. Download the latest ALS pre-compiled binary version: https://dl.bintray.com/reznikmm/ada-language-server/linux-latest.tar.gz 
+1. Download the latest ALS pre-compiled binary version: [https://dl.bintray.com/reznikmm/ada-language-server/linux-latest.tar.gz](https://dl.bintray.com/reznikmm/ada-language-server/linux-latest.tar.gz)
 2. Replace the directory: `~/.vscode/extensions/adacore.ada-22.0.3/linux/` with the one included in the downloaded archive file. **NB:** version of '`adacore.ada-22.0.3`' sub directory name may vary!
 
 For more of an explanation &mdash; grab a coffee (or other beverage) and keep reading!
@@ -45,7 +45,7 @@ The development of the *Ada Language Server* is open source and is actively main
 
 If you check the [issues page](https://github.com/AdaCore/ada_language_server/issues) there are many helpful posts (open and closed) on fixing problems you may encounter when using Visual Studio Code with the ALS extension. 
 
-For example, when I first started using it, the ALS would frequently pop up with error, and complaints about the code, sometimes crash and so on, which was frustrating to say the least. Consequently, when I was reading through the various issues, I discovered the latest version of ALS can be installed easily.
+For example, when I first started using it, the ALS would frequently pop up with errors, and complaints about the code, sometimes crash and so on, which was frustrating to say the least. Consequently, when I was reading through the various issues, I discovered the latest version of ALS can be installed easily.
 
 For me, that upgrade created stability and usability benefits immediately! 
 
