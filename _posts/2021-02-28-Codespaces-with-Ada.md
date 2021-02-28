@@ -8,21 +8,21 @@ categories : ["development", "ada", "source_code" ]
 ---
 # GitHub Codespaces Test for the Ada Language
 
-*Codespaces* is a GitHub facility that is currently being tested that aims to provided a development environment designed to be used from within a web browser. This outlines test for a very basic *Ada* language project, from within Codespaces.  
+*Codespaces* is a GitHub facility that is currently being tested, that aims to provided a development environment to be used from within a web browser. This outlines a basic test I did for a very basic *Ada* language project, from within a GitHub repository to try out *Codespaces*.
 
 ## Environment
 
-I create a new test repository for the purposes of testing the new [GitHub Codespaces](https://github.com/features/codespaces) feature, that provides a *Visual Studio Code* development environment accessible from any computer with a web browser. 
+I created a new test repository for the purposes of trying out the new [GitHub Codespaces](https://github.com/features/codespaces) feature, that provides a *Visual Studio Code* development environment accessible from any computer with a web browser. 
 
 The repository I created is [here](https://github.com/wiremoons/codespace-test-ada) - although there is not much to see really!
 
-The container it uses to encapsulate the development environment is the [default Linux (Ubuntu)](https://github.com/microsoft/vscode-dev-containers/tree/v0.159.0/containers/codespaces-linux) one that is provided once the Codespace is launched.
+The container it uses to encapsulate the development environment is the [default Linux (Ubuntu)](https://github.com/microsoft/vscode-dev-containers/tree/v0.159.0/containers/codespaces-linux) one that is provided once the *Codespace* is launched.
 
-This default environment includes support for quite a number of programming languages that includes: *Python*, *Node.js*, *JavaScript*, *TypeScript*, C*++*, *Java*, C*#*, F*#*, .NET *Core*, *PHP*, *PowerShell*, *Go*, *Ruby*, *Rust*. Unfortunately this list does not include support for *Ada*.
+This default environment includes support for quite a number of programming languages that includes: *Python*, *Node.js*, *JavaScript*, *TypeScript*, *C++*, *Java*, *C#*, *F#*, *.NET Core*, *PHP*, *PowerShell*, *Go*, *Ruby*, *Rust*. Unfortunately this list does not include support for *Ada*.
 
-In order to provide Ada support so code and be check, tested, and built, an *Ada* development language environment is needed as well. These can be installed into the Codespace in two ways that as relatively easy that include:
+In order to provide Ada support so code and be checked, tested, and built, an *Ada* language development environment is needed as well. These can be installed into the *Codespaces* in two ways that are relatively easy that include:
 
-1. Open the Codespaces (Visual Studio Code) built-in Terminal window and install the required support via the Ubuntu package manager called `apt`. To install the *GNAT FSF Ada Compiler*, build tools, and some commonly used libraries the following command can be executed. The command did not execute cleanly always, but also entering `sudo apt-get update --fix-missing` did fix the issues when it was re-run:
+**ONE:** Open the *Codespaces* built-in Terminal window and install the required support via the *Ubuntu* package manager called `apt`. To install the *GNAT FSF Ada Compiler*, build tools, and some commonly used libraries the following command can be executed. The command did not execute cleanly always, but also entering `sudo apt-get update --fix-missing` did fix the issues when it was re-run:
 
 ```shell
 sudo apt install -y gnat gprbuild gdb upx-ucl asis-programs \
@@ -32,7 +32,7 @@ sudo apt install -y gnat gprbuild gdb upx-ucl asis-programs \
      libgnatcoll-sqlite18-dev
 ```
 
-2. The other approach than should ensure the tools are installed and available when the Codespaces environment starts up is to added the required packages into the *Dockerfile*. The existing *Dockerfile* that is provided with the project can be replaced with the following to install the required *Ada* language support:
+**TWO:** The other approach than should ensure the tools are installed and available when the Codespaces environment starts up, is for them to added into the *Codespaces Dockerfile*. The existing *Dockerfile* that is provided with the *Coddespaces* environment can be opened, and the content replaced with the following to install the required *Ada* language support:
 
 ```dockerfile
 FROM mcr.microsoft.com/vscode/devcontainers/universal:1-focal
@@ -50,16 +50,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 USER codespace
 ```
 
-That is it from an environment setup perspective, other packages can be used instead as required. The Codespaces Terminal window can now be used to compiler *Ada* codes as would be done on system via a terminal (ie `gprbuild`, `gnatpp`, etc). The installed packages in the above *Dockerfile* for this test project are way more than is actually needed, but I just wanted to check that the most commonly used packages can be installed at this stage.
+That is it from an environment setup perspective, other packages can be used instead as required. The *Codespaces Terminal* window can now be used to compile *Ada* source code, as would be done on system via a terminal (ie `gprbuild`, `gnatpp`, etc). The installed packages in the above *Dockerfile* for this test project are way more than are actually needed, but I just wanted to check that the most commonly used packages can be installed at this stage.
 
 
 ## General Usage
 
-The *Codespaces* environment works very well &mdash; especially if you have used *Visual Studio Code* before. Once you get into the coding, I forget I am using *Codespaces* in a web browser,the environment it provides is virtually the same as a local *Visual Studio Code* editor desktop experience. 
+The *Codespaces* environment works very well &mdash; especially if you have used *Visual Studio Code* before. Once you get into the coding, I forget I am using *Codespaces* in a web browser, the environment it provides is virtually the same as a local *Visual Studio Code* editor desktop experience. 
 
 I have used *Codespaces* from a few different browser that includes:
 
-* **iPad Pro 12.9" with Safari** : this works fine, mostly... There is a very annoying (to me) 'feature' that means there is an additional grey bar that sometimes pops up at the bottom of the browser window that has about three icons on it - one of which is to try to hide it, the other is the on screen keyboard and undo button. I have a keyboard attached (Apple version) so I have no idea why this bar keeps appearing! It blocks the terminal windows text so you cant see the command or latest output. It is frustrating enough to stop me from using this setup.
+* **iPad Pro 12.9" with Safari** : this works fine, mostly... There is a very annoying (to me) 'feature' that means there is an additional grey bar that sometimes pops up at the bottom of the *Safari* browser window that has about three icons on it - one of which is to try to hide it, the other is the on screen keyboard and undo button. I have a keyboard attached (Apple version) so I have no idea why this bar keeps appearing! It blocks the terminal windows text so you cant see the command or latest output. It is frustrating enough to stop me from using this setup.
 
 * **iPad Pro 12.9" with iOS Edge** : I installed Microsoft Edge for iOS as a comparison. This works much better and does not have the same bottom web browser pop up bar issues that Safari does. It was very usable and works well. Edge on iOS has it's own quirks though, so I cant say I would use Edge as my main browser on the iPad, but it would certainly be preferable to use *Codespaces* over Safari.
 
