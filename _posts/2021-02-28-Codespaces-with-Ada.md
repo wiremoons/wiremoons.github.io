@@ -23,6 +23,7 @@ This default environment includes support for quite a number of programming lang
 In order to provide Ada support so code and be check, tested, and built, an *Ada* development language environment is needed as well. These can be installed into the Codespace in two ways that as relatively easy that include:
 
 1. Open the Codespaces (Visual Studio Code) built-in Terminal window and install the required support via the Ubuntu package manager called `apt`. To install the *GNAT FSF Ada Compiler*, build tools, and some commonly used libraries the following command can be executed. The command did not execute cleanly always, but also entering `sudo apt-get update --fix-missing` did fix the issues when it was re-run:
+
 ```shell
 sudo apt install -y gnat gprbuild gdb upx-ucl asis-programs \
      libaws19-dev libcurl4-openssl-dev liblzma-dev \
@@ -30,7 +31,9 @@ sudo apt install -y gnat gprbuild gdb upx-ucl asis-programs \
      libgnatcoll-doc libgnatcoll-iconv18-dev libgnatcoll-readline18-dev \
      libgnatcoll-sqlite18-dev
 ```
+
 2. The other approach than should ensure the tools are installed and available when the Codespaces environment starts up is to added the required packages into the *Dockerfile*. The existing *Dockerfile* that is provided with the project can be replaced with the following to install the required *Ada* language support:
+
 ```dockerfile
 FROM mcr.microsoft.com/vscode/devcontainers/universal:1-focal
 
