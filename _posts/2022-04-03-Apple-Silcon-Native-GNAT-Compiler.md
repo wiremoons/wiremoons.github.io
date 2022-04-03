@@ -67,15 +67,15 @@ exercise perhaps...
 
 The steps I followed are document below, should you wish to read on!
 
-Fist, download the installer package '**Asset**' file from
+First, download the installer package '**Asset**' file from
 [Simon Wright's GitHub 'Release' page](https://github.com/simonjwright/distributing-gcc/releases).
 
 Make sure the correct _pre-release_ version is downloaded as the names are
-similar, bit only the one tagged as `b9b013b` is the native _Apple Silicon_
+similar, but only the one tagged as `b9b013b` is the native _Apple Silicon_
 version compiled for native `arm64` use. The direct URL is below, but check the
 tag, and also for any new '_pre-released / released_' versions:
 
-- https://github.com/simonjwright/distributing-gcc/releases/tag/aarch64-apple-darwin21-2
+- [https://github.com/simonjwright/distributing-gcc/releases/tag/aarch64-apple-darwin21-2](https://github.com/simonjwright/distributing-gcc/releases/tag/aarch64-apple-darwin21-2)
 
 Once downloaded the file will probably have the macOS _quarantine_ flag enabled:
 `com.apple.quarantine`. This can be checked in a _Terminal_ window by listing
@@ -119,8 +119,8 @@ or via a _Terminal_ with the command:
 installer -pkg gcc-12.0.1-aarch64-apple-darwin21.pkg -target /
 ```
 
-If you wish to continue to bypass the packages installer choice, and manually
-install yourself, then read on...
+If you wish to continue to bypass the package installer choices, and manually
+install yourself instead, then read on...
 
 The actual files contained in the package installer can be installed manually to
 a location of your choice. By default the package installer will install with
@@ -131,9 +131,9 @@ My preference is to run the Ada GNAT compiler and tools with user privileges
 only, so also locating them within my own home directory too.
 
 This can be done by first extracting the files from the installer package, and
-then by moving the GNAT Ada compiler and tool to a new directory in `$HOME`.
+then by moving the GNAT Ada compiler and tools to a new directory in `$HOME`.
 
-First unpack the files from the package install (ie the file
+First unpack the files from the package installer (ie the file
 `gcc-12.0.1-aarch64-apple-darwin21.pkg`) into a new directory (called
 `gcc-unpack` in the example), and then change into the new directory, and then
 extract the package files into it.
@@ -143,7 +143,7 @@ and then extract them, as you will see lots of messages starting with:
 `error while extracting archive:...`.
 
 Make sure you are in the same folder (ie perhaps `Downloads`) as the downloaded
-file `gcc-12.0.1-aarch64-apple-darwin21.pkg`. The enter the command below into
+file `gcc-12.0.1-aarch64-apple-darwin21.pkg`. Then enter the command below into
 the _Terminal_:
 
 ```console
@@ -179,9 +179,9 @@ cd gnat
 cat ../Payload | gunzip -dc | cpio -i
 ```
 
-That is the last extract step, and if the contents of the new `gnat` directory
-are listed (as below) then the full compiled copy of the `gcc`, `g++` and `gnat`
-etc are all available in the `bin` sub-directory. The output should be:
+That is the last extract step completed, and if the contents of the new `gnat` directory
+are listed as below, then the copies of the binaries for `gcc`, `g++` and `gnat`
+etc are all available in the `bin` sub-directory. The outputs should be:
 
 ```console
 % ls
